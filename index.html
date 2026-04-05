@@ -1,9 +1,45 @@
 <!doctype html>
 <html lang="en">
   <head>
+    <!-- Google tag (gtag.js) -->
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=G-82687XMTH1"
+    ></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+
+      gtag("config", "G-82687XMTH1");
+    </script>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>RCM – Merchandise Planner</title>
+    <title>RCM - Merchandise Planner</title>
+    <link rel="canonical" href="https://vmsd.in/" />
+    <meta name="description" content="Interactive 3D Merchandise Planner for retail stores. Visualize fixtures, mannequins, and layouts in real-time." />
+    <meta name="keywords" content="merchandise planner, retail layout, 3D store design, fixture planning, visual merchandising, RCM" />
+    <meta name="author" content="VMSD" />
+    <meta name="theme-color" content="#222222" />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://vmsd.in/" />
+    <meta property="og:title" content="RCM - Merchandise Planner" />
+    <meta property="og:description" content="Plan and visualize your retail store layout with the interactive 3D RCM Merchandise Planner." />
+    <meta property="og:image" content="https://vmsd.in/favicon.ico" />
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content="https://vmsd.in/" />
+    <meta property="twitter:title" content="RCM - Merchandise Planner" />
+    <meta property="twitter:description" content="Plan and visualize your retail store layout with the interactive 3D RCM Merchandise Planner." />
+    <meta property="twitter:image" content="https://vmsd.in/favicon.ico" />
+
+    <link rel="icon" type="image/x-icon" href="https://vmsd.in/favicon.ico" />
+    <link rel="manifest" href="manifest.json" />
     <link rel="stylesheet" href="style.css" />
 
     <!-- Import map: tells the browser where "three" and its addons live -->
@@ -25,9 +61,19 @@
       </button>
 
       <div id="toolbox">
-        <button class="tool-btn active" id="selectTool" title="Select Tool (V)">↖</button>
-        <button class="tool-btn" id="placeTool" title="Place Tool (A)">➕</button>
-        <button class="tool-btn danger" id="deleteTool" title="Delete Selected (Del)">🗑</button>
+        <button class="tool-btn active" id="selectTool" title="Select Tool (V)">
+          ↖
+        </button>
+        <button class="tool-btn" id="placeTool" title="Place Tool (A)">
+          ➕
+        </button>
+        <button
+          class="tool-btn danger"
+          id="deleteTool"
+          title="Delete Selected (Del)"
+        >
+          🗑
+        </button>
         <button class="tool-btn" id="undoTool" title="Undo (Ctrl+Z)">↶</button>
       </div>
 
@@ -39,19 +85,33 @@
           <div id="fixtureLibrary"></div>
         </section>
 
-        <section class="panel" id="transformPanel" style="display: none;">
+        <section class="panel" id="transformPanel" style="display: none">
           <h3>Transform</h3>
           <label
             >Pos X
             <div class="row">
-              <input type="range" id="posXSlider" min="-10.4" max="10.4" step="0.01" value="0" />
+              <input
+                type="range"
+                id="posXSlider"
+                min="-10.4"
+                max="10.4"
+                step="0.01"
+                value="0"
+              />
               <input type="number" id="posXVal" value="0.00" step="0.01" />
             </div>
           </label>
           <label
             >Pos Z
             <div class="row">
-              <input type="range" id="posZSlider" min="-3.35" max="3.35" step="0.01" value="0" />
+              <input
+                type="range"
+                id="posZSlider"
+                min="-3.35"
+                max="3.35"
+                step="0.01"
+                value="0"
+              />
               <input type="number" id="posZVal" value="0.00" step="0.01" />
             </div>
           </label>
@@ -88,7 +148,15 @@
         <section class="panel">
           <h3>Selected</h3>
           <div id="selectedInfo">Click a fixture to select</div>
-          <div id="debugInfo" style="font-family: monospace; font-size: 11px; margin-top: 8px; color: #888;"></div>
+          <div
+            id="debugInfo"
+            style="
+              font-family: monospace;
+              font-size: 11px;
+              margin-top: 8px;
+              color: #888;
+            "
+          ></div>
           <button class="btn danger" id="deleteBtn" disabled>
             🗑 Delete Selected
           </button>
