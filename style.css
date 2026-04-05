@@ -1,0 +1,378 @@
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  background: #0d0d12;
+  font-family: "Segoe UI", system-ui, sans-serif;
+  color: #ddd;
+  overflow: hidden;
+}
+
+#app { width: 100vw; height: 100vh; position: relative; }
+
+/* ── Toolbox ── */
+#toolbox {
+  display: none; /* Hidden by default */
+  position: absolute;
+  left: 260px;
+  top: 20px;
+  flex-direction: column;
+  gap: 8px;
+  background: rgba(12, 12, 18, 0.85);
+  backdrop-filter: blur(12px);
+  padding: 8px;
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+  z-index: 100;
+}
+
+.tool-btn {
+  width: 38px;
+  height: 38px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border: none;
+  border-radius: 7px;
+  color: #888;
+  font-size: 18px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.tool-btn:hover {
+  background: rgba(255, 255, 255, 0.06);
+  color: #fff;
+}
+
+.tool-btn.active {
+  background: #6c63ff;
+  color: #fff;
+  box-shadow: 0 0 15px rgba(108, 99, 255, 0.4);
+}
+
+.tool-btn.danger:hover {
+  background: rgba(255, 70, 70, 0.2);
+  color: #ff6b6b;
+}
+
+.tool-btn:disabled {
+  opacity: 0.2;
+  cursor: not-allowed;
+}
+
+#canvas { display: block; width: 100%; height: 100%; }
+
+/* ── Sidebar ── */
+#sidebar {
+  position: fixed;
+  top: 0; left: 0;
+  width: 248px;
+  height: 100vh;
+  background: rgba(12,12,18,0.93);
+  backdrop-filter: blur(14px);
+  border-right: 1px solid rgba(255,255,255,0.07);
+  padding: 14px 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  overflow-y: auto;
+  z-index: 10;
+  scrollbar-width: thin;
+  scrollbar-color: #333 transparent;
+}
+
+.logo {
+  font-size: 18px;
+  font-weight: 800;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: #fff;
+  padding-bottom: 12px;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+.logo span { color: #6c63ff; }
+
+.panel {
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.06);
+  border-radius: 10px;
+  padding: 11px 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+}
+
+.panel h3 {
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 1.8px;
+  color: #666;
+  font-weight: 600;
+}
+
+label {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  font-size: 11.5px;
+  color: #999;
+}
+
+.row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+input[type=range] {
+  -webkit-appearance: none;
+  flex: 1;
+  height: 3px;
+  background: rgba(255,255,255,0.12);
+  border-radius: 2px;
+  outline: none;
+  cursor: pointer;
+}
+input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 13px; height: 13px;
+  border-radius: 50%;
+  background: #6c63ff;
+  cursor: pointer;
+  transition: transform 0.1s;
+}
+input[type=range]::-webkit-slider-thumb:hover { transform: scale(1.2); }
+
+.row span { font-size: 11px; color: #bbb; min-width: 38px; text-align: right; }
+
+input[type=number] {
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 4px;
+  color: #bbb;
+  font-size: 11px;
+  padding: 2px 4px;
+  width: 54px;
+  text-align: right;
+  outline: none;
+  transition: all 0.15s;
+}
+input[type=number]:focus {
+  border-color: #6c63ff;
+  color: #fff;
+  background: rgba(255,255,255,0.08);
+}
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
+.btn {
+  padding: 7px 10px;
+  border-radius: 7px;
+  border: 1px solid rgba(255,255,255,0.1);
+  background: rgba(255,255,255,0.05);
+  color: #ccc;
+  font-size: 11.5px;
+  cursor: pointer;
+  transition: all 0.15s;
+  text-align: center;
+}
+.btn:hover { background: rgba(255,255,255,0.11); color: #fff; }
+.btn:active { transform: scale(0.97); }
+.btn.primary { background: #6c63ff; border-color: #6c63ff; color: #fff; }
+.btn.primary:hover { background: #7d75ff; }
+.btn.danger { background: rgba(255,70,70,0.1); border-color: rgba(255,70,70,0.25); color: #ff6b6b; }
+.btn.danger:hover { background: rgba(255,70,70,0.22); }
+.btn:disabled { opacity: 0.3; cursor: not-allowed; }
+.btn.half { flex: 1; }
+
+/* ── Fixture library cards ── */
+#fixtureLibrary {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.fixture-card {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  padding: 8px 9px;
+  border-radius: 8px;
+  border: 1px solid rgba(255,255,255,0.07);
+  background: rgba(255,255,255,0.04);
+  cursor: pointer;
+  transition: all 0.15s;
+  user-select: none;
+}
+.fixture-card:hover { background: rgba(108,99,255,0.15); border-color: rgba(108,99,255,0.4); }
+.fixture-card.active { background: rgba(108,99,255,0.25); border-color: #6c63ff; }
+.fixture-card .icon { font-size: 18px; flex-shrink: 0; }
+.fixture-card .info { flex: 1; }
+.fixture-card .name { font-size: 12px; font-weight: 600; color: #eee; }
+.fixture-card .dims { font-size: 10px; color: #666; margin-top: 1px; }
+.fixture-card .add-btn {
+  font-size: 16px;
+  color: #6c63ff;
+  padding: 2px 6px;
+  border-radius: 4px;
+  background: rgba(108,99,255,0.15);
+  transition: background 0.1s;
+}
+.fixture-card:hover .add-btn { background: rgba(108,99,255,0.3); }
+
+#selectedInfo {
+  font-size: 11px;
+  color: #888;
+  min-height: 18px;
+  line-height: 1.5;
+}
+
+/* ── Status & Loading Overlay ── */
+#status {
+  position: fixed;
+  inset: 0;
+  background: #0d0d12;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2000;
+  transition: opacity 0.8s ease, visibility 0.8s;
+  color: #fff;
+  text-align: center;
+  pointer-events: auto;
+}
+
+#status.hidden {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+#toast {
+  position: fixed;
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%) translateY(100px);
+  background: #1a1b26;
+  color: #fff;
+  padding: 12px 28px;
+  border-radius: 30px;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  border: 1px solid #414868;
+  box-shadow: none; /* Removed all shadows/glow */
+  z-index: 3000;
+  transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  pointer-events: none;
+  white-space: nowrap;
+}
+
+#toast.visible {
+  transform: translateX(-50%) translateY(0);
+}
+
+.loading-content {
+  width: 320px;
+}
+
+#statusText {
+  display: block;
+  margin-bottom: 20px;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #6c63ff;
+}
+
+.progress-container {
+  height: 4px;
+  background: rgba(255,255,255,0.05);
+  border-radius: 10px;
+  overflow: hidden;
+  margin-bottom: 25px;
+}
+
+#progressBar {
+  height: 100%;
+  width: 0%;
+  background: #6c63ff;
+  transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+#tutorialHints {
+  font-size: 12px;
+  color: #666;
+  line-height: 1.8;
+  min-height: 50px;
+  font-style: italic;
+}
+
+/* ── Edit Toggle Button ── */
+#editToggle {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 1000;
+  background: rgba(12, 12, 18, 0.85);
+  backdrop-filter: blur(10px);
+  color: #fff;
+  border: 1px solid rgba(255,255,255,0.1);
+  width: 44px;
+  height: 44px;
+  border-radius: 10px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2); /* Reduced shadow */
+  transition: all 0.3s;
+}
+
+#editToggle:hover {
+  background: rgba(255, 255, 255, 0.05);
+  border-color: rgba(255, 255, 255, 0.2);
+  transform: translateY(-1px);
+}
+
+#editToggle.active {
+  background: #fff; /* Solid contrast */
+  border-color: #fff;
+  color: #000;
+  box-shadow: none; /* Removed glow */
+}
+
+#editToggle .icon { font-size: 16px; }
+
+#tooltip {
+  position: fixed;
+  pointer-events: none;
+  background: rgba(12,12,18,0.9);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 6px;
+  padding: 4px 10px;
+  font-size: 11px;
+  color: #ccc;
+  display: none;
+  z-index: 30;
+}
+
+/* ── Loading badge on fixture cards ── */
+.fixture-card .badge {
+  font-size: 11px;
+  color: #666;
+  min-width: 16px;
+  text-align: center;
+}
+.fixture-card.loading { opacity: 0.5; cursor: wait; }
+.fixture-card.loading .badge { animation: pulse 1s infinite; }
+@keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.3} }

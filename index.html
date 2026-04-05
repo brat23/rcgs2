@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>RCM – Merchandise Planner</title>
+    <link rel="stylesheet" href="style.css" />
+
+    <!-- Import map: tells the browser where "three" and its addons live -->
+    <script type="importmap">
+      {
+        "imports": {
+          "three": "https://cdn.jsdelivr.net/npm/three@0.164.1/build/three.module.js",
+          "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.164.1/examples/jsm/"
+        }
+      }
+    </script>
+  </head>
+  <body>
+    <div id="app">
+      <canvas id="canvas"></canvas>
+
+      <button id="editToggle" title="Toggle Edit Mode (TAB)">
+        <span class="icon">✎</span>
+      </button>
+
+      <div id="toolbox">
+        <button class="tool-btn active" id="selectTool" title="Select Tool (V)">↖</button>
+        <button class="tool-btn" id="placeTool" title="Place Tool (A)">➕</button>
+        <button class="tool-btn danger" id="deleteTool" title="Delete Selected (Del)">🗑</button>
+        <button class="tool-btn" id="undoTool" title="Undo (Ctrl+Z)">↶</button>
+      </div>
+
+      <aside id="sidebar">
+        <div class="logo">RCM <span>S2</span></div>
+
+        <section class="panel">
+          <h3>Fixture Library</h3>
+          <div id="fixtureLibrary"></div>
+        </section>
+
+        <section class="panel" id="transformPanel" style="display: none;">
+          <h3>Transform</h3>
+          <label
+            >Pos X
+            <div class="row">
+              <input type="range" id="posXSlider" min="-10.4" max="10.4" step="0.01" value="0" />
+              <input type="number" id="posXVal" value="0.00" step="0.01" />
+            </div>
+          </label>
+          <label
+            >Pos Z
+            <div class="row">
+              <input type="range" id="posZSlider" min="-3.35" max="3.35" step="0.01" value="0" />
+              <input type="number" id="posZVal" value="0.00" step="0.01" />
+            </div>
+          </label>
+          <label
+            >Scale
+            <div class="row">
+              <input
+                type="range"
+                id="scaleSlider"
+                min="0.2"
+                max="3"
+                step="0.05"
+                value="1"
+              />
+              <input type="number" id="scaleVal" value="1.00" step="0.01" />
+            </div>
+          </label>
+          <label
+            >Rotate Y
+            <div class="row">
+              <input
+                type="range"
+                id="rotSlider"
+                min="0"
+                max="360"
+                step="1"
+                value="0"
+              />
+              <input type="number" id="rotVal" value="0" step="1" />
+            </div>
+          </label>
+        </section>
+
+        <section class="panel">
+          <h3>Selected</h3>
+          <div id="selectedInfo">Click a fixture to select</div>
+          <div id="debugInfo" style="font-family: monospace; font-size: 11px; margin-top: 8px; color: #888;"></div>
+          <button class="btn danger" id="deleteBtn" disabled>
+            🗑 Delete Selected
+          </button>
+        </section>
+
+        <section class="panel">
+          <h3>Layout File</h3>
+          <button class="btn" id="saveBtn">Save Layout</button>
+          <button class="btn" id="loadBtn">Load Layout</button>
+          <input
+            type="file"
+            id="layoutInput"
+            accept=".json,application/json"
+            hidden
+          />
+        </section>
+
+        <section class="panel">
+          <h3>Camera</h3>
+          <div class="row" style="gap: 6px">
+            <button class="btn half" id="topBtn">Top</button>
+            <button class="btn half" id="perspBtn">Persp</button>
+          </div>
+        </section>
+      </aside>
+
+      <div id="status">
+        <div class="loading-content">
+          <span id="statusText">Loading scene…</span>
+          <div class="progress-container"><div id="progressBar"></div></div>
+          <div id="tutorialHints"></div>
+        </div>
+      </div>
+
+      <div id="toast"></div>
+    </div>
+
+    <!-- module must come AFTER the importmap -->
+    <script type="module" src="src/App.js"></script>
+  </body>
+</html>
