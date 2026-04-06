@@ -75,7 +75,9 @@ export class InputManager {
       const key = e.key.toLowerCase(), ctrl = e.ctrlKey;
 
       if (key === SHORTCUTS.UNDO.key && ctrl) { e.preventDefault(); if(this.app.room.isEditMode) this.app.ui.undoToolBtn.click(); }
-      else if (key === SHORTCUTS.SELECT_MODE.key) { if(this.app.room.isEditMode) this.app.setToolMode('select'); }
+      else if (key === SHORTCUTS.COPY.key && ctrl) { e.preventDefault(); if(this.app.room.isEditMode) this.app.copySelected(); }
+      else if (key === SHORTCUTS.PASTE.key && ctrl) { e.preventDefault(); if(this.app.room.isEditMode) this.app.pasteSelected(); }
+      else if (key === SHORTCUTS.SELECT_MODE.key && !ctrl) { if(this.app.room.isEditMode) this.app.setToolMode('select'); }
       else if (key === SHORTCUTS.PLACE_MODE.key && this.app.activeFile) { if(this.app.room.isEditMode) this.app.setToolMode('place'); }
       else if (key === SHORTCUTS.DELETE.key) { if(this.app.room.isEditMode) this.app.deleteSelected(); }
       else if (key === SHORTCUTS.ESCAPE.key) { if(this.app.room.isEditMode) this.app.setToolMode('select'); }

@@ -27,6 +27,7 @@ class App {
     this.activeFile = null;
     this.toolMode = 'select';
     this.defaultsPlaced = false;
+    this.clipboard = null;
 
     this.init();
   }
@@ -100,6 +101,34 @@ class App {
     if (this.ui.selected) {
       this.fixtures.removeFixture(this.ui.selected);
       this.ui.deselect(this.scene.scene);
+    }
+  }
+
+  copySelected() {
+    if (this.ui.selected) {
+      this.clipboard = this.fixtures.serializeFixture(this.ui.selected);
+      this.ui.setStatus(`Copied: ${this.ui.selected.name}`);
+    }
+  }
+
+  pasteSelected() {
+    if (this.clipboard) {
+      const pos = new THREE.Vector3(
+        this.clipboard.position.x + CONFIG.PASTE_OFFSET,
+        CONFIG.FLOOR_Y,
+        this.clipboard.position.z + CONFIG.PASTE_OFFSET
+      );
+      
+      const newFixture = this.fixtures.placeFixture(pos, this.clipboard.file, {
+        userScale: this.clipboard.userScale,
+        userRot: this.clipboard.userRot,
+        yOverride: this.clipboard.baseY
+      });
+
+      if (newFixture) {
+        this.ui.select(newFixture, this.scene.scene);
+        this.ui.setStatus(`Pasted: ${newFixture.name}`);
+      }
     }
   }
 

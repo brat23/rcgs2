@@ -139,6 +139,50 @@ export const CONFIG = {
     { file: "fixture/sofa.glb", pos: [7.98, 1.7], rot: 180, scale: 2.05 }, // Updated Sofa
     { file: "fixture/focal.glb", pos: [-2.331, -0.301], rot: 0, scale: 1.5 },
     { file: "fixture/focal.glb", pos: [2.911, -0.302], rot: 0, scale: 1.5 },
+    // Wall 1
+    { file: "fixture/4sh.glb", pos: [-9.902, -2.848], rot: 0 },
+    { file: "fixture/4sh.glb", pos: [-9.908, -1.600], rot: 0 },
+    { file: "fixture/4sh.glb", pos: [-9.939, -0.378], rot: 0 },
+    { file: "fixture/4sh.glb", pos: [-9.930, 0.844], rot: 0 },
+    { file: "fixture/4sh.glb", pos: [-9.930, 2.066], rot: 0 },
+    // Wall 2
+    { file: "fixture/4sh.glb", pos: [-9.534, -2.912], rot: 90 },
+    { file: "fixture/4sh.glb", pos: [-8.280, -2.918], rot: 90 },
+    { file: "fixture/4sh.glb", pos: [-7.054, -2.929], rot: 90 },
+    { file: "fixture/4sh.glb", pos: [-5.808, -2.918], rot: 90 },
+    { file: "fixture/4sh.glb", pos: [-4.559, -2.933], rot: 90 },
+    // Wall 3
+    { file: "fixture/4sh.glb", pos: [-2.585, -2.976], rot: 90 },
+    { file: "fixture/4sh.glb", pos: [-1.332, -2.978], rot: 90 },
+    { file: "fixture/4sh.glb", pos: [-0.082, -2.965], rot: 90 },
+    // Wall 4
+    { file: "fixture/4sh.glb", pos: [1.785, -2.955], rot: 90 },
+    { file: "fixture/4sh.glb", pos: [3.032, -2.959], rot: 90 },
+    { file: "fixture/4sh.glb", pos: [4.277, -2.950], rot: 90 },
+    { file: "fixture/4sh.glb", pos: [5.579, -2.958], rot: 90 },
+    { file: "fixture/4sh.glb", pos: [6.843, -2.969], rot: 90 },
+    { file: "fixture/4sh.glb", pos: [8.151, -2.968], rot: 90 },
+    // Wall 5
+    { file: "fixture/4sh.glb", pos: [10.015, -2.745], rot: 0 },
+    { file: "fixture/4sh.glb", pos: [10.019, -1.550], rot: 0 },
+    { file: "fixture/4sh.glb", pos: [10.012, -0.292], rot: 0 },
+    { file: "fixture/4sh.glb", pos: [10.031, 0.986], rot: 0 },
+    { file: "fixture/4sh.glb", pos: [10.037, 2.132], rot: 0 },
+    // Wall 6
+    { file: "fixture/4sh.glb", pos: [8.746, 2.940], rot: 90 },
+    { file: "fixture/4sh.glb", pos: [7.498, 2.929], rot: 90 },
+    { file: "fixture/4sh.glb", pos: [6.248, 2.951], rot: 90 },
+    { file: "fixture/4sh.glb", pos: [5.007, 2.989], rot: 90 },
+    { file: "fixture/4sh.glb", pos: [3.761, 2.986], rot: 90 },
+    // Wall 7
+    { file: "fixture/4sh.glb", pos: [1.282, 2.936], rot: 90 },
+    { file: "fixture/4sh.glb", pos: [-0.011, 2.890], rot: 90 },
+    // Wall 8
+    { file: "fixture/4sh.glb", pos: [-2.428, 2.893], rot: 90 },
+    { file: "fixture/4sh.glb", pos: [-3.638, 2.891], rot: 90 },
+    { file: "fixture/4sh.glb", pos: [-4.891, 2.898], rot: 90 },
+    { file: "fixture/4sh.glb", pos: [-6.129, 2.930], rot: 90 },
+    { file: "fixture/4sh.glb", pos: [-7.334, 2.904], rot: 90 },
   ],
   SHORTCUTS: {
     UNDO: { key: "z", ctrl: true, description: "Undo last action" },
@@ -156,6 +200,16 @@ export const CONFIG = {
       key: "l",
       ctrl: true,
       description: "Quick Load from Browser Storage",
+    },
+    COPY: {
+      key: "c",
+      ctrl: true,
+      description: "Copy selected fixture",
+    },
+    PASTE: {
+      key: "v",
+      ctrl: true,
+      description: "Paste copied fixture",
     },
   },
 };
