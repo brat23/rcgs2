@@ -53,12 +53,12 @@ export const CONFIG = {
     DEPTH: 0.05,
     Y_LEVEL: 2.44, // 8 feet from floor to ceiling top
     IMAGES: [
-      { file: "lightbox/boy1.png", pos: [-10.15, 2.1, 0.4], rot: 90 },
-      { file: "lightbox/men1.png", pos: [-10.15, 2.1, -0.4], rot: 90 },
+      { file: "lightbox/men2.png", pos: [-10.15, 2.1, 1.42], rot: 90 },
+      { file: "lightbox/men1.png", pos: [-10.15, 2.1, -1.18], rot: 90 },
       { file: "lightbox/girl1.png", pos: [-8.0, 2.1, -3.15], rot: 0 },
       { file: "lightbox/girl2.png", pos: [-6.0, 2.1, -3.15], rot: 0 },
       { file: "lightbox/boy2.png", pos: [6.0, 2.1, -3.15], rot: 0 },
-      { file: "lightbox/men2.png", pos: [8.0, 2.1, -3.15], rot: 0 },
+      { file: "lightbox/boy1.png", pos: [8.0, 2.1, -3.15], rot: 0 },
       { file: "lightbox/women1.png", pos: [10.15, 2.1, -0.4], rot: -90 },
       { file: "lightbox/women2.png", pos: [10.15, 2.1, 0.4], rot: -90 },
       { file: "lightbox/nb1.png", pos: [6.0, 2.1, 3.15], rot: 180 },
@@ -68,7 +68,7 @@ export const CONFIG = {
   CALLOUTS: [
     {
       file: "lightbox/meshes/mens.glb",
-      pos: [-10.15, 0.4],
+      pos: [-10.15, 1.47],
       rot: 90,
       scale: 0.2,
       category: "MENS",
@@ -116,7 +116,10 @@ export const CONFIG = {
     }, // Angle 7 - Front Wall Left
   ],
   DEFAULT_MANNEQUINS: [
-    { pos: [-9.9, 2.434], rot: -90 }, // Angle 1 MENS
+    { pos: [-9.9, 2.434], rot: 90 }, // Angle 1 MENS
+    { pos: [-9.9, -1.930], rot: 90 }, // Angle 1 MENS
+    { pos: [-9.9, 0.780], rot: 90 }, // Angle 1 MENS
+    { pos: [-9.9, -0.550], rot: 90 }, // Angle 1 MENS
     { pos: [-8.0, -2.957], rot: 0 }, // Angle 2 MENS
     { pos: [6.0, -2.993], rot: 0 }, // Angle 4 NEWBORN
     { pos: [9.9, -0.4], rot: 90 }, // Angle 5 BOYS
@@ -165,11 +168,11 @@ export const CONFIG = {
     { file: "fixture/focal.glb", pos: [-2.331, -0.301], rot: 0, scale: 1.5 },
     { file: "fixture/focal.glb", pos: [2.911, -0.302], rot: 0, scale: 1.5 },
     // Wall 1
-    { file: "fixture/4sh.glb", pos: [-9.902, -2.848], rot: 0 },
-    { file: "fixture/4sh.glb", pos: [-9.908, -1.6], rot: 0 },
-    { file: "fixture/4sh.glb", pos: [-9.939, -0.378], rot: 0 },
-    { file: "fixture/4sh.glb", pos: [-9.93, 0.844], rot: 0 },
-    { file: "fixture/4sh.glb", pos: [-9.93, 2.066], rot: 0 },
+    { file: "fixture/4fh.glb", pos: [-9.902, -2.848], rot: 0 },
+    { file: "fixture/4fh.glb", pos: [-9.908, -1.6], rot: 0 },
+    { file: "fixture/4fh.glb", pos: [-9.939, -0.378], rot: 0 },
+    { file: "fixture/4fh.glb", pos: [-9.93, 0.844], rot: 0 },
+    { file: "fixture/4fh.glb", pos: [-9.93, 2.066], rot: 0 },
     // Wall 2
     { file: "fixture/4sh.glb", pos: [-9.534, -2.912], rot: 90 },
     { file: "fixture/4sh.glb", pos: [-8.28, -2.918], rot: 90 },

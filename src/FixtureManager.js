@@ -68,20 +68,32 @@ export class FixtureManager {
         
         // Filter by category to avoid overlapping words
         if (category) {
+            let matchesFound = 0;
+            const nodes = [];
+            
+            // Helper to strip 'S' and digits for robust matching (BOYS -> BOY, BOY001 -> BOY)
+            const clean = (s) => (s || "").toUpperCase().split('.')[0].replace(/\d+$/, '').replace(/S$/, '');
+            const cleanCat = clean(category);
+
             group.traverse(child => {
                 if (child.isMesh || child.isGroup) {
-                    const nodeName = (child.name || "").split('.')[0].toUpperCase();
-                    if (nodeName && !['SCENE', 'ROOT'].includes(nodeName)) {
-                        // Robust match (e.g., "MENS" matches "MENS_TEXT", "BOY" matches "BOYS")
-                        const isMatch = nodeName.includes(category) || category.includes(nodeName);
-                        if (!isMatch) {
-                            child.visible = false;
-                        } else {
-                            child.visible = true;
-                        }
+                    const name = child.name || "";
+                    if (name && !['SCENE', 'ROOT'].includes(name.toUpperCase())) {
+                        const cleanNode = clean(name);
+                        const isMatch = cleanNode.includes(cleanCat) || cleanCat.includes(cleanNode);
+                        if (isMatch) matchesFound++;
+                        nodes.push({ child, isMatch });
                     }
                 }
             });
+
+            // If we found specific category nodes, hide others. 
+            // If NO category nodes found, show everything (fallback for individual files).
+            if (matchesFound > 0) {
+                nodes.forEach(({ child, isMatch }) => {
+                    if (!isMatch) child.visible = false;
+                });
+            }
         }
     }
 
