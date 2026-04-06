@@ -9,6 +9,7 @@ import { LightboxManager } from './LightboxManager.js';
 import { InputManager } from './InputManager.js';
 import { LayoutManager } from './LayoutManager.js';
 import { RaycasterManager } from './RaycasterManager.js';
+import { AlignmentManager } from './AlignmentManager.js';
 import { CONFIG } from './config.js';
 
 class App {
@@ -22,6 +23,7 @@ class App {
     this.library = new LibraryManager(this.ui, this.assets, this.fixtures);
     this.layout = new LayoutManager(this);
     this.raycaster = new RaycasterManager(this.scene.camera, new THREE.Plane(new THREE.Vector3(0, 1, 0), -CONFIG.FLOOR_Y));
+    this.align = new AlignmentManager(this);
     this.input = new InputManager(this);
 
     this.activeFile = null;
@@ -45,11 +47,15 @@ class App {
         // Speed up Edit Mode by disabling shadows and high-res tone mapping
         this.scene.setShadowsEnabled(!newState); 
 
-        if (!newState) this.ui.deselect(this.scene.scene);
+        if (!newState) {
+          this.ui.deselect(this.scene.scene);
+          this.scene.controls.enabled = true;
+        }
         this.ui.setStatus(newState ? 'Edit Mode: ON (High Performance)' : 'Edit Mode: OFF (High Quality)');
       };
     }
 
+    this.align.setup();
     this.library.setup((file, label) => {
       this.activeFile = file;
       this.setToolMode('place');
@@ -59,16 +65,6 @@ class App {
 
     this.room.load(() => {
       this.checkAndPlaceDefaults();
-      CONFIG.LIGHTBOX.IMAGES.forEach(lb => {
-        this.fixtures.placeFixture(
-          new THREE.Vector3(lb.pos[0], lb.pos[1], lb.pos[2]),
-          lb.file,
-          {
-            userRot: lb.rot * Math.PI / 180,
-            commit: false
-          }
-        );
-      });
     });
 
     this.layout.setup();
@@ -79,20 +75,33 @@ class App {
   checkAndPlaceDefaults() {
     if (this.defaultsPlaced) return;
     
-    // Check if all required assets for defaults are loaded
-    const requiredFiles = new Set([
+    // Use files from DEFAULT_LAYOUT if available, otherwise fallback to legacy config
+    const layoutFiles = CONFIG.DEFAULT_LAYOUT ? CONFIG.DEFAULT_LAYOUT.map(item => item.file) : [];
+    
+    const requiredFiles = new Set(layoutFiles.length > 0 ? layoutFiles : [
       CONFIG.MANNEQUIN_FILE, 
       ...CONFIG.DEFAULT_FIXTURES.map(f => f.file),
       ...CONFIG.CALLOUTS.map(c => c.file)
     ]);
-    const allLoaded = Array.from(requiredFiles).every(f => this.assets.isLoaded(f));
+
+    // Split into models and textures
+    const filesArray = Array.from(requiredFiles);
+    const isModel = f => f.endsWith('.glb') || f.endsWith('.gltf');
+    const allLoaded = filesArray.every(f => {
+        if (isModel(f)) return this.assets.isLoaded(f);
+        return !!this.assets.getTexture(f);
+    });
 
     if (allLoaded) {
       this.defaultsPlaced = true;
       setTimeout(() => {
-        this.library.autoPlaceFixtures();
-        this.library.autoPlaceMannequins(this.scene.scene);
-        this.library.autoPlaceCallouts(this.scene.scene);
+        if (CONFIG.DEFAULT_LAYOUT) {
+            this.fixtures.restoreLayout(CONFIG.DEFAULT_LAYOUT);
+        } else {
+            this.library.autoPlaceFixtures();
+            this.library.autoPlaceMannequins(this.scene.scene);
+            this.library.autoPlaceCallouts(this.scene.scene);
+        }
         this.ui.setStatus('Default layout loaded.');
       }, 500);
     } else {
@@ -107,37 +116,47 @@ class App {
   }
 
   deleteSelected() {
-    if (this.ui.selected) {
-      this.fixtures.removeFixture(this.ui.selected);
+    if (this.ui.selectedItems.length > 0) {
+      [...this.ui.selectedItems].forEach(item => {
+        this.fixtures.removeFixture(item);
+      });
       this.ui.deselect(this.scene.scene);
     }
   }
 
   copySelected() {
-    if (this.ui.selected) {
-      this.clipboard = this.fixtures.serializeFixture(this.ui.selected);
-      this.ui.setStatus(`Copied: ${this.ui.selected.name}`);
+    if (this.ui.selectedItems.length > 0) {
+      this.clipboard = this.ui.selectedItems.map(item => this.fixtures.serializeFixture(item));
+      this.ui.setStatus(`Copied ${this.ui.selectedItems.length} items`);
     }
   }
 
   pasteSelected() {
     if (this.clipboard) {
-      const pos = new THREE.Vector3(
-        this.clipboard.position.x + CONFIG.PASTE_OFFSET,
-        CONFIG.FLOOR_Y,
-        this.clipboard.position.z + CONFIG.PASTE_OFFSET
-      );
+      const items = Array.isArray(this.clipboard) ? this.clipboard : [this.clipboard];
+      this.ui.deselect(this.scene.scene);
       
-      const newFixture = this.fixtures.placeFixture(pos, this.clipboard.file, {
-        userScale: this.clipboard.userScale,
-        userRot: this.clipboard.userRot,
-        yOverride: this.clipboard.baseY
-      });
+      items.forEach(data => {
+        const pos = new THREE.Vector3(
+          data.position.x + CONFIG.PASTE_OFFSET,
+          CONFIG.FLOOR_Y,
+          data.position.z + CONFIG.PASTE_OFFSET
+        );
+        
+        const newFixture = this.fixtures.placeFixture(pos, data.file, {
+          userScale: data.userScale,
+          userRot: data.userRot,
+          yOverride: data.baseY,
+          commit: false // Commit once at the end
+        });
 
-      if (newFixture) {
-        this.ui.select(newFixture, this.scene.scene);
-        this.ui.setStatus(`Pasted: ${newFixture.name}`);
-      }
+        if (newFixture) {
+          this.ui.addToSelection(newFixture, this.scene.scene);
+        }
+      });
+      
+      this.fixtures.pushHistory();
+      this.ui.setStatus(`Pasted ${items.length} items`);
     }
   }
 

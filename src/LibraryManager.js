@@ -18,6 +18,17 @@ export class LibraryManager {
       });
     });
 
+    // Load unique textures from DEFAULT_LAYOUT
+    if (CONFIG.DEFAULT_LAYOUT) {
+        const textures = new Set(CONFIG.DEFAULT_LAYOUT.map(i => i.file).filter(f => f.endsWith('.png') || f.endsWith('.jpg')));
+        textures.forEach(path => {
+            this.ui.registerAssetRequest(path);
+            this.assets.loadTexture(path).then(() => {
+                this.ui.assetFinished(path);
+            });
+        });
+    }
+
     CONFIG.FIXTURES_META.forEach(meta => {
       const card = document.createElement('div');
       card.className = 'fixture-card loading';

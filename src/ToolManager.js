@@ -17,7 +17,10 @@ export class ToolManager {
       };
     }
 
-    const deleteFn = () => this.app.deleteSelected();
+    const deleteFn = () => {
+      this.app.deleteSelected();
+      this.app.scene.controls.enabled = true;
+    }
     if (this.ui.deleteToolBtn) this.ui.deleteToolBtn.onclick = deleteFn;
     if (this.ui.deleteBtn) this.ui.deleteBtn.onclick = deleteFn;
 
@@ -25,6 +28,8 @@ export class ToolManager {
       this.ui.undoToolBtn.onclick = () => {
         if (this.app.fixtures.undo()) {
           this.ui.setStatus('Undo complete');
+          this.app.ui.deselect(this.app.scene.scene);
+          this.app.scene.controls.enabled = true;
         }
       };
     }

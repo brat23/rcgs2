@@ -19,6 +19,29 @@ export class UIManager {
     this.finishedRegistry = new Set();
 
     this.selectedInfo = document.getElementById('selectedInfo');
+    this.selectedInfo.style.cursor = 'pointer';
+    this.selectedInfo.title = 'Click to copy position';
+    this.selectedInfo.onclick = () => {
+      if (this.selectedItems.length === 0) return;
+      let text = "";
+      if (this.selectedItems.length === 1) {
+          const sel = this.selected;
+          const { x, z } = sel.position;
+          const rot = Math.round((sel.userData.userRot || 0) * 180 / Math.PI);
+          const label = CONFIG.FIXTURES_META.find(item => item.file === sel.userData.file)?.label || sel.name || 'fixture';
+          text = `${label}: { pos: [${x.toFixed(3)}, ${z.toFixed(3)}], rot: ${rot} }`;
+      } else {
+          text = this.selectedItems.map(sel => {
+              const label = CONFIG.FIXTURES_META.find(item => item.file === sel.userData.file)?.label || sel.name || 'fixture';
+              const rot = Math.round((sel.userData.userRot || 0) * 180 / Math.PI);
+              return `${label}: { pos: [${sel.position.x.toFixed(3)}, ${sel.position.z.toFixed(3)}], rot: ${rot} }`;
+          }).join('\n');
+      }
+      
+      navigator.clipboard.writeText(text).then(() => {
+        this.setStatus('Position & Rotation copied!');
+      });
+    };
     this.deleteBtn = document.getElementById('deleteBtn');
 
     // Transform Panel
@@ -47,9 +70,24 @@ export class UIManager {
     this.topBtn = document.getElementById('topBtn');
     this.perspBtn = document.getElementById('perspBtn');
 
+    // Alignment UI
+    this.alignmentPanel = document.getElementById('alignmentPanel');
+    this.alignLeftBtn = document.getElementById('alignLeft');
+    this.alignCenterXBtn = document.getElementById('alignCenterX');
+    this.alignRightBtn = document.getElementById('alignRight');
+    this.alignTopBtn = document.getElementById('alignTop');
+    this.alignCenterZBtn = document.getElementById('alignCenterZ');
+    this.alignBottomBtn = document.getElementById('alignBottom');
+    this.distributeXBtn = document.getElementById('distributeX');
+    this.distributeZBtn = document.getElementById('distributeZ');
 
-    this.selected = null;
-    this.selectionHelper = null;
+    this.selectedItems = []; // Array of selected groups
+    this.selectionHelpers = new Map(); // Map: group -> BoxHelper
+    
+    // For backward compatibility/simpler access to the "primary" selected item
+    Object.defineProperty(this, 'selected', {
+      get: () => this.selectedItems[this.selectedItems.length - 1] || null
+    });
     
     // Add camera debug element
     this.cameraDebugEl = document.createElement('div');
@@ -156,9 +194,15 @@ export class UIManager {
   }
 
   showDebug() {
-    if (!this.selected) { if (this.debugEl) this.debugEl.textContent = ''; return; }
-    const { x, z } = this.selected.position;
-    const rot = (this.selected.rotation.y * 180 / Math.PI).toFixed(0);
+    if (this.selectedItems.length === 0) { if (this.debugEl) this.debugEl.textContent = ''; return; }
+    if (this.selectedItems.length > 1) {
+      if (this.debugEl) this.debugEl.textContent = `${this.selectedItems.length} items selected`;
+      return;
+    }
+    
+    const sel = this.selected;
+    const { x, z } = sel.position;
+    const rot = (sel.rotation.y * 180 / Math.PI).toFixed(0);
     if (this.debugEl) this.debugEl.textContent = `Pos: [${x.toFixed(3)}, ${z.toFixed(3)}], Rot: ${rot}°`;
     
     if (document.activeElement !== this.posXValEl && document.activeElement !== this.posXSlider) {
@@ -172,27 +216,90 @@ export class UIManager {
   select(group, scene) {
     this.deselect(scene);
     if (!group) return;
-    this.selected = group;
-    this.selectionHelper = new THREE.BoxHelper(this.selected, 0x6c63ff);
-    scene.add(this.selectionHelper);
+    this.addToSelection(group, scene);
+  }
 
-    const label = CONFIG.FIXTURES_META.find(item => item.file === group.userData.file)?.label || group.name || 'fixture';
-    this.selectedInfo.textContent = `${label} · (${group.position.x.toFixed(2)}, ${group.position.z.toFixed(2)})`;
-    this.deleteBtn.disabled = false;
+  toggleSelection(group, scene) {
+    if (this.selectedItems.includes(group)) {
+      this.removeFromSelection(group, scene);
+    } else {
+      this.addToSelection(group, scene);
+    }
+  }
 
-    this.transformPanel.style.display = 'flex';
-    this.posXSlider.value = this.posXValEl.value = group.position.x.toFixed(2);
-    this.posZSlider.value = this.posZValEl.value = group.position.z.toFixed(2);
-    this.scaleSlider.value = group.userData.userScale;
-    this.scaleValEl.value = Number(group.userData.userScale).toFixed(2);
-    this.rotSlider.value = this.rotValEl.value = Math.round((group.userData.userRot || 0) * 180 / Math.PI);
+  addToSelection(group, scene) {
+    if (!group || this.selectedItems.includes(group)) return;
+    
+    this.selectedItems.push(group);
+    const helper = new THREE.BoxHelper(group, 0x6c63ff);
+    this.selectionHelpers.set(group, helper);
+    scene.add(helper);
+
+    this.updateUIForSelection();
+  }
+
+  removeFromSelection(group, scene) {
+    const idx = this.selectedItems.indexOf(group);
+    if (idx === -1) return;
+    
+    this.selectedItems.splice(idx, 1);
+    const helper = this.selectionHelpers.get(group);
+    if (helper) {
+      scene.remove(helper);
+      this.selectionHelpers.delete(group);
+    }
+
+    this.updateUIForSelection();
+  }
+
+  updateUIForSelection() {
+    if (this.selectedItems.length === 0) {
+      this.selectedInfo.textContent = 'Click a fixture to select';
+      this.deleteBtn.disabled = true;
+      this.transformPanel.style.display = 'none';
+    } else if (this.selectedItems.length === 1) {
+      const group = this.selected;
+      const label = CONFIG.FIXTURES_META.find(item => item.file === group.userData.file)?.label || group.name || 'fixture';
+      this.selectedInfo.textContent = `${label} · (${group.position.x.toFixed(2)}, ${group.position.z.toFixed(2)})`;
+      this.deleteBtn.disabled = false;
+
+      this.transformPanel.style.display = 'flex';
+      this.posXSlider.value = this.posXValEl.value = group.position.x.toFixed(2);
+      this.posZSlider.value = this.posZValEl.value = group.position.z.toFixed(2);
+      this.scaleSlider.value = group.userData.userScale;
+      this.scaleValEl.value = Number(group.userData.userScale).toFixed(2);
+      this.rotSlider.value = this.rotValEl.value = Math.round((group.userData.userRot || 0) * 180 / Math.PI);
+    } else {
+      this.selectedInfo.textContent = `${this.selectedItems.length} items selected`;
+      this.deleteBtn.disabled = false;
+      this.transformPanel.style.display = 'none'; // Hide transform for multi-select for now
+    }
+    
+    // Toggle alignment panel visibility
+    if (this.alignmentPanel) {
+        this.alignmentPanel.style.display = (this.selectedItems.length > 1) ? 'block' : 'none';
+    }
     
     this.showDebug();
   }
 
+  setupAlignment(handlers) {
+    if (!this.alignmentPanel) return;
+    this.alignLeftBtn.onclick = handlers.onAlignLeft;
+    this.alignCenterXBtn.onclick = handlers.onAlignCenterX;
+    this.alignRightBtn.onclick = handlers.onAlignRight;
+    this.alignTopBtn.onclick = handlers.onAlignTop;
+    this.alignCenterZBtn.onclick = handlers.onAlignCenterZ;
+    this.alignBottomBtn.onclick = handlers.onAlignBottom;
+    this.distributeXBtn.onclick = handlers.onDistributeX;
+    this.distributeZBtn.onclick = handlers.onDistributeZ;
+  }
+
   deselect(scene) {
-    if (this.selectionHelper) { scene.remove(this.selectionHelper); this.selectionHelper = null; }
-    this.selected = null;
+    this.selectionHelpers.forEach(helper => scene.remove(helper));
+    this.selectionHelpers.clear();
+    this.selectedItems = [];
+    
     this.selectedInfo.textContent = 'Click a fixture to select';
     this.deleteBtn.disabled = true;
     this.transformPanel.style.display = 'none';
@@ -207,6 +314,6 @@ export class UIManager {
   }
 
   updateSelectionHelper() {
-    if (this.selectionHelper) this.selectionHelper.update();
+    this.selectionHelpers.forEach(helper => helper.update());
   }
 }

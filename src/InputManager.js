@@ -33,44 +33,81 @@ export class InputManager {
 
     ui.canvas.onmousemove = (e) => {
       if (!room.isEditMode) return; // Only allow in edit mode
-      if (e.buttons !== 1 || !ui.selected) return;
+      if (e.buttons !== 1 || ui.selectedItems.length === 0) return;
       const dx = e.clientX - this.mouseDownPos.x, dy = e.clientY - this.mouseDownPos.y;
-      if (!this.isDragging && Math.sqrt(dx*dx + dy*dy) > 5) this.isDragging = true;
+      if (!this.isDragging && Math.sqrt(dx*dx + dy*dy) > 5) {
+          this.isDragging = true;
+          // Store start positions for all selected items
+          this.dragStartPositions = ui.selectedItems.map(item => item.position.clone());
+          const pt = raycaster.getPointerOnGround(e, ui.canvas);
+          this.dragStartPointer = pt ? pt.clone() : new THREE.Vector3();
+      }
       if (!this.isDragging) return;
 
       scene.controls.enabled = false;
       const pt = raycaster.getPointerOnGround(e, ui.canvas);
       if (!pt) return;
-      pt.x = THREE.MathUtils.clamp(pt.x, room.floorMin.x, room.floorMax.x);
-      pt.z = THREE.MathUtils.clamp(pt.z, room.floorMin.z, room.floorMax.z);
+      
+      const delta = pt.clone().sub(this.dragStartPointer);
 
-      ui.selected.position.set(pt.x, ui.selected.position.y, pt.z);
-      fixtures.alignToHeight(ui.selected, ui.selected.userData.baseY);
+      ui.selectedItems.forEach((sel, i) => {
+          const startPos = this.dragStartPositions[i];
+          const newPos = startPos.clone().add(delta);
+          
+          newPos.x = THREE.MathUtils.clamp(newPos.x, room.floorMin.x, room.floorMax.x);
+          newPos.z = THREE.MathUtils.clamp(newPos.z, room.floorMin.z, room.floorMax.z);
+          
+          sel.position.set(newPos.x, sel.position.y, newPos.z);
+          fixtures.alignToHeight(sel, sel.userData.baseY);
+      });
+      
       ui.showDebug();
     };
 
     ui.canvas.onmouseup = (e) => {
       if (!room.isEditMode) return; // Only allow in edit mode
-      scene.controls.enabled = true;
+      
       if (this.isDragging) {
-        if (ui.selected && this.dragSnapshot !== JSON.stringify(fixtures.serializeFixture(ui.selected))) fixtures.pushHistory();
+        if (ui.selectedItems.length > 0) fixtures.pushHistory();
         this.isDragging = false;
+        // Keep controls disabled if we still have something selected
+        scene.controls.enabled = ui.selectedItems.length === 0;
         return;
       }
       if (e.button !== 0) return;
 
       const target = raycaster.getIntersectingObject(e, ui.canvas, fixtures.placed);
-      if (target) return ui.select(target, scene.scene);
+      if (target) {
+        if (e.shiftKey) {
+            ui.toggleSelection(target, scene.scene);
+        } else {
+            ui.select(target, scene.scene);
+        }
+        scene.controls.enabled = ui.selectedItems.length === 0;
+        return;
+      }
 
       if (this.app.toolMode === 'place' && this.app.activeFile) {
         const pt = raycaster.getPointerOnGround(e, ui.canvas);
-        if (pt) ui.select(fixtures.placeFixture(pt, this.app.activeFile), scene.scene);
-      } else ui.deselect(scene.scene);
+        if (pt) {
+          const newFix = fixtures.placeFixture(pt, this.app.activeFile);
+          if (e.shiftKey) ui.addToSelection(newFix, scene.scene);
+          else ui.select(newFix, scene.scene);
+          scene.controls.enabled = false;
+        }
+      } else {
+        ui.deselect(scene.scene);
+        scene.controls.enabled = true;
+      }
     };
   }
 
   setupKeyboard() {
     window.onkeydown = (e) => {
+      // Don't trigger shortcuts if typing in an input
+      if (['INPUT', 'TEXTAREA'].includes(document.activeElement.tagName)) return;
+
+      const { ui } = this.app;
       const { SHORTCUTS } = CONFIG;
       const key = e.key.toLowerCase(), ctrl = e.ctrlKey;
 
@@ -80,7 +117,13 @@ export class InputManager {
       else if (key === SHORTCUTS.SELECT_MODE.key && !ctrl) { if(this.app.room.isEditMode) this.app.setToolMode('select'); }
       else if (key === SHORTCUTS.PLACE_MODE.key && this.app.activeFile) { if(this.app.room.isEditMode) this.app.setToolMode('place'); }
       else if (key === SHORTCUTS.DELETE.key) { if(this.app.room.isEditMode) this.app.deleteSelected(); }
-      else if (key === SHORTCUTS.ESCAPE.key) { if(this.app.room.isEditMode) this.app.setToolMode('select'); }
+      else if (key === SHORTCUTS.ESCAPE.key) { 
+        if(this.app.room.isEditMode) {
+          this.app.setToolMode('select'); 
+          this.app.ui.deselect(this.app.scene.scene);
+          this.app.scene.controls.enabled = true;
+        }
+      }
       else if (key === SHORTCUTS.TOGGLE_EDIT.key) {
         e.preventDefault();
         const newState = !this.app.room.isEditMode;
@@ -95,6 +138,24 @@ export class InputManager {
       } else if (key === SHORTCUTS.QUICK_LOAD.key && ctrl) {
         e.preventDefault();
         this.app.layout.quickLoad();
+      }
+
+      // Arrow Key Movement
+      const step = e.shiftKey ? 0.05 : 0.01;
+      if (ui.selectedItems.length > 0 && ['arrowup', 'arrowdown', 'arrowleft', 'arrowright'].includes(key)) {
+        e.preventDefault();
+        ui.selectedItems.forEach(sel => {
+          if (key === 'arrowup') sel.position.z -= step;
+          if (key === 'arrowdown') sel.position.z += step;
+          if (key === 'arrowleft') sel.position.x -= step;
+          if (key === 'arrowright') sel.position.x += step;
+          
+          sel.position.x = THREE.MathUtils.clamp(sel.position.x, this.app.room.floorMin.x, this.app.room.floorMax.x);
+          sel.position.z = THREE.MathUtils.clamp(sel.position.z, this.app.room.floorMin.z, this.app.room.floorMax.z);
+          
+          this.app.fixtures.alignToHeight(sel, sel.userData.baseY);
+        });
+        ui.showDebug();
       }
 
       // Camera Focus Shortcuts
@@ -135,6 +196,13 @@ export class InputManager {
       } else if (key === '0') {
         this.app.scene.focusCamera(new THREE.Vector3(-2.16, 17.56, 0.21), new THREE.Vector3(-2.16, 1.80, 0.21));
         this.app.ui.setStatus('Focus: View 0 (Top)');
+      }
+    };
+
+    window.onkeyup = (e) => {
+      const key = e.key.toLowerCase();
+      if (this.app.ui.selected && ['arrowup', 'arrowdown', 'arrowleft', 'arrowright'].includes(key)) {
+        this.app.fixtures.pushHistory();
       }
     };
   }

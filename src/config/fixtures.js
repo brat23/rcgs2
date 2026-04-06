@@ -39,9 +39,17 @@ export const FIXTURES_META = [
     icon: "MT",
     desc: "Male torso mannequin",
   },
+  {
+    file: "fixture/boxing.glb",
+    label: "Boxing",
+    icon: "BX",
+    desc: "Boxing fixture",
+  },
 ];
 
 export const DEFAULT_FIXTURES = [
+  { file: "fixture/boxing.glb", pos: [-1.2, -2.0], rot: 0 },
+  { file: "fixture/boxing.glb", pos: [-0.5, -2.0], rot: 0 },
   {
     file: "fixture/nestingTable.glb",
     pos: [-8.685, 0.468],
