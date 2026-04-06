@@ -20,7 +20,10 @@ export class AssetLoader {
         tex.colorSpace = THREE.SRGBColorSpace;
         this.textures[path] = tex;
         resolve(tex);
-      }, undefined, reject);
+      }, undefined, (err) => {
+        console.error(`Failed to load texture: ${path}`, err);
+        reject(err);
+      });
     });
   }
 

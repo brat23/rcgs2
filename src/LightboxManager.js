@@ -7,7 +7,7 @@ export class LightboxManager {
     this.assetLoader = assetLoader;
     this.fixtures = fixtures;
     this.geometry = new THREE.BoxGeometry(CONFIG.LIGHTBOX.WIDTH, CONFIG.LIGHTBOX.HEIGHT, CONFIG.LIGHTBOX.DEPTH);
-    this.preloading = Promise.all(CONFIG.LIGHTBOX.IMAGES.map(path => this.assetLoader.loadTexture(path)));
+    this.preloading = Promise.all(CONFIG.LIGHTBOX.IMAGES.map(img => this.assetLoader.loadTexture(img.file)));
   }
 
   async placeLightboxes(walls, roomCenter) {
@@ -90,7 +90,7 @@ export class LightboxManager {
         pos.add(pushDir.multiplyScalar(frontOffset));
         pos.y = CONFIG.LIGHTBOX.Y_LEVEL - CONFIG.LIGHTBOX.HEIGHT / 2;
 
-        await this.createLightbox(pos, images[imageIdx], rotationY);
+        await this.createLightbox(pos, images[imageIdx].file, rotationY);
         imageIdx++;
       }
     }

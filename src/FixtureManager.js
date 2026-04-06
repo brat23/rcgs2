@@ -59,6 +59,7 @@ export class FixtureManager {
     if (!proto) return null;
 
     let { group, autoScale } = this.normalisedClone(proto);
+    const category = options.category || (file.includes('lightbox/meshes/') ? CONFIG.CALLOUTS.find(c => c.file === file)?.category : null);
     
     // Skip normalization for callouts to preserve their Blender scale
     if (file.includes('lightbox/meshes/')) {
@@ -66,14 +67,14 @@ export class FixtureManager {
         autoScale = 1.0;
         
         // Filter by category to avoid overlapping words
-        const callout = CONFIG.CALLOUTS.find(c => c.file === file);
-        if (callout && callout.category) {
+        if (category) {
             group.traverse(child => {
                 if (child.isMesh || child.isGroup) {
-                    const nodeName = child.name.split('.')[0].toUpperCase();
+                    const nodeName = (child.name || "").split('.')[0].toUpperCase();
                     if (nodeName && !['SCENE', 'ROOT'].includes(nodeName)) {
-                        // Hide nodes that don't match the category
-                        if (nodeName !== callout.category) {
+                        // Robust match (e.g., "MENS" matches "MENS_TEXT", "BOY" matches "BOYS")
+                        const isMatch = nodeName.includes(category) || category.includes(nodeName);
+                        if (!isMatch) {
                             child.visible = false;
                         } else {
                             child.visible = true;
@@ -104,9 +105,14 @@ export class FixtureManager {
 
     let meta = CONFIG.FIXTURES_META.find(m => m.file === file);
     if (!meta) {
-      // Look in CALLOUTS
-      const callout = CONFIG.CALLOUTS.find(c => c.file === file);
+      // Look in CALLOUTS with the specific category if possible
+      const callout = CONFIG.CALLOUTS.find(c => c.file === file && c.category === category);
       if (callout) meta = { label: callout.label };
+      else {
+          // Fallback to first matching file if category doesn't match
+          const firstCallout = CONFIG.CALLOUTS.find(c => c.file === file);
+          if (firstCallout) meta = { label: firstCallout.label };
+      }
     }
     if (meta) group.name = meta.label;
 
@@ -115,7 +121,8 @@ export class FixtureManager {
       userScale: options.userScale ?? 1.0, 
       autoScale, 
       userRot, 
-      baseY 
+      baseY,
+      category
     };
 
     this.scene.add(group);
@@ -189,6 +196,7 @@ export class FixtureManager {
       userScale: group.userData.userScale,
       userRot: group.userData.userRot || 0,
       baseY: group.userData.baseY,
+      category: group.userData.category,
       position: {
         x: group.position.x,
         z: group.position.z,
@@ -227,6 +235,7 @@ export class FixtureManager {
           userScale: item.userScale,
           userRot: item.userRot,
           yOverride: item.baseY,
+          category: item.category,
           commit: false,
         }
       );

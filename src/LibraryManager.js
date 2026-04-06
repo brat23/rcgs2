@@ -12,7 +12,10 @@ export class LibraryManager {
     // Load Callout assets and report progress
     CONFIG.CALLOUTS.forEach(c => {
       this.ui.registerAssetRequest(c.file);
-      this.assets.loadModel(c.file).then(() => this.ui.assetFinished(c.file));
+      this.assets.loadModel(c.file).then((gltf) => {
+        this.fixtures.prepareFixtureMaterials(gltf.scene);
+        this.ui.assetFinished(c.file);
+      });
     });
 
     CONFIG.FIXTURES_META.forEach(meta => {
@@ -129,7 +132,8 @@ export class LibraryManager {
         commit: false, 
         yOverride: y, 
         userRot: c.rot * Math.PI / 180,
-        userScale: c.scale || 1.0
+        userScale: c.scale || 1.0,
+        category: c.category
       });
     });
     this.fixtures.pushHistory();
