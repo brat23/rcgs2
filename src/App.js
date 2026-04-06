@@ -59,7 +59,16 @@ class App {
 
     this.room.load(() => {
       this.checkAndPlaceDefaults();
-      this.lightboxes.placeLightboxes(this.room.getWalls(), this.room.floorCtr);
+      CONFIG.LIGHTBOX.IMAGES.forEach(lb => {
+        this.fixtures.placeFixture(
+          new THREE.Vector3(lb.pos[0], lb.pos[1], lb.pos[2]),
+          lb.file,
+          {
+            userRot: lb.rot * Math.PI / 180,
+            commit: false
+          }
+        );
+      });
     });
 
     this.layout.setup();

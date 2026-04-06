@@ -51,7 +51,8 @@ export class FixtureManager {
   }
 
   placeFixture(position, file, options = {}) {
-    if (CONFIG.LIGHTBOX.IMAGES.includes(file)) {
+    const isLightbox = CONFIG.LIGHTBOX.IMAGES.some(img => img.file === file);
+    if (isLightbox) {
       return this.placeLightbox(position, file, options);
     }
     const proto = this.assetLoader.getPrototype(file);
