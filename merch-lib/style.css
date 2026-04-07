@@ -1,0 +1,511 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --bg: #0e0e0f;
+  --panel: #161618;
+  --border: #2a2a2e;
+  --text: #e8e4dc;
+  --muted: #6b6b72;
+  --rose: #c07850;
+  --ss: #b8c0cc;
+  --blk: #3a3a3a;
+  --accent: var(--rose);
+  --accent-glow: rgba(192, 120, 80, 0.18);
+  --danger: #ff5757;
+  --lib-w: 240px;
+  --sidebar-w: 300px;
+}
+
+body {
+  font-family: "Plus Jakarta Sans", sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  height: 100vh;
+  height: 100svh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* ── HEADER ── */
+header {
+  display: flex;
+  align-items: center;
+  gap: 1.6rem;
+  padding: 0.8rem 1.4rem;
+  border-bottom: 1px solid var(--border);
+  background: var(--bg);
+  z-index: 100;
+}
+header h1 {
+  font-family: "Bebas Neue", sans-serif;
+  font-size: 1.4rem;
+  letter-spacing: 0.12em;
+  color: var(--text);
+}
+.header-actions {
+  margin-left: auto;
+  display: flex;
+  gap: 8px;
+}
+
+#lib-toggle {
+  background: transparent;
+  border: 1px solid var(--border);
+  color: var(--text);
+  cursor: pointer;
+  padding: 0.5rem 0.8rem;
+  border-radius: 4px;
+  font-family: "DM Mono", monospace;
+  font-size: 0.7rem;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+/* ── MAIN LAYOUT ── */
+main {
+  display: flex;
+  flex: 1;
+  height: 0;
+  position: relative;
+/* ── LEFT PANEL (LIBRARY) ── */
+#library {
+  width: var(--lib-w);
+  background: var(--panel);
+  border-right: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: 90;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+#library.collapsed {
+  width: 0;
+  border-right-color: transparent;
+}
+
+.sidebar-tabs {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  border-bottom: 1px solid var(--border);
+  flex-shrink: 0;
+}
+.tab-btn {
+  padding: 14px;
+  background: transparent;
+  border: none;
+  color: var(--muted);
+  font-family: "DM Mono", monospace;
+  font-size: 0.65rem;
+  letter-spacing: 0.1em;
+  cursor: pointer;
+  transition: all 0.2s;
+  text-align: center;
+}
+.tab-btn.active {
+  color: var(--rose);
+  background: rgba(192, 120, 80, 0.05);
+  box-shadow: inset 0 -2px 0 var(--rose);
+}
+.tab-btn:hover:not(.active) {
+  color: var(--text);
+  background: rgba(255, 255, 255, 0.02);
+}
+
+.place-btn {
+  padding: 8px;
+  background: transparent;
+  border: none;
+  color: var(--muted);
+  font-family: "DM Mono", monospace;
+  font-size: 0.6rem;
+  letter-spacing: 0.05em;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: all 0.2s;
+}
+.place-btn.active {
+  background: var(--panel);
+  color: var(--text);
+  box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+}
+
+.sidebar-label {
+  font-family: "DM Mono", monospace;
+  font-size: 0.62rem;
+  letter-spacing: 0.16em;
+  color: var(--muted);
+  text-transform: uppercase;
+  margin-bottom: 0.6rem;
+  padding: 1.4rem 1.4rem 0;
+}
+
+.lib-list {
+  padding: 1rem 1.4rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+  min-width: var(--lib-w);
+}
+
+.fixture-card, .merch-card {
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 12px;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  transition: all 0.2s;
+}
+.fixture-card:hover, .merch-card:hover {
+  border-color: var(--rose);
+  background: var(--accent-glow);
+}
+
+.merch-card {
+  flex-direction: row;
+  align-items: center;
+  gap: 12px;
+}
+.merch-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.merch-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+  padding: 0 1.4rem 1rem;
+}
+.merch-item {
+  cursor: pointer;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.02);
+  transition: all 0.2s;
+  display: flex;
+  flex-direction: column;
+  aspect-ratio: 1;
+  padding: 6px;
+}
+.merch-item:hover {
+  border-color: var(--rose);
+  background: var(--accent-glow);
+}
+.merch-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.fixture-name {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--text);
+}
+.fixture-meta {
+  font-family: "DM Mono", monospace;
+  font-size: 0.6rem;
+  color: var(--muted);
+}
+
+.fixture-card[data-type="empty"]:hover {
+  border-color: #444;
+  background: rgba(255, 255, 255, 0.05);
+}
+.fixture-card[data-type="turn"]:hover {
+  border-color: var(--ss);
+  background: rgba(184, 192, 204, 0.1);
+}
+
+/* ── CENTER AREA (3D VIEWER) ── */
+#viewer-container {
+  flex: 1;
+  position: relative;
+  background: radial-gradient(ellipse at 50% 60%, #1c1c20 0%, #0e0e0f 100%);
+  overflow: hidden;
+}
+#viewer-canvas {
+  width: 100% !important;
+  height: 100% !important;
+  display: block;
+}
+
+#loading {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.8rem;
+  font-family: "DM Mono", monospace;
+  font-size: 0.75rem;
+  color: var(--muted);
+  background: var(--bg);
+  z-index: 5;
+  display: none;
+}
+.spinner {
+  width: 28px;
+  height: 28px;
+  border: 2px solid var(--border);
+  border-top-color: var(--rose);
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* ── RIGHT PANEL (FINISHES & STATS) ── */
+#sidebar-right {
+  width: var(--sidebar-w);
+  background: var(--panel);
+  border-left: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  z-index: 80;
+  flex-shrink: 0;
+  overflow-y: auto;
+}
+
+.section {
+  padding: 1.4rem;
+  border-bottom: 1px solid var(--border);
+}
+
+/* ── FINISH SWATCHES ── */
+.swatches {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.6rem;
+}
+.swatch-btn {
+  aspect-ratio: 1;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  background: transparent;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  transition: all 0.2s;
+}
+.swatch-dot {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+.swatch-name {
+  font-size: 0.55rem;
+  color: var(--muted);
+  text-transform: uppercase;
+  font-family: "DM Mono", monospace;
+}
+
+.swatch-btn:hover {
+  border-color: #444;
+}
+.swatch-btn.active {
+  border-color: var(--swatch-color);
+  background: var(--swatch-glow);
+}
+.swatch-btn.active .swatch-name {
+  color: var(--text);
+}
+
+.dot-rose {
+  background: radial-gradient(circle at 35% 35%, #dfa080, #9a5238);
+}
+.dot-ss {
+  background: radial-gradient(circle at 35% 35%, #e0e6ef, #8a9aaa);
+}
+.dot-black {
+  background: radial-gradient(circle at 35% 35%, #606060, #111);
+}
+
+/* ── SEQUENCE LIST ── */
+.dock-list {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.dock-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 10px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  font-size: 0.7rem;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.dock-item:hover {
+  border-color: var(--muted);
+}
+.dock-item.selected {
+  border-color: var(--rose);
+  background: var(--accent-glow);
+}
+.remove-btn {
+  color: var(--danger);
+  cursor: pointer;
+  border: none;
+  background: transparent;
+  padding: 4px;
+}
+
+/* ── STATS ── */
+.stat-row {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.75rem;
+  padding-bottom: 8px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  margin-bottom: 8px;
+}
+.stat-key {
+  color: var(--muted);
+  font-family: "DM Mono", monospace;
+}
+.stat-val {
+  color: var(--rose);
+  font-weight: 600;
+}
+
+/* ── BUTTONS ── */
+.btn {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  color: var(--text);
+  padding: 6px 12px;
+  border-radius: 4px;
+  font-size: 0.7rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+  font-family: inherit;
+}
+.btn:hover {
+  border-color: var(--muted);
+}
+.btn-primary {
+  background: var(--rose);
+  color: #000;
+  border-color: var(--rose);
+}
+.btn-primary:hover {
+  background: #d48a60;
+}
+
+/* ── TOGGLE SWITCH ── */
+.toggle-card {
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 12px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  transition: all 0.2s;
+}
+
+.toggle-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 34px;
+  height: 20px;
+  flex-shrink: 0;
+}
+
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: var(--border);
+  transition: .3s;
+  border-radius: 20px;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 14px;
+  width: 14px;
+  left: 3px;
+  bottom: 3px;
+  background-color: var(--muted);
+  transition: .3s;
+  border-radius: 50%;
+}
+
+input:checked + .slider {
+  background-color: var(--rose);
+}
+
+input:checked + .slider:before {
+  transform: translateX(14px);
+  background-color: #fff;
+}
+
+@media (max-width: 860px) {
+  #library {
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 260px;
+    transform: translateX(-100%);
+    box-shadow: 20px 0 50px rgba(0, 0, 0, 0.5);
+  }
+  #library.open {
+    transform: translateX(0);
+  }
+  #sidebar-right {
+    width: 100%;
+    height: auto;
+    max-height: 40vh;
+    border-left: none;
+    border-top: 1px solid var(--border);
+  }
+}

@@ -1,0 +1,459 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Google tag (gtag.js) -->
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=G-82687XMTH1"
+    ></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+
+      gtag("config", "G-82687XMTH1");
+    </script>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    />
+    <title>3D Layout Planner — VMSD</title>
+
+    <!-- SEO & Social Meta Tags -->
+    <meta name="description" content="Professional 3D Fixture Layout Planner for retail environments. Design, visualize, and merchandise your store in real-time.">
+    <meta name="keywords" content="VMSD, 3D Layout, Retail Design, Fixture Planning, Merchandising Tool">
+    <meta name="author" content="VMSD Team">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://vmsd.in/rcg/fixture/">
+    <meta property="og:title" content="3D Layout Planner — VMSD">
+    <meta property="og:description" content="Design retail environments with modular fixtures and real-time 3D merchandising.">
+    <meta property="og:image" content="https://vmsd.in/rcg/fixture/og-image.jpg">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://vmsd.in/rcg/fixture/">
+    <meta property="twitter:title" content="3D Layout Planner — VMSD">
+    <meta property="twitter:description" content="Design retail environments with modular fixtures and real-time 3D merchandising.">
+    <meta property="twitter:image" content="https://vmsd.in/rcg/fixture/og-image.jpg">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="favicon.png">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Plus+Jakarta+Sans:wght@300;400;600&family=Bebas+Neue&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- External Style -->
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <header>
+      <button id="lib-toggle">
+        <span class="desktop-only">ADD FIXTURES</span>
+        <span class="mobile-only">☰</span>
+      </button>
+      <h1>Layout Planner</h1>
+      <div class="header-actions">
+        <button
+          class="btn"
+          id="clear-btn"
+          style="
+            background: transparent;
+            border: 1px solid var(--border);
+            color: var(--muted);
+          "
+        >
+          CLEAR ALL
+        </button>
+        <input
+          type="file"
+          id="load-json-input"
+          accept=".json"
+          style="display: none"
+        />
+        <button
+          class="btn"
+          id="load-json-btn"
+          style="
+            background: transparent;
+            border: 1px solid var(--border);
+            color: var(--text);
+          "
+        >
+          LOAD FIXTURES
+        </button>
+        <button class="btn btn-primary" id="save-json-btn">
+          SAVE FIXTURES
+        </button>
+
+        <div
+          style="
+            width: 1px;
+            height: 24px;
+            background: var(--border);
+            margin: 0 4px;
+          "
+        ></div>
+
+        <input
+          type="file"
+          id="load-merch-input"
+          accept=".merch"
+          style="display: none"
+        />
+        <button
+          class="btn"
+          id="load-merch-btn"
+          style="
+            background: transparent;
+            border: 1px solid var(--border);
+            color: var(--text);
+          "
+        >
+          LOAD MERCH
+        </button>
+        <button
+          class="btn btn-primary"
+          id="save-merch-btn"
+          style="background: var(--ss); color: #000; border-color: var(--ss)"
+        >
+          SAVE MERCH
+        </button>
+      </div>
+    </header>
+
+    <main>
+      <!-- LEFT: LIBRARY -->
+      <nav id="library">
+        <div class="sidebar-tabs">
+          <button class="tab-btn active" id="tab-fixtures">FIXTURES</button>
+          <button class="tab-btn" id="tab-merch">MERCHANDISE</button>
+        </div>
+
+        <!-- FIXTURE LIBRARY SECTION -->
+        <div id="lib-fixtures" class="lib-section">
+          <div class="sidebar-label">Fixture Library</div>
+          <div class="lib-list">
+            <div
+              class="toggle-card"
+              onclick="toggleBackdrop()"
+              style="margin-bottom: 8px"
+            >
+              <div class="toggle-info">
+                <span class="fixture-name">Wall Backdrop</span>
+                <span class="fixture-meta" id="backdrop-status"
+                  >OFF · Click to toggle</span
+                >
+              </div>
+              <label class="switch">
+                <input type="checkbox" id="backdrop-checkbox" disabled />
+                <span class="slider"></span>
+              </label>
+            </div>
+            <div class="fixture-card" onclick="addFixture('4sh')">
+              <span class="fixture-name">4' Side Hanging</span>
+              <span class="fixture-meta">48"W · 18"D</span>
+            </div>
+            <div class="fixture-card" onclick="addFixture('4fh')">
+              <span class="fixture-name">4' Front Hanging</span>
+              <span class="fixture-meta">48"W · 18"D</span>
+            </div>
+            <div class="fixture-card" onclick="addFixture('2fh')">
+              <span class="fixture-name">2' Front Hanging</span>
+              <span class="fixture-meta">24"W · 18"D</span>
+            </div>
+            <div class="fixture-card" onclick="addFixture('2kfh')">
+              <span class="fixture-name">2' K Front Hanging</span>
+              <span class="fixture-meta">24"W · 18"D</span>
+            </div>
+            <div class="fixture-card" onclick="addFixture('2sh')">
+              <span class="fixture-name">2' Side Hanging</span>
+              <span class="fixture-meta">24"W · 18"D</span>
+            </div>
+            <div
+              class="fixture-card"
+              onclick="addFixture('empty')"
+              data-type="empty"
+            >
+              <span class="fixture-name">Empty Space</span>
+              <span class="fixture-meta">24"W · Gap</span>
+            </div>
+            <div
+              style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px"
+            >
+              <div
+                class="fixture-card"
+                onclick="addFixture('turn-l')"
+                data-type="turn"
+              >
+                <span class="fixture-name">90° Left</span>
+                <span class="fixture-meta">Turn</span>
+              </div>
+              <div
+                class="fixture-card"
+                onclick="addFixture('turn-r')"
+                data-type="turn"
+              >
+                <span class="fixture-name">90° Right</span>
+                <span class="fixture-meta">Turn</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- MERCHANDISE LIBRARY SECTION -->
+        <div id="lib-merch" class="lib-section" style="display: none">
+          <div class="sidebar-label">Placement</div>
+          <div
+            class="placement-toggle"
+            style="
+              margin: 0 1.4rem 1rem;
+              display: grid;
+              grid-template-columns: 1fr 1fr;
+              gap: 4px;
+              background: rgba(0, 0, 0, 0.2);
+              padding: 4px;
+              border-radius: 6px;
+              border: 1px solid var(--border);
+            "
+          >
+            <button
+              class="place-btn active"
+              onclick="setMerchPlacement('front')"
+              id="place-front"
+            >
+              FRONT
+            </button>
+            <button
+              class="place-btn"
+              onclick="setMerchPlacement('back')"
+              id="place-back"
+            >
+              BACK
+            </button>
+          </div>
+
+          <div class="sidebar-label">Mens</div>
+          <div class="merch-grid">
+            <div class="merch-item" onclick="applyMerch('./merch/mens/02.png')">
+              <img src="./merch/mens/02.png" alt="Mens 02" />
+            </div>
+            <div class="merch-item" onclick="applyMerch('./merch/mens/03.png')">
+              <img src="./merch/mens/03.png" alt="Mens 03" />
+            </div>
+            <div class="merch-item" onclick="applyMerch('./merch/mens/04.png')">
+              <img src="./merch/mens/04.png" alt="Mens 04" />
+            </div>
+            <div class="merch-item" onclick="applyMerch('./merch/mens/05.png')">
+              <img src="./merch/mens/05.png" alt="Mens 05" />
+            </div>
+            <div class="merch-item" onclick="applyMerch('./merch/mens/06.png')">
+              <img src="./merch/mens/06.png" alt="Mens 06" />
+            </div>
+            <div
+              class="merch-item"
+              onclick="applyMerch('./merch/mens/blue.png')"
+            >
+              <img src="./merch/mens/blue.png" alt="Mens Blue" />
+            </div>
+          </div>
+
+          <div class="sidebar-label">Womens</div>
+          <div class="merch-grid">
+            <div
+              class="merch-item"
+              onclick="applyMerch('./merch/womens/1.png')"
+            >
+              <img src="./merch/womens/1.png" alt="Womens 01" />
+            </div>
+            <div
+              class="merch-item"
+              onclick="applyMerch('./merch/womens/2.png')"
+            >
+              <img src="./merch/womens/2.png" alt="Womens 02" />
+            </div>
+            <div
+              class="merch-item"
+              onclick="applyMerch('./merch/womens/3.png')"
+            >
+              <img src="./merch/womens/3.png" alt="Womens 03" />
+            </div>
+            <div
+              class="merch-item"
+              onclick="applyMerch('./merch/womens/4.png')"
+            >
+              <img src="./merch/womens/4.png" alt="Womens 04" />
+            </div>
+            <div
+              class="merch-item"
+              onclick="applyMerch('./merch/womens/5.png')"
+            >
+              <img src="./merch/womens/5.png" alt="Womens 05" />
+            </div>
+            <div
+              class="merch-item"
+              onclick="applyMerch('./merch/womens/6.png')"
+            >
+              <img src="./merch/womens/6.png" alt="Womens 06" />
+            </div>
+            <div
+              class="merch-item"
+              onclick="applyMerch('./merch/womens/7.png')"
+            >
+              <img src="./merch/womens/7.png" alt="Womens 07" />
+            </div>
+            <div
+              class="merch-item"
+              onclick="applyMerch('./merch/womens/8.png')"
+            >
+              <img src="./merch/womens/8.png" alt="Womens 08" />
+            </div>
+            <div
+              class="merch-item"
+              onclick="applyMerch('./merch/womens/9.png')"
+            >
+              <img src="./merch/womens/9.png" alt="Womens 09" />
+            </div>
+            <div
+              class="merch-item"
+              onclick="applyMerch('./merch/womens/10.png')"
+            >
+              <img src="./merch/womens/10.png" alt="Womens 10" />
+            </div>
+            <div
+              class="merch-item"
+              onclick="applyMerch('./merch/womens/11.png')"
+            >
+              <img src="./merch/womens/11.png" alt="Womens 11" />
+            </div>
+            <div
+              class="merch-item"
+              onclick="applyMerch('./merch/womens/12.png')"
+            >
+              <img src="./merch/womens/12.png" alt="Womens 12" />
+            </div>
+            <div
+              class="merch-item"
+              onclick="applyMerch('./merch/womens/13.png')"
+            >
+              <img src="./merch/womens/13.png" alt="Womens 13" />
+            </div>
+            <div
+              class="merch-item"
+              onclick="applyMerch('./merch/womens/14.png')"
+            >
+              <img src="./merch/womens/14.png" alt="Womens 14" />
+            </div>
+            <div
+              class="merch-item"
+              onclick="applyMerch('./merch/womens/15.png')"
+            >
+              <img src="./merch/womens/15.png" alt="Womens 15" />
+            </div>
+          </div>
+
+          <div class="sidebar-label">Actions</div>
+          <div class="lib-list" style="padding-top: 0">
+            <div
+              class="merch-card"
+              onclick="applyMerch(null)"
+              style="opacity: 0.6"
+            >
+              <div class="merch-info">
+                <span class="fixture-name">Remove Merch</span>
+                <span class="fixture-meta">Clear from selection</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </nav>
+
+      <!-- CENTER: 3D VIEWER -->
+      <div id="viewer-container">
+        <canvas id="viewer-canvas"></canvas>
+        <div id="loading">
+          <div class="spinner"></div>
+          <span>LOADING MODEL…</span>
+        </div>
+      </div>
+
+      <!-- RIGHT: CONFIG & STATS -->
+      <aside id="sidebar-right">
+        <div class="section">
+          <div class="sidebar-label" style="padding: 0; margin-bottom: 12px">
+            Global Finish
+          </div>
+          <div class="swatches">
+            <button
+              class="swatch-btn active"
+              data-finish="rose"
+              style="
+                --swatch-color: var(--rose);
+                --swatch-glow: var(--accent-glow);
+              "
+            >
+              <div class="swatch-dot dot-rose"></div>
+              <span class="swatch-name">Rose Gold</span>
+            </button>
+            <button
+              class="swatch-btn"
+              data-finish="ss"
+              style="
+                --swatch-color: var(--ss);
+                --swatch-glow: rgba(184, 192, 204, 0.18);
+              "
+            >
+              <div class="swatch-dot dot-ss"></div>
+              <span class="swatch-name">Stainless</span>
+            </button>
+            <button
+              class="swatch-btn"
+              data-finish="black"
+              style="
+                --swatch-color: var(--blk);
+                --swatch-glow: rgba(58, 58, 58, 0.28);
+              "
+            >
+              <div class="swatch-dot dot-black"></div>
+              <span class="swatch-name">Black</span>
+            </button>
+          </div>
+        </div>
+
+        <div class="section">
+          <div class="sidebar-label" style="padding: 0; margin-bottom: 12px">
+            Layout Summary
+          </div>
+          <div class="stat-row">
+            <span class="stat-key">Total Path</span
+            ><span class="stat-val" id="stat-width">0"</span>
+          </div>
+          <div class="stat-row">
+            <span class="stat-key">Fixtures</span
+            ><span class="stat-val" id="stat-count">0</span>
+          </div>
+        </div>
+
+        <div class="section" style="flex: 1; border-bottom: none">
+          <div class="sidebar-label" style="padding: 0; margin-bottom: 12px">
+            Sequence
+          </div>
+          <div class="dock-list" id="dock-list"></div>
+        </div>
+      </aside>
+    </main>
+
+    <!-- Three.js Library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/GLTFLoader.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
+    <!-- External Script -->
+    <script type="module" src="./src/main.js"></script>
+  </body>
+</html>

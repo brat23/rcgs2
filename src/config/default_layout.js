@@ -427,7 +427,7 @@ export const DEFAULT_LAYOUT = [
     }
   },
   {
-    "file": "fixture/4sh.glb",
+    "file": "fixture/4fh.glb",
     "userScale": 1,
     "scaleY": 1,
     "userRot": 1.5707963267948966,
@@ -451,7 +451,7 @@ export const DEFAULT_LAYOUT = [
     }
   },
   {
-    "file": "fixture/4sh.glb",
+    "file": "fixture/4fh.glb",
     "userScale": 1,
     "scaleY": 1,
     "userRot": 1.5707963267948966,
@@ -475,7 +475,7 @@ export const DEFAULT_LAYOUT = [
     }
   },
   {
-    "file": "fixture/4sh.glb",
+    "file": "fixture/4fh.glb",
     "userScale": 1,
     "scaleY": 1,
     "userRot": 1.5707963267948966,
@@ -499,7 +499,7 @@ export const DEFAULT_LAYOUT = [
     }
   },
   {
-    "file": "fixture/4sh.glb",
+    "file": "fixture/4fh.glb",
     "userScale": 1,
     "scaleY": 1,
     "userRot": 1.5707963267948966,
@@ -523,7 +523,7 @@ export const DEFAULT_LAYOUT = [
     }
   },
   {
-    "file": "fixture/4sh.glb",
+    "file": "fixture/4fh.glb",
     "userScale": 1,
     "scaleY": 1,
     "userRot": 1.5707963267948966,
@@ -547,7 +547,7 @@ export const DEFAULT_LAYOUT = [
     }
   },
   {
-    "file": "fixture/4sh.glb",
+    "file": "fixture/4fh.glb",
     "userScale": 1,
     "scaleY": 1,
     "userRot": 1.5707963267948966,
@@ -571,7 +571,7 @@ export const DEFAULT_LAYOUT = [
     }
   },
   {
-    "file": "fixture/4sh.glb",
+    "file": "fixture/4fh.glb",
     "userScale": 1,
     "scaleY": 1,
     "userRot": 1.5707963267948966,
@@ -595,7 +595,7 @@ export const DEFAULT_LAYOUT = [
     }
   },
   {
-    "file": "fixture/4sh.glb",
+    "file": "fixture/4fh.glb",
     "userScale": 1,
     "scaleY": 1,
     "userRot": 0,
@@ -619,7 +619,7 @@ export const DEFAULT_LAYOUT = [
     }
   },
   {
-    "file": "fixture/4sh.glb",
+    "file": "fixture/4fh.glb",
     "userScale": 1,
     "scaleY": 1,
     "userRot": 0,
@@ -643,7 +643,7 @@ export const DEFAULT_LAYOUT = [
     }
   },
   {
-    "file": "fixture/4sh.glb",
+    "file": "fixture/4fh.glb",
     "userScale": 1,
     "scaleY": 1,
     "userRot": 1.5707963267948966,
@@ -667,7 +667,7 @@ export const DEFAULT_LAYOUT = [
     }
   },
   {
-    "file": "fixture/4sh.glb",
+    "file": "fixture/4fh.glb",
     "userScale": 1,
     "scaleY": 1,
     "userRot": 1.5707963267948966,
@@ -691,7 +691,7 @@ export const DEFAULT_LAYOUT = [
     }
   },
   {
-    "file": "fixture/4sh.glb",
+    "file": "fixture/4fh.glb",
     "userScale": 1,
     "scaleY": 1,
     "userRot": 1.5707963267948966,
@@ -715,7 +715,7 @@ export const DEFAULT_LAYOUT = [
     }
   },
   {
-    "file": "fixture/4sh.glb",
+    "file": "fixture/4fh.glb",
     "userScale": 1,
     "scaleY": 1,
     "userRot": 1.5707963267948966,
@@ -739,7 +739,7 @@ export const DEFAULT_LAYOUT = [
     }
   },
   {
-    "file": "fixture/4sh.glb",
+    "file": "fixture/4fh.glb",
     "userScale": 1,
     "scaleY": 1,
     "userRot": 1.5707963267948966,
@@ -763,7 +763,7 @@ export const DEFAULT_LAYOUT = [
     }
   },
   {
-    "file": "fixture/4sh.glb",
+    "file": "fixture/4fh.glb",
     "userScale": 1,
     "scaleY": 1,
     "userRot": 1.5707963267948966,
@@ -967,7 +967,7 @@ export const DEFAULT_LAYOUT = [
     }
   },
   {
-    "file": "fixture/4sh.glb",
+    "file": "fixture/4fh.glb",
     "userScale": 1,
     "scaleY": 1,
     "userRot": 1.5707963267948966,
@@ -991,7 +991,7 @@ export const DEFAULT_LAYOUT = [
     }
   },
   {
-    "file": "fixture/4sh.glb",
+    "file": "fixture/4fh.glb",
     "userScale": 1,
     "scaleY": 1,
     "userRot": 0,
@@ -1015,7 +1015,7 @@ export const DEFAULT_LAYOUT = [
     }
   },
   {
-    "file": "fixture/4sh.glb",
+    "file": "fixture/4fh.glb",
     "userScale": 1,
     "scaleY": 1,
     "userRot": 0,
