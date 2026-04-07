@@ -4,6 +4,8 @@ export const DEFAULT_LAYOUT = [
     "userScale": 1,
     "scaleY": 1,
     "userRot": 1.5707963267948966,
+    "merchRotX": 0,
+    "merchRotZ": 0,
     "baseY": 2.135,
     "position": {
       "x": -10.15,
@@ -15,6 +17,8 @@ export const DEFAULT_LAYOUT = [
     "userScale": 1,
     "scaleY": 1,
     "userRot": 1.5707963267948966,
+    "merchRotX": 0,
+    "merchRotZ": 0,
     "baseY": 2.135,
     "position": {
       "x": -10.15,
@@ -26,6 +30,8 @@ export const DEFAULT_LAYOUT = [
     "userScale": 1,
     "scaleY": 1,
     "userRot": 0,
+    "merchRotX": 0,
+    "merchRotZ": 0,
     "baseY": 2.135,
     "position": {
       "x": -8.559999999999992,
@@ -37,6 +43,8 @@ export const DEFAULT_LAYOUT = [
     "userScale": 1,
     "scaleY": 1,
     "userRot": 0,
+    "merchRotX": 0,
+    "merchRotZ": 0,
     "baseY": 2.135,
     "position": {
       "x": -3.7800000000000127,
@@ -48,6 +56,8 @@ export const DEFAULT_LAYOUT = [
     "userScale": 1,
     "scaleY": 1,
     "userRot": 0,
+    "merchRotX": 0,
+    "merchRotZ": 0,
     "baseY": 2.135,
     "position": {
       "x": 3.700000000000049,
@@ -59,6 +69,8 @@ export const DEFAULT_LAYOUT = [
     "userScale": 1,
     "scaleY": 1,
     "userRot": 0,
+    "merchRotX": 0,
+    "merchRotZ": 0,
     "baseY": 2.135,
     "position": {
       "x": 8.599999999999987,
@@ -70,6 +82,8 @@ export const DEFAULT_LAYOUT = [
     "userScale": 1,
     "scaleY": 1,
     "userRot": -1.5707963267948966,
+    "merchRotX": 0,
+    "merchRotZ": 0,
     "baseY": 2.135,
     "position": {
       "x": 10.15,
@@ -81,6 +95,8 @@ export const DEFAULT_LAYOUT = [
     "userScale": 1,
     "scaleY": 1,
     "userRot": -1.5707963267948966,
+    "merchRotX": 0,
+    "merchRotZ": 0,
     "baseY": 2.135,
     "position": {
       "x": 10.15,
@@ -92,6 +108,8 @@ export const DEFAULT_LAYOUT = [
     "userScale": 1,
     "scaleY": 1,
     "userRot": 3.141592653589793,
+    "merchRotX": 0,
+    "merchRotZ": 0,
     "baseY": 2.135,
     "position": {
       "x": 5.780000000000005,
@@ -103,6 +121,8 @@ export const DEFAULT_LAYOUT = [
     "userScale": 1,
     "scaleY": 1,
     "userRot": 3.141592653589793,
+    "merchRotX": 0,
+    "merchRotZ": 0,
     "baseY": 2.135,
     "position": {
       "x": -6.943915570160447,
@@ -114,6 +134,8 @@ export const DEFAULT_LAYOUT = [
     "userScale": 1,
     "scaleY": 1,
     "userRot": 0,
+    "merchRotX": 0,
+    "merchRotZ": 0,
     "baseY": 2.135,
     "position": {
       "x": -6.160000000000001,
@@ -125,6 +147,8 @@ export const DEFAULT_LAYOUT = [
     "userScale": 1,
     "scaleY": 1,
     "userRot": 0,
+    "merchRotX": 0,
+    "merchRotZ": 0,
     "baseY": 2.135,
     "position": {
       "x": 0.53,
@@ -136,6 +160,8 @@ export const DEFAULT_LAYOUT = [
     "userScale": 1,
     "scaleY": 1,
     "userRot": 3.141592653589793,
+    "merchRotX": 0,
+    "merchRotZ": 0,
     "baseY": 2.135,
     "position": {
       "x": 1.5,
@@ -147,6 +173,8 @@ export const DEFAULT_LAYOUT = [
     "userScale": 1,
     "scaleY": 1,
     "userRot": 3.141592653589793,
+    "merchRotX": 0,
+    "merchRotZ": 0,
     "baseY": 2.135,
     "position": {
       "x": -4.97210641523148,
@@ -158,6 +186,8 @@ export const DEFAULT_LAYOUT = [
     "userScale": 1,
     "scaleY": 1,
     "userRot": 0,
+    "merchRotX": 0,
+    "merchRotZ": 0,
     "baseY": 2.135,
     "position": {
       "x": -0.81,
@@ -169,6 +199,8 @@ export const DEFAULT_LAYOUT = [
     "userScale": 1,
     "scaleY": 1,
     "userRot": 3.141592653589793,
+    "merchRotX": 0,
+    "merchRotZ": 0,
     "baseY": 2.135,
     "position": {
       "x": 7.5,
@@ -180,6 +212,8 @@ export const DEFAULT_LAYOUT = [
     "userScale": 1,
     "scaleY": 1,
     "userRot": 3.141592653589793,
+    "merchRotX": 0,
+    "merchRotZ": 0,
     "baseY": 2.135,
     "position": {
       "x": -3.5,
@@ -191,10 +225,14 @@ export const DEFAULT_LAYOUT = [
     "userScale": 1,
     "scaleY": 1,
     "userRot": 0,
+    "merchRotX": 0,
+    "merchRotZ": 0,
     "baseY": 0.07,
     "category": null,
+    "merchPathsFront": [],
+    "merchPathsBack": [],
     "position": {
-      "x": -2.246189205344459,
+      "x": -2.106189205344462,
       "z": -2.9957606420422556
     }
   },
@@ -203,11 +241,15 @@ export const DEFAULT_LAYOUT = [
     "userScale": 1,
     "scaleY": 1,
     "userRot": 0,
+    "merchRotX": 0,
+    "merchRotZ": 0,
     "baseY": 0.07,
     "category": null,
+    "merchPathsFront": [],
+    "merchPathsBack": [],
     "position": {
-      "x": 2.0766080098994264,
-      "z": -3.012817203547278
+      "x": 2.234293555316243,
+      "z": -2.977525630293895
     }
   },
   {
@@ -215,8 +257,12 @@ export const DEFAULT_LAYOUT = [
     "userScale": 1.45,
     "scaleY": 1.45,
     "userRot": 1.5707963267948966,
+    "merchRotX": 0,
+    "merchRotZ": 0,
     "baseY": 0.07,
     "category": null,
+    "merchPathsFront": [],
+    "merchPathsBack": [],
     "position": {
       "x": -8.020834891166453,
       "z": 0.5509612505862154
@@ -227,8 +273,12 @@ export const DEFAULT_LAYOUT = [
     "userScale": 1.45,
     "scaleY": 1.45,
     "userRot": 0,
+    "merchRotX": 0,
+    "merchRotZ": 0,
     "baseY": 0.07,
     "category": null,
+    "merchPathsFront": [],
+    "merchPathsBack": [],
     "position": {
       "x": -5.398844388736423,
       "z": -1.0680481981661325
@@ -239,8 +289,12 @@ export const DEFAULT_LAYOUT = [
     "userScale": 1.45,
     "scaleY": 1.45,
     "userRot": 0,
+    "merchRotX": 0,
+    "merchRotZ": 0,
     "baseY": 0.07,
     "category": null,
+    "merchPathsFront": [],
+    "merchPathsBack": [],
     "position": {
       "x": -0.673363790775315,
       "z": -1.0680481981661325
@@ -251,8 +305,12 @@ export const DEFAULT_LAYOUT = [
     "userScale": 1.2,
     "scaleY": 1.2,
     "userRot": 0,
+    "merchRotX": 0,
+    "merchRotZ": 0,
     "baseY": 0.07,
     "category": null,
+    "merchPathsFront": [],
+    "merchPathsBack": [],
     "position": {
       "x": 5.6980000000000155,
       "z": -1.1895978885498715
@@ -263,8 +321,12 @@ export const DEFAULT_LAYOUT = [
     "userScale": 1.2,
     "scaleY": 1.2,
     "userRot": 4.71238898038469,
+    "merchRotX": 0,
+    "merchRotZ": 0,
     "baseY": 0.07,
     "category": null,
+    "merchPathsFront": [],
+    "merchPathsBack": [],
     "position": {
       "x": 7.951000000000011,
       "z": -0.43
@@ -275,8 +337,12 @@ export const DEFAULT_LAYOUT = [
     "userScale": 1,
     "scaleY": 1,
     "userRot": 1.5707963267948966,
+    "merchRotX": 0,
+    "merchRotZ": 0,
     "baseY": 0.07,
     "category": null,
+    "merchPathsFront": [],
+    "merchPathsBack": [],
     "position": {
       "x": -8.643897778679657,
       "z": -1.5878512164512593
@@ -287,8 +353,14 @@ export const DEFAULT_LAYOUT = [
     "userScale": 1,
     "scaleY": 1,
     "userRot": 1.5707963267948966,
+    "merchRotX": 0,
+    "merchRotZ": 0,
     "baseY": 0.07,
     "category": null,
+    "merchPathsFront": [
+      "assets/merch/womens/3.png"
+    ],
+    "merchPathsBack": [],
     "position": {
       "x": -7.407000000000003,
       "z": 1.7579851883962698
@@ -299,8 +371,12 @@ export const DEFAULT_LAYOUT = [
     "userScale": 1,
     "scaleY": 1,
     "userRot": 1.5707963267948966,
+    "merchRotX": 0,
+    "merchRotZ": 0,
     "baseY": 0.07,
     "category": null,
+    "merchPathsFront": [],
+    "merchPathsBack": [],
     "position": {
       "x": -3.3420000000000103,
       "z": 1.7579851883962698
@@ -311,8 +387,12 @@ export const DEFAULT_LAYOUT = [
     "userScale": 1,
     "scaleY": 1,
     "userRot": 1.5707963267948966,
+    "merchRotX": 0,
+    "merchRotZ": 0,
     "baseY": 0.07,
     "category": null,
+    "merchPathsFront": [],
+    "merchPathsBack": [],
     "position": {
       "x": -4.974906684949242,
       "z": 1.776
@@ -323,8 +403,12 @@ export const DEFAULT_LAYOUT = [
     "userScale": 1,
     "scaleY": 1,
     "userRot": 1.5707963267948966,
+    "merchRotX": 0,
+    "merchRotZ": 0,
     "baseY": 0.07,
     "category": null,
+    "merchPathsFront": [],
+    "merchPathsBack": [],
     "position": {
       "x": 0.9,
       "z": 1.776
@@ -335,8 +419,14 @@ export const DEFAULT_LAYOUT = [
     "userScale": 1,
     "scaleY": 1,
     "userRot": 1.5707963267948966,
+    "merchRotX": 0,
+    "merchRotZ": 0,
     "baseY": 0.07,
     "category": null,
+    "merchPathsFront": [
+      "assets/merch/mens/blue.png"
+    ],
+    "merchPathsBack": [],
     "position": {
       "x": -3.347064030693424,
       "z": -1.5878512164512593
@@ -347,8 +437,12 @@ export const DEFAULT_LAYOUT = [
     "userScale": 1,
     "scaleY": 1,
     "userRot": 1.5707963267948966,
+    "merchRotX": 0,
+    "merchRotZ": 0,
     "baseY": 0.07,
     "category": null,
+    "merchPathsFront": [],
+    "merchPathsBack": [],
     "position": {
       "x": 3.947721754288076,
       "z": 1.7760000000000002
@@ -359,8 +453,12 @@ export const DEFAULT_LAYOUT = [
     "userScale": 1,
     "scaleY": 1,
     "userRot": 1.5707963267948966,
+    "merchRotX": 0,
+    "merchRotZ": 0,
     "baseY": 0.07,
     "category": null,
+    "merchPathsFront": [],
+    "merchPathsBack": [],
     "position": {
       "x": 3.947721754288076,
       "z": -1.5878512164512593
@@ -371,8 +469,12 @@ export const DEFAULT_LAYOUT = [
     "userScale": 1,
     "scaleY": 1,
     "userRot": 0,
+    "merchRotX": 0,
+    "merchRotZ": 0,
     "baseY": 0.07,
     "category": null,
+    "merchPathsFront": [],
+    "merchPathsBack": [],
     "position": {
       "x": 8.349253327901401,
       "z": -1.6810000000000005
@@ -383,8 +485,12 @@ export const DEFAULT_LAYOUT = [
     "userScale": 2.05,
     "scaleY": 2.05,
     "userRot": 3.141592653589793,
+    "merchRotX": 0,
+    "merchRotZ": 0,
     "baseY": 0.07,
     "category": null,
+    "merchPathsFront": [],
+    "merchPathsBack": [],
     "position": {
       "x": 7.509438561104387,
       "z": 1.7
@@ -395,8 +501,12 @@ export const DEFAULT_LAYOUT = [
     "userScale": 1.5,
     "scaleY": 1.5,
     "userRot": 0,
+    "merchRotX": 0,
+    "merchRotZ": 0,
     "baseY": 0.07,
     "category": null,
+    "merchPathsFront": [],
+    "merchPathsBack": [],
     "position": {
       "x": -2.331,
       "z": 0.018000000000000196
@@ -407,8 +517,12 @@ export const DEFAULT_LAYOUT = [
     "userScale": 1.5,
     "scaleY": 1.5,
     "userRot": 0,
+    "merchRotX": 0,
+    "merchRotZ": 0,
     "baseY": 0.07,
     "category": null,
+    "merchPathsFront": [],
+    "merchPathsBack": [],
     "position": {
       "x": 2.911,
       "z": 0.018000000000000196
@@ -419,10 +533,17 @@ export const DEFAULT_LAYOUT = [
     "userScale": 1,
     "scaleY": 1,
     "userRot": 1.5707963267948966,
+    "merchRotX": 0,
+    "merchRotZ": 0,
     "baseY": 0.07,
     "category": null,
+    "merchPathsFront": [
+      "assets/merch/mens/blue.png",
+      "assets/merch/mens/06.png"
+    ],
+    "merchPathsBack": [],
     "position": {
-      "x": -8.513285676004548,
+      "x": -7.96328567600456,
       "z": -3.0013330931233546
     }
   },
@@ -431,10 +552,17 @@ export const DEFAULT_LAYOUT = [
     "userScale": 1,
     "scaleY": 1,
     "userRot": 1.5707963267948966,
+    "merchRotX": 0,
+    "merchRotZ": 0,
     "baseY": 0.07,
     "category": null,
+    "merchPathsFront": [
+      "assets/merch/mens/blue.png",
+      "assets/merch/mens/04.png"
+    ],
+    "merchPathsBack": [],
     "position": {
-      "x": -7.293568202971084,
+      "x": -6.743568202971096,
       "z": -3.0013330931233546
     }
   },
@@ -443,10 +571,17 @@ export const DEFAULT_LAYOUT = [
     "userScale": 1,
     "scaleY": 1,
     "userRot": 1.5707963267948966,
+    "merchRotX": 0,
+    "merchRotZ": 0,
     "baseY": 0.07,
     "category": null,
+    "merchPathsFront": [
+      "assets/merch/mens/02.png",
+      "assets/merch/mens/03.png"
+    ],
+    "merchPathsBack": [],
     "position": {
-      "x": -6.07385072993762,
+      "x": -5.523850729937632,
       "z": -3.0013330931233546
     }
   },
@@ -455,10 +590,17 @@ export const DEFAULT_LAYOUT = [
     "userScale": 1,
     "scaleY": 1,
     "userRot": 1.5707963267948966,
+    "merchRotX": 0,
+    "merchRotZ": 0,
     "baseY": 0.07,
     "category": null,
+    "merchPathsFront": [
+      "assets/merch/mens/blue.png",
+      "assets/merch/mens/02.png"
+    ],
+    "merchPathsBack": [],
     "position": {
-      "x": -4.854133256904156,
+      "x": -4.3041332569041675,
       "z": -3.0013330931233546
     }
   },
@@ -467,10 +609,18 @@ export const DEFAULT_LAYOUT = [
     "userScale": 1,
     "scaleY": 1,
     "userRot": 1.5707963267948966,
+    "merchRotX": 0,
+    "merchRotZ": 0,
     "baseY": 0.07,
     "category": null,
+    "merchPathsFront": [
+      "assets/merch/mens/06.png",
+      "assets/merch/mens/05.png",
+      "assets/merch/mens/03.png"
+    ],
+    "merchPathsBack": [],
     "position": {
-      "x": -3.634415783870692,
+      "x": -3.084415783870704,
       "z": -3.0013330931233546
     }
   },
@@ -479,10 +629,17 @@ export const DEFAULT_LAYOUT = [
     "userScale": 1,
     "scaleY": 1,
     "userRot": 1.5707963267948966,
+    "merchRotX": 0,
+    "merchRotZ": 0,
     "baseY": 0.07,
     "category": null,
+    "merchPathsFront": [
+      "assets/merch/womens/13.png",
+      "assets/merch/womens/15.png"
+    ],
+    "merchPathsBack": [],
     "position": {
-      "x": -1.7841202940897396,
+      "x": -1.184120294089739,
       "z": -3.0013330931233546
     }
   },
@@ -491,10 +648,17 @@ export const DEFAULT_LAYOUT = [
     "userScale": 1,
     "scaleY": 1,
     "userRot": 1.5707963267948966,
+    "merchRotX": 0,
+    "merchRotZ": 0,
     "baseY": 0.07,
     "category": null,
+    "merchPathsFront": [
+      "assets/merch/womens/6.png",
+      "assets/merch/womens/3.png"
+    ],
+    "merchPathsBack": [],
     "position": {
-      "x": -0.5536525775626977,
+      "x": 0.04634742243730215,
       "z": -3.0013330931233546
     }
   },
@@ -503,10 +667,17 @@ export const DEFAULT_LAYOUT = [
     "userScale": 1,
     "scaleY": 1,
     "userRot": 1.5707963267948966,
+    "merchRotX": 0,
+    "merchRotZ": 0,
     "baseY": 0.07,
     "category": null,
+    "merchPathsFront": [
+      "assets/merch/womens/12.png",
+      "assets/merch/womens/4.png"
+    ],
+    "merchPathsBack": [],
     "position": {
-      "x": 0.6768151389643441,
+      "x": 1.2768151389643445,
       "z": -3.0013330931233546
     }
   },
@@ -515,11 +686,15 @@ export const DEFAULT_LAYOUT = [
     "userScale": 1,
     "scaleY": 1,
     "userRot": 1.5707963267948966,
+    "merchRotX": 0,
+    "merchRotZ": 0,
     "baseY": 0.07,
     "category": null,
+    "merchPathsFront": [],
+    "merchPathsBack": [],
     "position": {
-      "x": 2.557337297525304,
-      "z": -3.0013330931233546
+      "x": 3.015022842942114,
+      "z": -2.966041519869971
     }
   },
   {
@@ -527,11 +702,15 @@ export const DEFAULT_LAYOUT = [
     "userScale": 1,
     "scaleY": 1,
     "userRot": 1.5707963267948966,
+    "merchRotX": 0,
+    "merchRotZ": 0,
     "baseY": 0.07,
     "category": null,
+    "merchPathsFront": [],
+    "merchPathsBack": [],
     "position": {
-      "x": 3.790315710613479,
-      "z": -3.0013330931233546
+      "x": 4.248001256030289,
+      "z": -2.966041519869971
     }
   },
   {
@@ -539,11 +718,15 @@ export const DEFAULT_LAYOUT = [
     "userScale": 1,
     "scaleY": 1,
     "userRot": 1.5707963267948966,
+    "merchRotX": 0,
+    "merchRotZ": 0,
     "baseY": 0.07,
     "category": null,
+    "merchPathsFront": [],
+    "merchPathsBack": [],
     "position": {
-      "x": 5.023294123701654,
-      "z": -3.0013330931233546
+      "x": 5.480979669118464,
+      "z": -2.966041519869971
     }
   },
   {
@@ -551,11 +734,15 @@ export const DEFAULT_LAYOUT = [
     "userScale": 1,
     "scaleY": 1,
     "userRot": 1.5707963267948966,
+    "merchRotX": 0,
+    "merchRotZ": 0,
     "baseY": 0.07,
     "category": null,
+    "merchPathsFront": [],
+    "merchPathsBack": [],
     "position": {
-      "x": 6.2562725367898295,
-      "z": -3.0013330931233546
+      "x": 6.71395808220664,
+      "z": -2.966041519869971
     }
   },
   {
@@ -563,11 +750,15 @@ export const DEFAULT_LAYOUT = [
     "userScale": 1,
     "scaleY": 1,
     "userRot": 1.5707963267948966,
+    "merchRotX": 0,
+    "merchRotZ": 0,
     "baseY": 0.07,
     "category": null,
+    "merchPathsFront": [],
+    "merchPathsBack": [],
     "position": {
-      "x": 7.489250949878005,
-      "z": -3.0013330931233546
+      "x": 7.946936495294815,
+      "z": -2.966041519869971
     }
   },
   {
@@ -575,11 +766,15 @@ export const DEFAULT_LAYOUT = [
     "userScale": 1,
     "scaleY": 1,
     "userRot": 1.5707963267948966,
+    "merchRotX": 0,
+    "merchRotZ": 0,
     "baseY": 0.07,
     "category": null,
+    "merchPathsFront": [],
+    "merchPathsBack": [],
     "position": {
-      "x": 8.722229362966178,
-      "z": -3.0013330931233546
+      "x": 9.179914908382989,
+      "z": -2.966041519869971
     }
   },
   {
@@ -587,11 +782,15 @@ export const DEFAULT_LAYOUT = [
     "userScale": 1,
     "scaleY": 1,
     "userRot": 0,
+    "merchRotX": 0,
+    "merchRotZ": 0,
     "baseY": 0.07,
     "category": null,
+    "merchPathsFront": [],
+    "merchPathsBack": [],
     "position": {
-      "x": 10.015,
-      "z": -2.745
+      "x": 9.978920593731418,
+      "z": -2.4050000000000074
     }
   },
   {
@@ -599,11 +798,15 @@ export const DEFAULT_LAYOUT = [
     "userScale": 1,
     "scaleY": 1,
     "userRot": 0,
+    "merchRotX": 0,
+    "merchRotZ": 0,
     "baseY": 0.07,
     "category": null,
+    "merchPathsFront": [],
+    "merchPathsBack": [],
     "position": {
-      "x": 10.019,
-      "z": -1.5257499999999997
+      "x": 9.978920593731418,
+      "z": -1.1857499999999994
     }
   },
   {
@@ -611,11 +814,15 @@ export const DEFAULT_LAYOUT = [
     "userScale": 1,
     "scaleY": 1,
     "userRot": 0,
+    "merchRotX": 0,
+    "merchRotZ": 0,
     "baseY": 0.07,
     "category": null,
+    "merchPathsFront": [],
+    "merchPathsBack": [],
     "position": {
-      "x": 10.012,
-      "z": -0.3064999999999996
+      "x": 9.978920593731418,
+      "z": 0.03350000000000059
     }
   },
   {
@@ -623,11 +830,15 @@ export const DEFAULT_LAYOUT = [
     "userScale": 1,
     "scaleY": 1,
     "userRot": 0,
+    "merchRotX": 0,
+    "merchRotZ": 0,
     "baseY": 0.07,
     "category": null,
+    "merchPathsFront": [],
+    "merchPathsBack": [],
     "position": {
-      "x": 10.031,
-      "z": 0.9127500000000006
+      "x": 9.978920593731418,
+      "z": 1.252750000000001
     }
   },
   {
@@ -635,11 +846,15 @@ export const DEFAULT_LAYOUT = [
     "userScale": 1,
     "scaleY": 1,
     "userRot": 0,
+    "merchRotX": 0,
+    "merchRotZ": 0,
     "baseY": 0.07,
     "category": null,
+    "merchPathsFront": [],
+    "merchPathsBack": [],
     "position": {
-      "x": 10.037,
-      "z": 2.1320000000000006
+      "x": 9.978920593731418,
+      "z": 2.4719999999999933
     }
   },
   {
@@ -647,10 +862,14 @@ export const DEFAULT_LAYOUT = [
     "userScale": 1,
     "scaleY": 1,
     "userRot": 1.5707963267948966,
+    "merchRotX": 0,
+    "merchRotZ": 0,
     "baseY": 0.07,
     "category": null,
+    "merchPathsFront": [],
+    "merchPathsBack": [],
     "position": {
-      "x": 8.726,
+      "x": 9.00892059373139,
       "z": 2.9489999999999994
     }
   },
@@ -659,10 +878,14 @@ export const DEFAULT_LAYOUT = [
     "userScale": 1,
     "scaleY": 1,
     "userRot": 1.5707963267948966,
+    "merchRotX": 0,
+    "merchRotZ": 0,
     "baseY": 0.07,
     "category": null,
+    "merchPathsFront": [],
+    "merchPathsBack": [],
     "position": {
-      "x": 7.479750000000002,
+      "x": 7.849750000000009,
       "z": 2.9489999999999994
     }
   },
@@ -671,10 +894,14 @@ export const DEFAULT_LAYOUT = [
     "userScale": 1,
     "scaleY": 1,
     "userRot": 1.5707963267948966,
+    "merchRotX": 0,
+    "merchRotZ": 0,
     "baseY": 0.07,
     "category": null,
+    "merchPathsFront": [],
+    "merchPathsBack": [],
     "position": {
-      "x": 6.233500000000001,
+      "x": 6.603500000000009,
       "z": 2.9489999999999994
     }
   },
@@ -683,10 +910,14 @@ export const DEFAULT_LAYOUT = [
     "userScale": 1,
     "scaleY": 1,
     "userRot": 1.5707963267948966,
+    "merchRotX": 0,
+    "merchRotZ": 0,
     "baseY": 0.07,
     "category": null,
+    "merchPathsFront": [],
+    "merchPathsBack": [],
     "position": {
-      "x": 4.98725,
+      "x": 5.357250000000008,
       "z": 2.9489999999999994
     }
   },
@@ -695,10 +926,14 @@ export const DEFAULT_LAYOUT = [
     "userScale": 1,
     "scaleY": 1,
     "userRot": 1.5707963267948966,
+    "merchRotX": 0,
+    "merchRotZ": 0,
     "baseY": 0.07,
     "category": null,
+    "merchPathsFront": [],
+    "merchPathsBack": [],
     "position": {
-      "x": 3.7410000000000005,
+      "x": 4.111000000000008,
       "z": 2.9489999999999994
     }
   },
@@ -707,10 +942,14 @@ export const DEFAULT_LAYOUT = [
     "userScale": 1,
     "scaleY": 1,
     "userRot": 1.5707963267948966,
+    "merchRotX": 0,
+    "merchRotZ": 0,
     "baseY": 0.07,
     "category": null,
+    "merchPathsFront": [],
+    "merchPathsBack": [],
     "position": {
-      "x": 1.252,
+      "x": 1.6220000000000003,
       "z": 2.949999999999999
     }
   },
@@ -719,10 +958,14 @@ export const DEFAULT_LAYOUT = [
     "userScale": 1,
     "scaleY": 1,
     "userRot": 1.5707963267948966,
+    "merchRotX": 0,
+    "merchRotZ": 0,
     "baseY": 0.07,
     "category": null,
+    "merchPathsFront": [],
+    "merchPathsBack": [],
     "position": {
-      "x": 0.009000000000000003,
+      "x": 0.3789999999999997,
       "z": 2.949999999999999
     }
   },
@@ -731,10 +974,14 @@ export const DEFAULT_LAYOUT = [
     "userScale": 1,
     "scaleY": 1,
     "userRot": 1.5707963267948966,
+    "merchRotX": 0,
+    "merchRotZ": 0,
     "baseY": 0.07,
     "category": null,
+    "merchPathsFront": [],
+    "merchPathsBack": [],
     "position": {
-      "x": -2.467999999999999,
+      "x": -2.097999999999992,
       "z": 2.950999999999999
     }
   },
@@ -743,10 +990,14 @@ export const DEFAULT_LAYOUT = [
     "userScale": 1,
     "scaleY": 1,
     "userRot": 1.5707963267948966,
+    "merchRotX": 0,
+    "merchRotZ": 0,
     "baseY": 0.07,
     "category": null,
+    "merchPathsFront": [],
+    "merchPathsBack": [],
     "position": {
-      "x": -3.6944999999999992,
+      "x": -3.3244999999999925,
       "z": 2.950999999999999
     }
   },
@@ -755,10 +1006,14 @@ export const DEFAULT_LAYOUT = [
     "userScale": 1,
     "scaleY": 1,
     "userRot": 1.5707963267948966,
+    "merchRotX": 0,
+    "merchRotZ": 0,
     "baseY": 0.07,
     "category": null,
+    "merchPathsFront": [],
+    "merchPathsBack": [],
     "position": {
-      "x": -4.920999999999999,
+      "x": -4.550999999999992,
       "z": 2.950999999999999
     }
   },
@@ -767,10 +1022,14 @@ export const DEFAULT_LAYOUT = [
     "userScale": 1,
     "scaleY": 1,
     "userRot": 1.5707963267948966,
+    "merchRotX": 0,
+    "merchRotZ": 0,
     "baseY": 0.07,
     "category": null,
+    "merchPathsFront": [],
+    "merchPathsBack": [],
     "position": {
-      "x": -6.147499999999999,
+      "x": -5.777499999999992,
       "z": 2.950999999999999
     }
   },
@@ -779,10 +1038,14 @@ export const DEFAULT_LAYOUT = [
     "userScale": 1,
     "scaleY": 1,
     "userRot": 1.5707963267948966,
+    "merchRotX": 0,
+    "merchRotZ": 0,
     "baseY": 0.07,
     "category": null,
+    "merchPathsFront": [],
+    "merchPathsBack": [],
     "position": {
-      "x": -7.373999999999999,
+      "x": -7.003999999999992,
       "z": 2.950999999999999
     }
   },
@@ -791,8 +1054,12 @@ export const DEFAULT_LAYOUT = [
     "userScale": 1,
     "scaleY": 1,
     "userRot": 1.5707963267948966,
+    "merchRotX": 0,
+    "merchRotZ": 0,
     "baseY": 1.556999959051609,
     "category": null,
+    "merchPathsFront": [],
+    "merchPathsBack": [],
     "position": {
       "x": -9.9,
       "z": 2.434
@@ -803,8 +1070,12 @@ export const DEFAULT_LAYOUT = [
     "userScale": 1,
     "scaleY": 1,
     "userRot": 1.5707963267948966,
+    "merchRotX": 0,
+    "merchRotZ": 0,
     "baseY": 1.556999959051609,
     "category": null,
+    "merchPathsFront": [],
+    "merchPathsBack": [],
     "position": {
       "x": -9.9,
       "z": -1.93
@@ -815,8 +1086,12 @@ export const DEFAULT_LAYOUT = [
     "userScale": 1,
     "scaleY": 1,
     "userRot": 1.5707963267948966,
+    "merchRotX": 0,
+    "merchRotZ": 0,
     "baseY": 1.556999959051609,
     "category": null,
+    "merchPathsFront": [],
+    "merchPathsBack": [],
     "position": {
       "x": -9.9,
       "z": 0.78
@@ -827,8 +1102,12 @@ export const DEFAULT_LAYOUT = [
     "userScale": 1,
     "scaleY": 1,
     "userRot": 1.5707963267948966,
+    "merchRotX": 0,
+    "merchRotZ": 0,
     "baseY": 1.556999959051609,
     "category": null,
+    "merchPathsFront": [],
+    "merchPathsBack": [],
     "position": {
       "x": -9.9,
       "z": -0.55
@@ -839,8 +1118,12 @@ export const DEFAULT_LAYOUT = [
     "userScale": 1,
     "scaleY": 1,
     "userRot": 0,
+    "merchRotX": 0,
+    "merchRotZ": 0,
     "baseY": 1.55,
     "category": null,
+    "merchPathsFront": [],
+    "merchPathsBack": [],
     "position": {
       "x": -9.309999999999972,
       "z": -2.957
@@ -851,8 +1134,12 @@ export const DEFAULT_LAYOUT = [
     "userScale": 1,
     "scaleY": 1,
     "userRot": 0,
+    "merchRotX": 0,
+    "merchRotZ": 0,
     "baseY": 1.55,
     "category": null,
+    "merchPathsFront": [],
+    "merchPathsBack": [],
     "position": {
       "x": 4.880000000000024,
       "z": -2.993
@@ -863,8 +1150,12 @@ export const DEFAULT_LAYOUT = [
     "userScale": 1,
     "scaleY": 1,
     "userRot": 1.5707963267948966,
+    "merchRotX": 0,
+    "merchRotZ": 0,
     "baseY": 1.556999959051609,
     "category": null,
+    "merchPathsFront": [],
+    "merchPathsBack": [],
     "position": {
       "x": 9.969999999999999,
       "z": -2.1899999999999973
@@ -875,8 +1166,12 @@ export const DEFAULT_LAYOUT = [
     "userScale": 1,
     "scaleY": 1,
     "userRot": 3.141592653589793,
+    "merchRotX": 0,
+    "merchRotZ": 0,
     "baseY": 1.556999959051609,
     "category": null,
+    "merchPathsFront": [],
+    "merchPathsBack": [],
     "position": {
       "x": 4.830000000000025,
       "z": 2.993
@@ -887,8 +1182,12 @@ export const DEFAULT_LAYOUT = [
     "userScale": 1,
     "scaleY": 1,
     "userRot": 3.141592653589793,
+    "merchRotX": 0,
+    "merchRotZ": 0,
     "baseY": 1.556999959051609,
     "category": null,
+    "merchPathsFront": [],
+    "merchPathsBack": [],
     "position": {
       "x": -6.289999999999994,
       "z": 2.993
@@ -899,8 +1198,12 @@ export const DEFAULT_LAYOUT = [
     "userScale": 0.2,
     "scaleY": 0.2,
     "userRot": 1.5707963267948966,
+    "merchRotX": 0,
+    "merchRotZ": 0,
     "baseY": 1.556999959051609,
     "category": "MENS",
+    "merchPathsFront": [],
+    "merchPathsBack": [],
     "position": {
       "x": -10.15,
       "z": 1.47
@@ -911,8 +1214,12 @@ export const DEFAULT_LAYOUT = [
     "userScale": 0.2,
     "scaleY": 0.2,
     "userRot": 0,
+    "merchRotX": 0,
+    "merchRotZ": 0,
     "baseY": 1.55,
     "category": "MENS",
+    "merchPathsFront": [],
+    "merchPathsBack": [],
     "position": {
       "x": -7.470000000000011,
       "z": -3.15
@@ -923,8 +1230,12 @@ export const DEFAULT_LAYOUT = [
     "userScale": 0.2,
     "scaleY": 0.2,
     "userRot": 0,
+    "merchRotX": 0,
+    "merchRotZ": 0,
     "baseY": 1.55,
     "category": "NEWBORN",
+    "merchPathsFront": [],
+    "merchPathsBack": [],
     "position": {
       "x": 3.380000000000056,
       "z": -3.15
@@ -935,8 +1246,12 @@ export const DEFAULT_LAYOUT = [
     "userScale": 0.2,
     "scaleY": 0.2,
     "userRot": -1.5707963267948966,
+    "merchRotX": 0,
+    "merchRotZ": 0,
     "baseY": 1.556999959051609,
     "category": "BOYS",
+    "merchPathsFront": [],
+    "merchPathsBack": [],
     "position": {
       "x": 10.15,
       "z": -0.8300000000000004
@@ -947,8 +1262,12 @@ export const DEFAULT_LAYOUT = [
     "userScale": 0.2,
     "scaleY": 0.2,
     "userRot": 3.141592653589793,
+    "merchRotX": 0,
+    "merchRotZ": 0,
     "baseY": 1.556999959051609,
     "category": "GIRLS",
+    "merchPathsFront": [],
+    "merchPathsBack": [],
     "position": {
       "x": 6,
       "z": 3.15
@@ -959,8 +1278,12 @@ export const DEFAULT_LAYOUT = [
     "userScale": 0.2,
     "scaleY": 0.2,
     "userRot": 3.141592653589793,
+    "merchRotX": 0,
+    "merchRotZ": 0,
     "baseY": 1.556999959051609,
     "category": "WOMENS",
+    "merchPathsFront": [],
+    "merchPathsBack": [],
     "position": {
       "x": -0.7500000000000451,
       "z": 3.15
@@ -971,10 +1294,17 @@ export const DEFAULT_LAYOUT = [
     "userScale": 1,
     "scaleY": 1,
     "userRot": 1.5707963267948966,
+    "merchRotX": 0,
+    "merchRotZ": 0,
     "baseY": 0.07,
     "category": null,
+    "merchPathsFront": [
+      "assets/merch/mens/02.png",
+      "assets/merch/mens/06.png"
+    ],
+    "merchPathsBack": [],
     "position": {
-      "x": -9.733003149038012,
+      "x": -9.183003149038024,
       "z": -3.0013330931233546
     }
   },
@@ -983,11 +1313,18 @@ export const DEFAULT_LAYOUT = [
     "userScale": 1,
     "scaleY": 1,
     "userRot": 0,
+    "merchRotX": 0,
+    "merchRotZ": 0,
     "baseY": 0.07,
     "category": null,
+    "merchPathsFront": [
+      "assets/merch/mens/03.png",
+      "assets/merch/mens/blue.png"
+    ],
+    "merchPathsBack": [],
     "position": {
-      "x": -10.0065490836204,
-      "z": -2.847764830015922
+      "x": -9.996949625822243,
+      "z": -2.360837526954127
     }
   },
   {
@@ -995,11 +1332,18 @@ export const DEFAULT_LAYOUT = [
     "userScale": 1,
     "scaleY": 1,
     "userRot": 0,
+    "merchRotX": 0,
+    "merchRotZ": 0,
     "baseY": 0.07,
     "category": null,
+    "merchPathsFront": [
+      "assets/merch/mens/blue.png",
+      "assets/merch/mens/02.png"
+    ],
+    "merchPathsBack": [],
     "position": {
-      "x": -10.0065490836204,
-      "z": -1.6160148300159218
+      "x": -9.996949625822243,
+      "z": -1.129087526954127
     }
   },
   {
@@ -1007,11 +1351,19 @@ export const DEFAULT_LAYOUT = [
     "userScale": 1,
     "scaleY": 1,
     "userRot": 0,
+    "merchRotX": 0,
+    "merchRotZ": 0,
     "baseY": 0.07,
     "category": null,
+    "merchPathsFront": [
+      "assets/merch/mens/04.png",
+      "assets/merch/mens/05.png",
+      "assets/merch/mens/03.png"
+    ],
+    "merchPathsBack": [],
     "position": {
-      "x": -10.0065490836204,
-      "z": -0.384264830015922
+      "x": -9.996949625822243,
+      "z": 0.10266247304587289
     }
   },
   {
@@ -1019,11 +1371,18 @@ export const DEFAULT_LAYOUT = [
     "userScale": 1,
     "scaleY": 1,
     "userRot": 0,
+    "merchRotX": 0,
+    "merchRotZ": 0,
     "baseY": 0.07,
     "category": null,
+    "merchPathsFront": [
+      "assets/merch/mens/06.png",
+      "assets/merch/mens/blue.png"
+    ],
+    "merchPathsBack": [],
     "position": {
-      "x": -10.0065490836204,
-      "z": 0.847485169984078
+      "x": -9.996949625822243,
+      "z": 1.3344124730458728
     }
   },
   {
@@ -1031,11 +1390,17 @@ export const DEFAULT_LAYOUT = [
     "userScale": 1,
     "scaleY": 1,
     "userRot": 0,
+    "merchRotX": 0,
+    "merchRotZ": 0,
     "baseY": 0.07,
     "category": null,
+    "merchPathsFront": [
+      "assets/merch/mens/02.png"
+    ],
+    "merchPathsBack": [],
     "position": {
-      "x": -10.0065490836204,
-      "z": 2.0792351699840776
+      "x": -9.996949625822243,
+      "z": 2.5661624730458725
     }
   },
   {
@@ -1043,8 +1408,12 @@ export const DEFAULT_LAYOUT = [
     "userScale": 1,
     "scaleY": 1,
     "userRot": 0,
+    "merchRotX": 0,
+    "merchRotZ": 0,
     "baseY": 1.55,
     "category": null,
+    "merchPathsFront": [],
+    "merchPathsBack": [],
     "position": {
       "x": -7.539999999999997,
       "z": -2.957
@@ -1055,8 +1424,12 @@ export const DEFAULT_LAYOUT = [
     "userScale": 1,
     "scaleY": 1,
     "userRot": 0,
+    "merchRotX": 0,
+    "merchRotZ": 0,
     "baseY": 1.55,
     "category": null,
+    "merchPathsFront": [],
+    "merchPathsBack": [],
     "position": {
       "x": -3.22598214512015,
       "z": -2.957
@@ -1067,8 +1440,12 @@ export const DEFAULT_LAYOUT = [
     "userScale": 1,
     "scaleY": 1,
     "userRot": 0,
+    "merchRotX": 0,
+    "merchRotZ": 0,
     "baseY": 1.55,
     "category": null,
+    "merchPathsFront": [],
+    "merchPathsBack": [],
     "position": {
       "x": -4.975982145120125,
       "z": -2.957
@@ -1079,8 +1456,12 @@ export const DEFAULT_LAYOUT = [
     "userScale": 1,
     "scaleY": 1,
     "userRot": 0,
+    "merchRotX": 0,
+    "merchRotZ": 0,
     "baseY": 1.55,
     "category": null,
+    "merchPathsFront": [],
+    "merchPathsBack": [],
     "position": {
       "x": 7.339999999999984,
       "z": -2.993
@@ -1091,8 +1472,12 @@ export const DEFAULT_LAYOUT = [
     "userScale": 1,
     "scaleY": 1,
     "userRot": 1.5707963267948966,
+    "merchRotX": 0,
+    "merchRotZ": 0,
     "baseY": 1.556999959051609,
     "category": null,
+    "merchPathsFront": [],
+    "merchPathsBack": [],
     "position": {
       "x": 9.989999999999998,
       "z": 0.22999999999999998
@@ -1103,8 +1488,12 @@ export const DEFAULT_LAYOUT = [
     "userScale": 1,
     "scaleY": 1,
     "userRot": 1.5707963267948966,
+    "merchRotX": 0,
+    "merchRotZ": 0,
     "baseY": 1.556999959051609,
     "category": null,
+    "merchPathsFront": [],
+    "merchPathsBack": [],
     "position": {
       "x": 9.969999999999999,
       "z": 2.4999999999999902
@@ -1115,8 +1504,12 @@ export const DEFAULT_LAYOUT = [
     "userScale": 1,
     "scaleY": 1,
     "userRot": 3.141592653589793,
+    "merchRotX": 0,
+    "merchRotZ": 0,
     "baseY": 1.556999959051609,
     "category": null,
+    "merchPathsFront": [],
+    "merchPathsBack": [],
     "position": {
       "x": 6.6,
       "z": 2.993
@@ -1127,8 +1520,12 @@ export const DEFAULT_LAYOUT = [
     "userScale": 1,
     "scaleY": 1,
     "userRot": 3.141592653589793,
+    "merchRotX": 0,
+    "merchRotZ": 0,
     "baseY": 1.556999959051609,
     "category": null,
+    "merchPathsFront": [],
+    "merchPathsBack": [],
     "position": {
       "x": 8.54999999999997,
       "z": 3.0029999999999997
@@ -1139,8 +1536,12 @@ export const DEFAULT_LAYOUT = [
     "userScale": 1,
     "scaleY": 1,
     "userRot": 3.141592653589793,
+    "merchRotX": 0,
+    "merchRotZ": 0,
     "baseY": 1.556999959051609,
     "category": null,
+    "merchPathsFront": [],
+    "merchPathsBack": [],
     "position": {
       "x": 0.4700000000000773,
       "z": 2.993
@@ -1151,8 +1552,12 @@ export const DEFAULT_LAYOUT = [
     "userScale": 1,
     "scaleY": 1,
     "userRot": 3.141592653589793,
+    "merchRotX": 0,
+    "merchRotZ": 0,
     "baseY": 1.556999959051609,
     "category": null,
+    "merchPathsFront": [],
+    "merchPathsBack": [],
     "position": {
       "x": -4.459999999999993,
       "z": 2.993
@@ -1163,8 +1568,12 @@ export const DEFAULT_LAYOUT = [
     "userScale": 1,
     "scaleY": 1,
     "userRot": 3.141592653589793,
+    "merchRotX": 0,
+    "merchRotZ": 0,
     "baseY": 1.556999959051609,
     "category": null,
+    "merchPathsFront": [],
+    "merchPathsBack": [],
     "position": {
       "x": -2.610000000000018,
       "z": 2.993
@@ -1175,6 +1584,8 @@ export const DEFAULT_LAYOUT = [
     "userScale": 1,
     "scaleY": 1,
     "userRot": 0,
+    "merchRotX": 0,
+    "merchRotZ": 0,
     "baseY": 2.135,
     "position": {
       "x": 6.130000000000002,
