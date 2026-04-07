@@ -16,14 +16,26 @@ export class FixtureManager {
   }
 
   normalisedClone(proto) {
+    const group = new THREE.Group();
     const clone = proto.clone(true);
+    
+    // Get the bounding box of the original mesh
     const box = new THREE.Box3().setFromObject(clone);
+    const center = new THREE.Vector3();
+    box.getCenter(center);
     const size = new THREE.Vector3();
     box.getSize(size);
+    
+    // Calculate auto-scale factor
     const longest = Math.max(size.x, size.z, 0.01);
     const autoScale = longest > 1 ? 1 / longest : 1;
-    clone.scale.setScalar(autoScale);
-    return { group: clone, autoScale };
+    
+    // Center the clone relative to the group's origin
+    // We want (0,0,0) to be at the center of the footprint and at the floor level (min Y)
+    clone.position.set(-center.x, -box.min.y, -center.z);
+    group.add(clone);
+    
+    return { group, autoScale };
   }
 
   prepareFixtureMaterials(root) {
@@ -137,7 +149,7 @@ export class FixtureManager {
       category,
       merchPathsFront: options.merchPathsFront || [],
       merchPathsBack: options.merchPathsBack || [],
-      merchRot: options.merchRot || 0,
+      merchRot: options.merchRot, // Keep undefined if not provided
       merchRotX: options.merchRotX || 0,
       merchRotZ: options.merchRotZ || 0,
       merchMeshes: []
@@ -161,10 +173,37 @@ export class FixtureManager {
     }
 
     const file = group.userData.file || "";
-    if (file.includes('fh.glb') || file.includes('fu.glb') || file.includes('2fh.glb') || file.includes('4fh.glb')) {
-      this.renderFrontal(group);
+    const refRot = (group.userData.merchRot !== undefined && group.userData.merchRot !== null) 
+      ? group.userData.merchRot 
+      : this.getRefRotation(group);
+    
+    const localRot = refRot - (group.userData.userRot || 0);
+    const rx = group.userData.merchRotX || 0;
+    const rz = group.userData.merchRotZ || 0;
+
+    const C = CONFIG.MERCHANDISE.CONSTANTS;
+    const s = 1.0 / (48 * C.GLB_SCALE);
+    const mScale = 1.0 / group.userData.autoScale; // Factor to match internal model units
+    const isFrontal = file.includes('fh.glb') || file.includes('fu.glb') || file.includes('2fh.glb') || file.includes('4fh.glb');
+    
+    // Adjusted pivot point: added 6 units to shift merchandise up
+    const pivotY_norm = (isFrontal ? 54.5 : 52) * C.GLB_SCALE * s;
+    const pivotZ_norm = (isFrontal ? -2.5 : 0) * C.GLB_SCALE * s;
+
+    const merchGroup = new THREE.Group();
+    merchGroup.name = "MerchandiseGroup";
+    // Scale the merchGroup so its internal 0..1 coordinates match the model's units
+    merchGroup.scale.setScalar(mScale);
+    // Position it at the model's pivot height/depth
+    merchGroup.position.set(0, pivotY_norm * mScale, pivotZ_norm * mScale);
+    merchGroup.rotation.set(rx, localRot, rz);
+    group.add(merchGroup);
+    group.userData.merchMeshes = [merchGroup];
+
+    if (isFrontal) {
+      this.renderFrontal(group, merchGroup, pivotY_norm, pivotZ_norm);
     } else if (file.includes('sh.glb') || file.includes('sidehanging.glb')) {
-      this.renderSideHanging(group);
+      this.renderSideHanging(group, merchGroup, pivotY_norm, pivotZ_norm);
     }
   }
 
@@ -192,39 +231,29 @@ export class FixtureManager {
     return 0;
   }
 
-  renderFrontal(group) {
+  renderFrontal(group, merchGroup, pY, pZ) {
     const frontPaths = group.userData.merchPathsFront || [];
     const backPaths = group.userData.merchPathsBack || [];
     const C = CONFIG.MERCHANDISE.CONSTANTS;
     const s = 1.0 / (48 * C.GLB_SCALE); 
 
-    const refRot = group.userData.merchRot !== undefined && group.userData.merchRot !== 0 
-      ? group.userData.merchRot 
-      : this.getRefRotation(group);
-    
-    const localRot = refRot - (group.userData.userRot || 0);
-    const rx = group.userData.merchRotX || 0;
-    const rz = group.userData.merchRotZ || 0;
-
-    const renderSection = (paths, yTop, zStart, rotY, rotX, rotZ) => {
-      if (paths.length === 0) return [];
-      let meshes = [];
+    const renderSection = (paths, yTop, zStart, relativeRot) => {
+      if (paths.length === 0) return;
       for (let col = 0; col < 2; col++) {
         const pathIdx = Math.min(paths.length - 1, col);
         const path = paths[pathIdx];
+        // xOff is relative to the fixture center
         const xOff = col === 0 ? -12 * C.GLB_SCALE : 12 * C.GLB_SCALE;
-        const newMeshes = this.addMerchCluster(group, path, xOff * s, yTop * s, zStart * s, 8, rotY, rotX, rotZ);
-        meshes = meshes.concat(newMeshes);
+        this.addMerchCluster(group, merchGroup, path, xOff * s, yTop * s, zStart * s, 8, relativeRot, pY, pZ);
       }
-      return meshes;
     };
 
-    const m1 = renderSection(frontPaths, 46 * C.GLB_SCALE, 2 * C.GLB_SCALE, localRot, rx, rz);
-    const m2 = renderSection(backPaths, 51 * C.GLB_SCALE, -7 * C.GLB_SCALE, localRot + Math.PI, rx, rz);
-    group.userData.merchMeshes = m1.concat(m2);
+    // Shifted yTop up by 6 units
+    renderSection(frontPaths, 52 * C.GLB_SCALE, 2 * C.GLB_SCALE, 0);
+    renderSection(backPaths, 57 * C.GLB_SCALE, -7 * C.GLB_SCALE, Math.PI);
   }
 
-  renderSideHanging(group) {
+  renderSideHanging(group, merchGroup, pY, pZ) {
     const paths = (group.userData.merchPathsFront || []).concat(group.userData.merchPathsBack || []);
     const C = CONFIG.MERCHANDISE.CONSTANTS;
 
@@ -234,26 +263,16 @@ export class FixtureManager {
       const startX = -(48 / 2 - 1) * C.GLB_SCALE;
       const xStep = ((48 - 2) / (totalItems - 1)) * C.GLB_SCALE;
       
-      const refRot = group.userData.merchRot !== undefined && group.userData.merchRot !== 0 
-        ? group.userData.merchRot 
-        : this.getRefRotation(group);
-
-      const localRot = refRot - (group.userData.userRot || 0) + Math.PI / 2;
-      const rx = group.userData.merchRotX || 0;
-      const rz = group.userData.merchRotZ || 0;
-
-      let meshes = [];
       for (let i = 0; i < totalItems; i++) {
         const pathIdx = Math.min(paths.length - 1, Math.floor(i / (totalItems / paths.length)));
         const path = paths[pathIdx];
-        const newMeshes = this.addMerchCluster(group, path, (startX + i * xStep) * s, (46 * C.GLB_SCALE) * s, 0, 1, localRot, rx, rz);
-        meshes = meshes.concat(newMeshes);
+        // Shifted yTop up by 6 units
+        this.addMerchCluster(group, merchGroup, path, (startX + i * xStep) * s, (52 * C.GLB_SCALE) * s, 0, 1, Math.PI / 2, pY, pZ);
       }
-      group.userData.merchMeshes = meshes;
     }
   }
 
-  addMerchCluster(group, path, xOff, yTop, zStart, numLayers, rotation = 0, rotX = 0, rotZ = 0) {
+  addMerchCluster(group, merchGroup, path, xOff, yTop, zStart, numLayers, rotation = 0, pY = 0, pZ = 0) {
     if (!path) return [];
     
     const texture = this.assetLoader.getTexture(path);
@@ -279,27 +298,22 @@ export class FixtureManager {
     });
     
     const centerY = yTop - merchH / 2;
-    const meshes = [];
-    const cos = Math.cos(rotation);
-    const sin = Math.sin(rotation);
+    
+    const stackGroup = new THREE.Group();
+    // Position relative to the pivot in normalized 0..1 space
+    stackGroup.position.set(xOff, centerY - pY, zStart - pZ);
+    stackGroup.rotation.y = rotation;
+    merchGroup.add(stackGroup);
 
     for (let i = 0; i < numLayers; i++) {
       const merchGeom = new THREE.PlaneGeometry(merchW, merchH);
       const merchMesh = new THREE.Mesh(merchGeom, merchMat);
-      
-      // Local position inside the group, stacking along the rotation normal (Y-only for stacking for now)
-      merchMesh.position.set(
-        xOff + i * gap * sin, 
-        centerY, 
-        zStart + i * gap * cos
-      );
-      merchMesh.rotation.set(rotX, rotation, rotZ);
-      
-      group.add(merchMesh);
-      meshes.push(merchMesh);
+      // Center the plane geometry horizontally on its own stack origin
+      merchMesh.position.set(0, 0, i * gap);
+      stackGroup.add(merchMesh);
     }
     
-    return meshes;
+    return [stackGroup];
   }
 
   placeLightbox(position, file, options = {}) {
@@ -380,7 +394,7 @@ export class FixtureManager {
       userScale: group.userData.userScale,
       scaleY: group.userData.scaleY,
       userRot: group.userData.userRot || 0,
-      merchRot: group.userData.merchRot || 0,
+      merchRot: group.userData.merchRot,
       merchRotX: group.userData.merchRotX || 0,
       merchRotZ: group.userData.merchRotZ || 0,
       baseY: group.userData.baseY,
@@ -442,7 +456,7 @@ export class FixtureManager {
   clearAll() {
     this.placed.forEach(g => {
         if (g.userData.merchMeshes) {
-            g.userData.merchMeshes.forEach(m => this.scene.remove(m));
+            g.userData.merchMeshes.forEach(m => g.remove(m));
         }
         this.scene.remove(g);
     });
@@ -451,7 +465,7 @@ export class FixtureManager {
 
   removeFixture(group) {
     if (group.userData.merchMeshes) {
-        group.userData.merchMeshes.forEach(m => this.scene.remove(m));
+        group.userData.merchMeshes.forEach(m => group.remove(m));
     }
     this.scene.remove(group);
     const idx = this.placed.indexOf(group);

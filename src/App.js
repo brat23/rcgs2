@@ -172,8 +172,15 @@ class App {
         
         const newFixture = this.fixtures.placeFixture(pos, data.file, {
           userScale: data.userScale,
+          scaleY: data.scaleY,
           userRot: data.userRot,
           yOverride: data.baseY,
+          merchRot: data.merchRot,
+          merchRotX: data.merchRotX,
+          merchRotZ: data.merchRotZ,
+          merchPathsFront: data.merchPathsFront,
+          merchPathsBack: data.merchPathsBack,
+          category: data.category,
           commit: false // Commit once at the end
         });
 
