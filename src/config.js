@@ -4,6 +4,7 @@ import { LIGHTBOX } from './config/lightboxes.js';
 import { CALLOUTS } from './config/callouts.js';
 import { MANNEQUIN_FILE, MANNEQUIN_SCALE_ADJUST, DEFAULT_MANNEQUINS } from './config/mannequins.js';
 import { DEFAULT_LAYOUT } from './config/default_layout.js';
+import { MERCHANDISE } from './config/merch.js';
 
 export const CONFIG = {
   ...GENERAL,
@@ -16,4 +17,5 @@ export const CONFIG = {
   DEFAULT_FIXTURES,
   DEFAULT_LAYOUT,
   SHORTCUTS,
+  MERCHANDISE,
 };

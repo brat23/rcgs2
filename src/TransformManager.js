@@ -12,6 +12,72 @@ export class TransformManager {
     this.setupPositionSync();
     this.setupScaleSync();
     this.setupRotationSync();
+    this.setupMerchRotationSync();
+    this.setupMerchRotationXSync();
+    this.setupMerchRotationZSync();
+  }
+
+  setupMerchRotationSync() {
+    const sync = () => {
+      const deg = parseInt(this.ui.merchRotValEl.value);
+      if (isNaN(deg)) return;
+      this.ui.merchRotSlider.value = deg;
+      const sel = this.ui.selected;
+      if (sel) {
+        sel.userData.merchRot = deg * Math.PI / 180;
+        this.fixtures.renderMerchandise(sel);
+      }
+    };
+    this.ui.merchRotSlider.oninput = () => {
+      this.ui.merchRotValEl.value = this.ui.merchRotSlider.value;
+      sync();
+    };
+    this.ui.merchRotValEl.oninput = sync;
+    this.ui.merchRotSlider.onchange = this.ui.merchRotValEl.onchange = () => {
+      if (this.ui.selected) this.fixtures.pushHistory();
+    };
+  }
+
+  setupMerchRotationXSync() {
+    const sync = () => {
+      const deg = parseInt(this.ui.merchRotXValEl.value);
+      if (isNaN(deg)) return;
+      this.ui.merchRotXSlider.value = deg;
+      const sel = this.ui.selected;
+      if (sel) {
+        sel.userData.merchRotX = deg * Math.PI / 180;
+        this.fixtures.renderMerchandise(sel);
+      }
+    };
+    this.ui.merchRotXSlider.oninput = () => {
+      this.ui.merchRotXValEl.value = this.ui.merchRotXSlider.value;
+      sync();
+    };
+    this.ui.merchRotXValEl.oninput = sync;
+    this.ui.merchRotXSlider.onchange = this.ui.merchRotXValEl.onchange = () => {
+      if (this.ui.selected) this.fixtures.pushHistory();
+    };
+  }
+
+  setupMerchRotationZSync() {
+    const sync = () => {
+      const deg = parseInt(this.ui.merchRotZValEl.value);
+      if (isNaN(deg)) return;
+      this.ui.merchRotZSlider.value = deg;
+      const sel = this.ui.selected;
+      if (sel) {
+        sel.userData.merchRotZ = deg * Math.PI / 180;
+        this.fixtures.renderMerchandise(sel);
+      }
+    };
+    this.ui.merchRotZSlider.oninput = () => {
+      this.ui.merchRotZValEl.value = this.ui.merchRotZSlider.value;
+      sync();
+    };
+    this.ui.merchRotZValEl.oninput = sync;
+    this.ui.merchRotZSlider.onchange = this.ui.merchRotZValEl.onchange = () => {
+      if (this.ui.selected) this.fixtures.pushHistory();
+    };
   }
 
   setupPositionSync() {

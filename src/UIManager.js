@@ -54,6 +54,27 @@ export class UIManager {
     this.scaleValEl = document.getElementById('scaleVal');
     this.rotSlider = document.getElementById('rotSlider');
     this.rotValEl = document.getElementById('rotVal');
+    this.merchRotSlider = document.getElementById('merchRotSlider');
+    this.merchRotValEl = document.getElementById('merchRotVal');
+    this.merchRotXSlider = document.getElementById('merchRotXSlider');
+    this.merchRotXValEl = document.getElementById('merchRotXVal');
+    this.merchRotZSlider = document.getElementById('merchRotZSlider');
+    this.merchRotZValEl = document.getElementById('merchRotZVal');
+    this.copyMerchBtn = document.getElementById('copyMerchBtn');
+
+    if (this.copyMerchBtn) {
+        this.copyMerchBtn.onclick = () => {
+            const sel = this.selected;
+            if (!sel) return;
+            const rx = Math.round((sel.userData.merchRotX || 0) * 180 / Math.PI);
+            const ry = Math.round((sel.userData.merchRot || 0) * 180 / Math.PI);
+            const rz = Math.round((sel.userData.merchRotZ || 0) * 180 / Math.PI);
+            const text = `Merch Rotation: { x: ${rx}, y: ${ry}, z: ${rz} }`;
+            navigator.clipboard.writeText(text).then(() => {
+                this.setStatus('Merch rotation copied!');
+            });
+        };
+    }
 
     this.libEl = document.getElementById('fixtureLibrary');
     this.debugEl = document.getElementById('debugInfo');
@@ -72,6 +93,18 @@ export class UIManager {
 
     this.contextMenuEl = document.getElementById('contextMenu');
 
+    // Merchandise UI
+    this.tabFixtures = document.getElementById('tabFixtures');
+    this.tabMerch = document.getElementById('tabMerch');
+    this.fixturePanel = document.getElementById('fixturePanel');
+    this.merchPanel = document.getElementById('merchPanel');
+    this.placeFrontBtn = document.getElementById('placeFront');
+    this.placeBackBtn = document.getElementById('placeBack');
+    this.merchMensEl = document.getElementById('merchMens');
+    this.merchWomensEl = document.getElementById('merchWomens');
+    this.clearMerchBtn = document.getElementById('clearMerchBtn');
+    this.merchPlacement = 'front';
+
     // Alignment UI
     this.alignmentPanel = document.getElementById('alignmentPanel');
     this.alignLeftBtn = document.getElementById('alignLeft');
@@ -86,6 +119,8 @@ export class UIManager {
     this.selectedItems = []; // Array of selected groups
     this.selectionHelpers = new Map(); // Map: group -> BoxHelper
     
+    this.initMerchUI();
+
     // For backward compatibility/simpler access to the "primary" selected item
     Object.defineProperty(this, 'selected', {
       get: () => this.selectedItems[this.selectedItems.length - 1] || null
@@ -259,6 +294,8 @@ export class UIManager {
       this.selectedInfo.textContent = 'Click a fixture to select';
       this.deleteBtn.disabled = true;
       this.transformPanel.style.display = 'none';
+      this.tabMerch.style.display = 'none';
+      this.switchTab('fixtures');
     } else if (this.selectedItems.length === 1) {
       const group = this.selected;
       const label = CONFIG.FIXTURES_META.find(item => item.file === group.userData.file)?.label || group.name || 'fixture';
@@ -271,10 +308,33 @@ export class UIManager {
       this.scaleSlider.value = group.userData.userScale;
       this.scaleValEl.value = Number(group.userData.userScale).toFixed(2);
       this.rotSlider.value = this.rotValEl.value = Math.round((group.userData.userRot || 0) * 180 / Math.PI);
+      this.merchRotSlider.value = this.merchRotValEl.value = Math.round((group.userData.merchRot || 0) * 180 / Math.PI);
+      this.merchRotXSlider.value = this.merchRotXValEl.value = Math.round((group.userData.merchRotX || 0) * 180 / Math.PI);
+      this.merchRotZSlider.value = this.merchRotZValEl.value = Math.round((group.userData.merchRotZ || 0) * 180 / Math.PI);
+
+      // Show/Hide Merch tab and Merch Rot sliders based on fixture type
+      const file = group.userData.file || "";
+      const isMerchFixture = file.includes('fh.glb') || file.includes('sh.glb') || file.includes('fu.glb') || file.includes('sidehanging.glb');
+      
+      this.tabMerch.style.display = isMerchFixture ? 'block' : 'none';
+      
+      const mRotRows = [this.merchRotSlider, this.merchRotXSlider, this.merchRotZSlider, this.copyMerchBtn];
+      mRotRows.forEach(el => {
+          if (el && el.parentElement) {
+              const row = el.tagName === 'BUTTON' ? el : el.parentElement.parentElement;
+              if (row) row.style.display = isMerchFixture ? 'block' : 'none';
+          }
+      });
+
+      if (!isMerchFixture) {
+        this.switchTab('fixtures');
+      }
     } else {
       this.selectedInfo.textContent = `${this.selectedItems.length} items selected`;
       this.deleteBtn.disabled = false;
       this.transformPanel.style.display = 'none'; // Hide transform for multi-select for now
+      this.tabMerch.style.display = 'none';
+      this.switchTab('fixtures');
     }
     
     // Toggle alignment panel visibility
@@ -283,6 +343,40 @@ export class UIManager {
     }
     
     this.showDebug();
+  }
+
+  initMerchUI() {
+    this.tabFixtures.onclick = () => this.switchTab('fixtures');
+    this.tabMerch.onclick = () => this.switchTab('merch');
+    this.placeFrontBtn.onclick = () => this.setMerchPlacement('front');
+    this.placeBackBtn.onclick = () => this.setMerchPlacement('back');
+
+    this.updateMerchGrid(this.merchMensEl, CONFIG.MERCHANDISE.MENS);
+    this.updateMerchGrid(this.merchWomensEl, CONFIG.MERCHANDISE.WOMENS);
+  }
+
+  updateMerchGrid(container, items) {
+    container.innerHTML = '';
+    items.forEach(item => {
+      const div = document.createElement('div');
+      div.className = 'merch-item';
+      div.innerHTML = `<img src="${item.file}" alt="${item.label}">`;
+      div.onclick = () => this.onMerchClick && this.onMerchClick(item.file);
+      container.appendChild(div);
+    });
+  }
+
+  switchTab(tab) {
+    this.tabFixtures.classList.toggle('active', tab === 'fixtures');
+    this.tabMerch.classList.toggle('active', tab === 'merch');
+    this.fixturePanel.style.display = tab === 'fixtures' ? 'block' : 'none';
+    this.merchPanel.style.display = tab === 'merch' ? 'block' : 'none';
+  }
+
+  setMerchPlacement(place) {
+    this.merchPlacement = place;
+    this.placeFrontBtn.classList.toggle('active', place === 'front');
+    this.placeBackBtn.classList.toggle('active', place === 'back');
   }
 
   setupAlignment(handlers) {

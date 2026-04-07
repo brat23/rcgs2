@@ -134,14 +134,172 @@ export class FixtureManager {
       autoScale, 
       userRot, 
       baseY,
-      category
+      category,
+      merchPathsFront: options.merchPathsFront || [],
+      merchPathsBack: options.merchPathsBack || [],
+      merchRot: options.merchRot || 0,
+      merchRotX: options.merchRotX || 0,
+      merchRotZ: options.merchRotZ || 0,
+      merchMeshes: []
     };
 
     this.scene.add(group);
     this.placed.push(group);
     
+    // Initial merch render
+    this.renderMerchandise(group);
+
     if (options.commit !== false) this.pushHistory();
     return group;
+  }
+
+  renderMerchandise(group) {
+    // Clean old meshes
+    if (group.userData.merchMeshes) {
+      group.userData.merchMeshes.forEach(m => group.remove(m));
+      group.userData.merchMeshes = [];
+    }
+
+    const file = group.userData.file || "";
+    if (file.includes('fh.glb') || file.includes('fu.glb') || file.includes('2fh.glb') || file.includes('4fh.glb')) {
+      this.renderFrontal(group);
+    } else if (file.includes('sh.glb') || file.includes('sidehanging.glb')) {
+      this.renderSideHanging(group);
+    }
+  }
+
+  getRefRotation(group) {
+    let nearestTorso = null;
+    let minDist = Infinity;
+    this.placed.forEach(other => {
+      if (other !== group && other.userData.file && (other.userData.file.includes('mannequin/') || other.userData.file.includes('torso'))) {
+        const d = other.position.distanceTo(group.position);
+        if (d < minDist) {
+          minDist = d;
+          nearestTorso = other;
+        }
+      }
+    });
+
+    if (nearestTorso) return nearestTorso.userData.userRot || 0;
+    
+    // Fallback to wall-based orientation if no torso nearby
+    const pos = group.position;
+    if (pos.x < -8) return Math.PI / 2;    // Left wall faces +X
+    if (pos.z < -2.5) return 0;            // Back wall faces +Z
+    if (pos.x > 8) return -Math.PI / 2;   // Right wall faces -X
+    if (pos.z > 2.5) return Math.PI;       // Top wall faces -Z
+    return 0;
+  }
+
+  renderFrontal(group) {
+    const frontPaths = group.userData.merchPathsFront || [];
+    const backPaths = group.userData.merchPathsBack || [];
+    const C = CONFIG.MERCHANDISE.CONSTANTS;
+    const s = 1.0 / (48 * C.GLB_SCALE); 
+
+    const refRot = group.userData.merchRot !== undefined && group.userData.merchRot !== 0 
+      ? group.userData.merchRot 
+      : this.getRefRotation(group);
+    
+    const localRot = refRot - (group.userData.userRot || 0);
+    const rx = group.userData.merchRotX || 0;
+    const rz = group.userData.merchRotZ || 0;
+
+    const renderSection = (paths, yTop, zStart, rotY, rotX, rotZ) => {
+      if (paths.length === 0) return [];
+      let meshes = [];
+      for (let col = 0; col < 2; col++) {
+        const pathIdx = Math.min(paths.length - 1, col);
+        const path = paths[pathIdx];
+        const xOff = col === 0 ? -12 * C.GLB_SCALE : 12 * C.GLB_SCALE;
+        const newMeshes = this.addMerchCluster(group, path, xOff * s, yTop * s, zStart * s, 8, rotY, rotX, rotZ);
+        meshes = meshes.concat(newMeshes);
+      }
+      return meshes;
+    };
+
+    const m1 = renderSection(frontPaths, 46 * C.GLB_SCALE, 2 * C.GLB_SCALE, localRot, rx, rz);
+    const m2 = renderSection(backPaths, 51 * C.GLB_SCALE, -7 * C.GLB_SCALE, localRot + Math.PI, rx, rz);
+    group.userData.merchMeshes = m1.concat(m2);
+  }
+
+  renderSideHanging(group) {
+    const paths = (group.userData.merchPathsFront || []).concat(group.userData.merchPathsBack || []);
+    const C = CONFIG.MERCHANDISE.CONSTANTS;
+
+    if (paths.length > 0) {
+      const s = 1.0 / (48 * C.GLB_SCALE);
+      const totalItems = 24;
+      const startX = -(48 / 2 - 1) * C.GLB_SCALE;
+      const xStep = ((48 - 2) / (totalItems - 1)) * C.GLB_SCALE;
+      
+      const refRot = group.userData.merchRot !== undefined && group.userData.merchRot !== 0 
+        ? group.userData.merchRot 
+        : this.getRefRotation(group);
+
+      const localRot = refRot - (group.userData.userRot || 0) + Math.PI / 2;
+      const rx = group.userData.merchRotX || 0;
+      const rz = group.userData.merchRotZ || 0;
+
+      let meshes = [];
+      for (let i = 0; i < totalItems; i++) {
+        const pathIdx = Math.min(paths.length - 1, Math.floor(i / (totalItems / paths.length)));
+        const path = paths[pathIdx];
+        const newMeshes = this.addMerchCluster(group, path, (startX + i * xStep) * s, (46 * C.GLB_SCALE) * s, 0, 1, localRot, rx, rz);
+        meshes = meshes.concat(newMeshes);
+      }
+      group.userData.merchMeshes = meshes;
+    }
+  }
+
+  addMerchCluster(group, path, xOff, yTop, zStart, numLayers, rotation = 0, rotX = 0, rotZ = 0) {
+    if (!path) return [];
+    
+    const texture = this.assetLoader.getTexture(path);
+    if (!texture) {
+      this.assetLoader.loadTexture(path).then(() => {
+        this.renderMerchandise(group);
+      });
+      return [];
+    }
+
+    const C = CONFIG.MERCHANDISE.CONSTANTS;
+    const s = 1.0 / (48 * C.GLB_SCALE);
+    const merchW = C.MERCH_WIDTH * s;
+    const merchH = C.MERCH_HEIGHT * s;
+    const gap = C.LAYER_GAP * s;
+
+    const merchMat = new THREE.MeshBasicMaterial({
+      map: texture,
+      transparent: true,
+      side: THREE.DoubleSide,
+      depthWrite: false,
+      alphaTest: 0.5,
+    });
+    
+    const centerY = yTop - merchH / 2;
+    const meshes = [];
+    const cos = Math.cos(rotation);
+    const sin = Math.sin(rotation);
+
+    for (let i = 0; i < numLayers; i++) {
+      const merchGeom = new THREE.PlaneGeometry(merchW, merchH);
+      const merchMesh = new THREE.Mesh(merchGeom, merchMat);
+      
+      // Local position inside the group, stacking along the rotation normal (Y-only for stacking for now)
+      merchMesh.position.set(
+        xOff + i * gap * sin, 
+        centerY, 
+        zStart + i * gap * cos
+      );
+      merchMesh.rotation.set(rotX, rotation, rotZ);
+      
+      group.add(merchMesh);
+      meshes.push(merchMesh);
+    }
+    
+    return meshes;
   }
 
   placeLightbox(position, file, options = {}) {
@@ -222,8 +380,13 @@ export class FixtureManager {
       userScale: group.userData.userScale,
       scaleY: group.userData.scaleY,
       userRot: group.userData.userRot || 0,
+      merchRot: group.userData.merchRot || 0,
+      merchRotX: group.userData.merchRotX || 0,
+      merchRotZ: group.userData.merchRotZ || 0,
       baseY: group.userData.baseY,
       category: group.userData.category,
+      merchPathsFront: group.userData.merchPathsFront,
+      merchPathsBack: group.userData.merchPathsBack,
       position: {
         x: group.position.x,
         z: group.position.z,
@@ -262,8 +425,13 @@ export class FixtureManager {
           userScale: item.userScale,
           scaleY: item.scaleY,
           userRot: item.userRot,
+          merchRot: item.merchRot,
+          merchRotX: item.merchRotX,
+          merchRotZ: item.merchRotZ,
           yOverride: item.baseY,
           category: item.category,
+          merchPathsFront: item.merchPathsFront,
+          merchPathsBack: item.merchPathsBack,
           commit: false,
         }
       );
@@ -272,11 +440,19 @@ export class FixtureManager {
   }
 
   clearAll() {
-    this.placed.forEach(g => this.scene.remove(g));
+    this.placed.forEach(g => {
+        if (g.userData.merchMeshes) {
+            g.userData.merchMeshes.forEach(m => this.scene.remove(m));
+        }
+        this.scene.remove(g);
+    });
     this.placed.length = 0;
   }
 
   removeFixture(group) {
+    if (group.userData.merchMeshes) {
+        group.userData.merchMeshes.forEach(m => this.scene.remove(m));
+    }
     this.scene.remove(group);
     const idx = this.placed.indexOf(group);
     if (idx >= 0) this.placed.splice(idx, 1);

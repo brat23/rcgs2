@@ -80,9 +80,35 @@
       <aside id="sidebar">
         <div class="logo">RCM <span>S2</span></div>
 
-        <section class="panel">
-          <h3>Fixture Library</h3>
+        <div class="sidebar-tabs">
+          <button class="tab-btn active" id="tabFixtures">Fixtures</button>
+          <button class="tab-btn" id="tabMerch">Merchandise</button>
+        </div>
+
+        <section class="panel" id="fixturePanel">
           <div id="fixtureLibrary"></div>
+        </section>
+
+        <section class="panel" id="merchPanel" style="display: none">
+          <div class="sidebar-label">Placement</div>
+          <div class="placement-toggle">
+            <button class="place-btn active" id="placeFront">FRONT</button>
+            <button class="place-btn" id="placeBack">BACK</button>
+          </div>
+
+          <div class="sidebar-label">Mens</div>
+          <div id="merchMens" class="merch-grid"></div>
+
+          <div class="sidebar-label">Womens</div>
+          <div id="merchWomens" class="merch-grid"></div>
+
+          <div class="sidebar-label">Actions</div>
+          <div class="merch-card" id="clearMerchBtn" style="opacity: 0.6; cursor: pointer; padding: 8px; background: rgba(255,255,255,0.05); border-radius: 4px; margin: 0 10px;">
+            <div class="merch-info">
+              <span class="fixture-name" style="display: block; font-weight: bold; font-size: 12px;">Remove Merch</span>
+              <span class="fixture-meta" style="font-size: 10px; color: #888;">Clear from selection</span>
+            </div>
+          </div>
         </section>
 
         <section class="panel" id="transformPanel" style="display: none">
@@ -143,6 +169,49 @@
               <input type="number" id="rotVal" value="0" step="1" />
             </div>
           </label>
+          <label
+            >Merch Rot Y
+            <div class="row">
+              <input
+                type="range"
+                id="merchRotSlider"
+                min="0"
+                max="360"
+                step="1"
+                value="0"
+              />
+              <input type="number" id="merchRotVal" value="0" step="1" />
+            </div>
+          </label>
+          <label
+            >Merch Rot X
+            <div class="row">
+              <input
+                type="range"
+                id="merchRotXSlider"
+                min="0"
+                max="360"
+                step="1"
+                value="0"
+              />
+              <input type="number" id="merchRotXVal" value="0" step="1" />
+            </div>
+          </label>
+          <label
+            >Merch Rot Z
+            <div class="row">
+              <input
+                type="range"
+                id="merchRotZSlider"
+                min="0"
+                max="360"
+                step="1"
+                value="0"
+              />
+              <input type="number" id="merchRotZVal" value="0" step="1" />
+            </div>
+          </label>
+          <button class="btn" id="copyMerchBtn" style="margin-top: 8px; font-size: 11px;">📋 Copy Merch Data</button>
         </section>
 
         <section class="panel" id="alignmentPanel" style="display: none">

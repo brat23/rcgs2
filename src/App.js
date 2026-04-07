@@ -67,6 +67,32 @@ class App {
       this.checkAndPlaceDefaults();
     });
 
+    // Merchandise Handlers
+    this.ui.onMerchClick = (path) => {
+      const selected = this.ui.selected;
+      if (!selected) return;
+      
+      const key = this.ui.merchPlacement === 'front' ? 'merchPathsFront' : 'merchPathsBack';
+      if (!selected.userData[key].includes(path)) {
+        if (selected.userData[key].length >= 4) {
+          selected.userData[key].shift(); // Keep max 4
+        }
+        selected.userData[key].push(path);
+        this.fixtures.renderMerchandise(selected);
+        this.fixtures.pushHistory();
+      }
+    };
+
+    this.ui.clearMerchBtn.onclick = () => {
+      const selected = this.ui.selected;
+      if (!selected) return;
+      
+      selected.userData.merchPathsFront = [];
+      selected.userData.merchPathsBack = [];
+      this.fixtures.renderMerchandise(selected);
+      this.fixtures.pushHistory();
+    };
+
     this.layout.setup();
     this.input.setup();
     this.animate();
