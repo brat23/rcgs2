@@ -45,6 +45,12 @@ export const FIXTURES_META = [
     icon: "BX",
     desc: "Boxing fixture",
   },
+  {
+    file: "fixture/fu.glb",
+    label: "FU",
+    icon: "FU",
+    desc: "FU fixture",
+  },
 ];
 
 export const DEFAULT_FIXTURES = [

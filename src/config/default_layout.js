@@ -22,7 +22,7 @@ export const DEFAULT_LAYOUT = [
     }
   },
   {
-    "file": "lightbox/girl1.png",
+    "file": "lightbox/men2.png",
     "userScale": 1,
     "scaleY": 1,
     "userRot": 0,
@@ -33,7 +33,7 @@ export const DEFAULT_LAYOUT = [
     }
   },
   {
-    "file": "lightbox/girl2.png",
+    "file": "lightbox/men2.png",
     "userScale": 1,
     "scaleY": 1,
     "userRot": 0,
@@ -44,7 +44,7 @@ export const DEFAULT_LAYOUT = [
     }
   },
   {
-    "file": "lightbox/boy2.png",
+    "file": "lightbox/nb1.png",
     "userScale": 1,
     "scaleY": 1,
     "userRot": 0,
@@ -55,7 +55,7 @@ export const DEFAULT_LAYOUT = [
     }
   },
   {
-    "file": "lightbox/boy1.png",
+    "file": "lightbox/nb1.png",
     "userScale": 1,
     "scaleY": 1,
     "userRot": 0,
@@ -66,7 +66,7 @@ export const DEFAULT_LAYOUT = [
     }
   },
   {
-    "file": "lightbox/women1.png",
+    "file": "lightbox/boy1.png",
     "userScale": 1,
     "scaleY": 1,
     "userRot": -1.5707963267948966,
@@ -77,7 +77,7 @@ export const DEFAULT_LAYOUT = [
     }
   },
   {
-    "file": "lightbox/women2.png",
+    "file": "lightbox/boy2.png",
     "userScale": 1,
     "scaleY": 1,
     "userRot": -1.5707963267948966,
@@ -88,7 +88,7 @@ export const DEFAULT_LAYOUT = [
     }
   },
   {
-    "file": "lightbox/nb1.png",
+    "file": "lightbox/girl1.png",
     "userScale": 1,
     "scaleY": 1,
     "userRot": 3.141592653589793,
@@ -99,7 +99,7 @@ export const DEFAULT_LAYOUT = [
     }
   },
   {
-    "file": "lightbox/nb2.png",
+    "file": "lightbox/women1.png",
     "userScale": 1,
     "scaleY": 1,
     "userRot": 3.141592653589793,
@@ -110,7 +110,7 @@ export const DEFAULT_LAYOUT = [
     }
   },
   {
-    "file": "lightbox/girl1.png",
+    "file": "lightbox/men1.png",
     "userScale": 1,
     "scaleY": 1,
     "userRot": 0,
@@ -121,7 +121,7 @@ export const DEFAULT_LAYOUT = [
     }
   },
   {
-    "file": "lightbox/girl2.png",
+    "file": "empty",
     "userScale": 1,
     "scaleY": 1,
     "userRot": 0,
@@ -143,7 +143,7 @@ export const DEFAULT_LAYOUT = [
     }
   },
   {
-    "file": "lightbox/men1.png",
+    "file": "lightbox/women2.png",
     "userScale": 1,
     "scaleY": 1,
     "userRot": 3.141592653589793,
@@ -154,7 +154,7 @@ export const DEFAULT_LAYOUT = [
     }
   },
   {
-    "file": "lightbox/girl2.png",
+    "file": "empty",
     "userScale": 1,
     "scaleY": 1,
     "userRot": 0,
@@ -165,7 +165,7 @@ export const DEFAULT_LAYOUT = [
     }
   },
   {
-    "file": "lightbox/nb1.png",
+    "file": "lightbox/girl2.png",
     "userScale": 1,
     "scaleY": 1,
     "userRot": 3.141592653589793,
@@ -176,7 +176,7 @@ export const DEFAULT_LAYOUT = [
     }
   },
   {
-    "file": "lightbox/nb2.png",
+    "file": "lightbox/women1.png",
     "userScale": 1,
     "scaleY": 1,
     "userRot": 3.141592653589793,
@@ -291,7 +291,7 @@ export const DEFAULT_LAYOUT = [
     "category": null,
     "position": {
       "x": -7.407000000000003,
-      "z": 1.7760000000000002
+      "z": 1.7579851883962698
     }
   },
   {
@@ -303,7 +303,31 @@ export const DEFAULT_LAYOUT = [
     "category": null,
     "position": {
       "x": -3.3420000000000103,
-      "z": 1.7760000000000002
+      "z": 1.7579851883962698
+    }
+  },
+  {
+    "file": "fixture/fu.glb",
+    "userScale": 1,
+    "scaleY": 1,
+    "userRot": 1.5707963267948966,
+    "baseY": 0.07,
+    "category": null,
+    "position": {
+      "x": -4.974906684949242,
+      "z": 1.776
+    }
+  },
+  {
+    "file": "fixture/fu.glb",
+    "userScale": 1,
+    "scaleY": 1,
+    "userRot": 1.5707963267948966,
+    "baseY": 0.07,
+    "category": null,
+    "position": {
+      "x": 0.9,
+      "z": 1.776
     }
   },
   {
@@ -393,7 +417,7 @@ export const DEFAULT_LAYOUT = [
   {
     "file": "fixture/4sh.glb",
     "userScale": 1,
-    "scaleY": 1.25,
+    "scaleY": 1,
     "userRot": 1.5707963267948966,
     "baseY": 0.07,
     "category": null,
@@ -405,7 +429,7 @@ export const DEFAULT_LAYOUT = [
   {
     "file": "fixture/4sh.glb",
     "userScale": 1,
-    "scaleY": 1.25,
+    "scaleY": 1,
     "userRot": 1.5707963267948966,
     "baseY": 0.07,
     "category": null,
@@ -417,7 +441,7 @@ export const DEFAULT_LAYOUT = [
   {
     "file": "fixture/4sh.glb",
     "userScale": 1,
-    "scaleY": 1.25,
+    "scaleY": 1,
     "userRot": 1.5707963267948966,
     "baseY": 0.07,
     "category": null,
@@ -429,7 +453,7 @@ export const DEFAULT_LAYOUT = [
   {
     "file": "fixture/4sh.glb",
     "userScale": 1,
-    "scaleY": 1.25,
+    "scaleY": 1,
     "userRot": 1.5707963267948966,
     "baseY": 0.07,
     "category": null,
@@ -441,7 +465,7 @@ export const DEFAULT_LAYOUT = [
   {
     "file": "fixture/4sh.glb",
     "userScale": 1,
-    "scaleY": 1.25,
+    "scaleY": 1,
     "userRot": 1.5707963267948966,
     "baseY": 0.07,
     "category": null,
@@ -453,7 +477,7 @@ export const DEFAULT_LAYOUT = [
   {
     "file": "fixture/4sh.glb",
     "userScale": 1,
-    "scaleY": 1.25,
+    "scaleY": 1,
     "userRot": 1.5707963267948966,
     "baseY": 0.07,
     "category": null,
@@ -465,7 +489,7 @@ export const DEFAULT_LAYOUT = [
   {
     "file": "fixture/4sh.glb",
     "userScale": 1,
-    "scaleY": 1.25,
+    "scaleY": 1,
     "userRot": 1.5707963267948966,
     "baseY": 0.07,
     "category": null,
@@ -477,7 +501,7 @@ export const DEFAULT_LAYOUT = [
   {
     "file": "fixture/4sh.glb",
     "userScale": 1,
-    "scaleY": 1.25,
+    "scaleY": 1,
     "userRot": 1.5707963267948966,
     "baseY": 0.07,
     "category": null,
@@ -489,7 +513,7 @@ export const DEFAULT_LAYOUT = [
   {
     "file": "fixture/4sh.glb",
     "userScale": 1,
-    "scaleY": 1.25,
+    "scaleY": 1,
     "userRot": 1.5707963267948966,
     "baseY": 0.07,
     "category": null,
@@ -501,7 +525,7 @@ export const DEFAULT_LAYOUT = [
   {
     "file": "fixture/4sh.glb",
     "userScale": 1,
-    "scaleY": 1.25,
+    "scaleY": 1,
     "userRot": 1.5707963267948966,
     "baseY": 0.07,
     "category": null,
@@ -513,7 +537,7 @@ export const DEFAULT_LAYOUT = [
   {
     "file": "fixture/4sh.glb",
     "userScale": 1,
-    "scaleY": 1.25,
+    "scaleY": 1,
     "userRot": 1.5707963267948966,
     "baseY": 0.07,
     "category": null,
@@ -525,7 +549,7 @@ export const DEFAULT_LAYOUT = [
   {
     "file": "fixture/4sh.glb",
     "userScale": 1,
-    "scaleY": 1.25,
+    "scaleY": 1,
     "userRot": 1.5707963267948966,
     "baseY": 0.07,
     "category": null,
@@ -537,7 +561,7 @@ export const DEFAULT_LAYOUT = [
   {
     "file": "fixture/4sh.glb",
     "userScale": 1,
-    "scaleY": 1.25,
+    "scaleY": 1,
     "userRot": 1.5707963267948966,
     "baseY": 0.07,
     "category": null,
@@ -549,7 +573,7 @@ export const DEFAULT_LAYOUT = [
   {
     "file": "fixture/4sh.glb",
     "userScale": 1,
-    "scaleY": 1.25,
+    "scaleY": 1,
     "userRot": 1.5707963267948966,
     "baseY": 0.07,
     "category": null,
@@ -561,7 +585,7 @@ export const DEFAULT_LAYOUT = [
   {
     "file": "fixture/4sh.glb",
     "userScale": 1,
-    "scaleY": 1.25,
+    "scaleY": 1,
     "userRot": 0,
     "baseY": 0.07,
     "category": null,
@@ -573,7 +597,7 @@ export const DEFAULT_LAYOUT = [
   {
     "file": "fixture/4sh.glb",
     "userScale": 1,
-    "scaleY": 1.25,
+    "scaleY": 1,
     "userRot": 0,
     "baseY": 0.07,
     "category": null,
@@ -585,7 +609,7 @@ export const DEFAULT_LAYOUT = [
   {
     "file": "fixture/4sh.glb",
     "userScale": 1,
-    "scaleY": 1.25,
+    "scaleY": 1,
     "userRot": 0,
     "baseY": 0.07,
     "category": null,
@@ -597,7 +621,7 @@ export const DEFAULT_LAYOUT = [
   {
     "file": "fixture/4sh.glb",
     "userScale": 1,
-    "scaleY": 1.25,
+    "scaleY": 1,
     "userRot": 0,
     "baseY": 0.07,
     "category": null,
@@ -609,7 +633,7 @@ export const DEFAULT_LAYOUT = [
   {
     "file": "fixture/4sh.glb",
     "userScale": 1,
-    "scaleY": 1.25,
+    "scaleY": 1,
     "userRot": 0,
     "baseY": 0.07,
     "category": null,
@@ -621,7 +645,7 @@ export const DEFAULT_LAYOUT = [
   {
     "file": "fixture/4sh.glb",
     "userScale": 1,
-    "scaleY": 1.25,
+    "scaleY": 1,
     "userRot": 1.5707963267948966,
     "baseY": 0.07,
     "category": null,
@@ -633,7 +657,7 @@ export const DEFAULT_LAYOUT = [
   {
     "file": "fixture/4sh.glb",
     "userScale": 1,
-    "scaleY": 1.25,
+    "scaleY": 1,
     "userRot": 1.5707963267948966,
     "baseY": 0.07,
     "category": null,
@@ -645,7 +669,7 @@ export const DEFAULT_LAYOUT = [
   {
     "file": "fixture/4sh.glb",
     "userScale": 1,
-    "scaleY": 1.25,
+    "scaleY": 1,
     "userRot": 1.5707963267948966,
     "baseY": 0.07,
     "category": null,
@@ -657,7 +681,7 @@ export const DEFAULT_LAYOUT = [
   {
     "file": "fixture/4sh.glb",
     "userScale": 1,
-    "scaleY": 1.25,
+    "scaleY": 1,
     "userRot": 1.5707963267948966,
     "baseY": 0.07,
     "category": null,
@@ -669,7 +693,7 @@ export const DEFAULT_LAYOUT = [
   {
     "file": "fixture/4sh.glb",
     "userScale": 1,
-    "scaleY": 1.25,
+    "scaleY": 1,
     "userRot": 1.5707963267948966,
     "baseY": 0.07,
     "category": null,
@@ -681,7 +705,7 @@ export const DEFAULT_LAYOUT = [
   {
     "file": "fixture/4sh.glb",
     "userScale": 1,
-    "scaleY": 1.25,
+    "scaleY": 1,
     "userRot": 1.5707963267948966,
     "baseY": 0.07,
     "category": null,
@@ -693,7 +717,7 @@ export const DEFAULT_LAYOUT = [
   {
     "file": "fixture/4sh.glb",
     "userScale": 1,
-    "scaleY": 1.25,
+    "scaleY": 1,
     "userRot": 1.5707963267948966,
     "baseY": 0.07,
     "category": null,
@@ -705,7 +729,7 @@ export const DEFAULT_LAYOUT = [
   {
     "file": "fixture/4sh.glb",
     "userScale": 1,
-    "scaleY": 1.25,
+    "scaleY": 1,
     "userRot": 1.5707963267948966,
     "baseY": 0.07,
     "category": null,
@@ -717,7 +741,7 @@ export const DEFAULT_LAYOUT = [
   {
     "file": "fixture/4sh.glb",
     "userScale": 1,
-    "scaleY": 1.25,
+    "scaleY": 1,
     "userRot": 1.5707963267948966,
     "baseY": 0.07,
     "category": null,
@@ -729,7 +753,7 @@ export const DEFAULT_LAYOUT = [
   {
     "file": "fixture/4sh.glb",
     "userScale": 1,
-    "scaleY": 1.25,
+    "scaleY": 1,
     "userRot": 1.5707963267948966,
     "baseY": 0.07,
     "category": null,
@@ -741,7 +765,7 @@ export const DEFAULT_LAYOUT = [
   {
     "file": "fixture/4sh.glb",
     "userScale": 1,
-    "scaleY": 1.25,
+    "scaleY": 1,
     "userRot": 1.5707963267948966,
     "baseY": 0.07,
     "category": null,
@@ -753,7 +777,7 @@ export const DEFAULT_LAYOUT = [
   {
     "file": "fixture/4sh.glb",
     "userScale": 1,
-    "scaleY": 1.25,
+    "scaleY": 1,
     "userRot": 1.5707963267948966,
     "baseY": 0.07,
     "category": null,
@@ -765,7 +789,7 @@ export const DEFAULT_LAYOUT = [
   {
     "file": "mannequin/male_torso.glb",
     "userScale": 1,
-    "scaleY": 0.3,
+    "scaleY": 1,
     "userRot": 1.5707963267948966,
     "baseY": 1.556999959051609,
     "category": null,
@@ -777,7 +801,7 @@ export const DEFAULT_LAYOUT = [
   {
     "file": "mannequin/male_torso.glb",
     "userScale": 1,
-    "scaleY": 0.3,
+    "scaleY": 1,
     "userRot": 1.5707963267948966,
     "baseY": 1.556999959051609,
     "category": null,
@@ -789,7 +813,7 @@ export const DEFAULT_LAYOUT = [
   {
     "file": "mannequin/male_torso.glb",
     "userScale": 1,
-    "scaleY": 0.3,
+    "scaleY": 1,
     "userRot": 1.5707963267948966,
     "baseY": 1.556999959051609,
     "category": null,
@@ -801,7 +825,7 @@ export const DEFAULT_LAYOUT = [
   {
     "file": "mannequin/male_torso.glb",
     "userScale": 1,
-    "scaleY": 0.3,
+    "scaleY": 1,
     "userRot": 1.5707963267948966,
     "baseY": 1.556999959051609,
     "category": null,
@@ -813,7 +837,7 @@ export const DEFAULT_LAYOUT = [
   {
     "file": "mannequin/male_torso.glb",
     "userScale": 1,
-    "scaleY": 0.3,
+    "scaleY": 1,
     "userRot": 0,
     "baseY": 1.55,
     "category": null,
@@ -825,7 +849,7 @@ export const DEFAULT_LAYOUT = [
   {
     "file": "mannequin/male_torso.glb",
     "userScale": 1,
-    "scaleY": 0.3,
+    "scaleY": 1,
     "userRot": 0,
     "baseY": 1.55,
     "category": null,
@@ -837,7 +861,7 @@ export const DEFAULT_LAYOUT = [
   {
     "file": "mannequin/male_torso.glb",
     "userScale": 1,
-    "scaleY": 0.3,
+    "scaleY": 1,
     "userRot": 1.5707963267948966,
     "baseY": 1.556999959051609,
     "category": null,
@@ -849,7 +873,7 @@ export const DEFAULT_LAYOUT = [
   {
     "file": "mannequin/male_torso.glb",
     "userScale": 1,
-    "scaleY": 0.3,
+    "scaleY": 1,
     "userRot": 3.141592653589793,
     "baseY": 1.556999959051609,
     "category": null,
@@ -861,7 +885,7 @@ export const DEFAULT_LAYOUT = [
   {
     "file": "mannequin/male_torso.glb",
     "userScale": 1,
-    "scaleY": 0.3,
+    "scaleY": 1,
     "userRot": 3.141592653589793,
     "baseY": 1.556999959051609,
     "category": null,
@@ -945,7 +969,7 @@ export const DEFAULT_LAYOUT = [
   {
     "file": "fixture/4sh.glb",
     "userScale": 1,
-    "scaleY": 1.25,
+    "scaleY": 1,
     "userRot": 1.5707963267948966,
     "baseY": 0.07,
     "category": null,
@@ -957,7 +981,7 @@ export const DEFAULT_LAYOUT = [
   {
     "file": "fixture/4sh.glb",
     "userScale": 1,
-    "scaleY": 1.25,
+    "scaleY": 1,
     "userRot": 0,
     "baseY": 0.07,
     "category": null,
@@ -969,7 +993,7 @@ export const DEFAULT_LAYOUT = [
   {
     "file": "fixture/4sh.glb",
     "userScale": 1,
-    "scaleY": 1.25,
+    "scaleY": 1,
     "userRot": 0,
     "baseY": 0.07,
     "category": null,
@@ -981,7 +1005,7 @@ export const DEFAULT_LAYOUT = [
   {
     "file": "fixture/4sh.glb",
     "userScale": 1,
-    "scaleY": 1.25,
+    "scaleY": 1,
     "userRot": 0,
     "baseY": 0.07,
     "category": null,
@@ -993,7 +1017,7 @@ export const DEFAULT_LAYOUT = [
   {
     "file": "fixture/4sh.glb",
     "userScale": 1,
-    "scaleY": 1.25,
+    "scaleY": 1,
     "userRot": 0,
     "baseY": 0.07,
     "category": null,
@@ -1005,7 +1029,7 @@ export const DEFAULT_LAYOUT = [
   {
     "file": "fixture/4sh.glb",
     "userScale": 1,
-    "scaleY": 1.25,
+    "scaleY": 1,
     "userRot": 0,
     "baseY": 0.07,
     "category": null,
@@ -1017,7 +1041,7 @@ export const DEFAULT_LAYOUT = [
   {
     "file": "mannequin/male_torso.glb",
     "userScale": 1,
-    "scaleY": 0.3,
+    "scaleY": 1,
     "userRot": 0,
     "baseY": 1.55,
     "category": null,
@@ -1029,7 +1053,7 @@ export const DEFAULT_LAYOUT = [
   {
     "file": "mannequin/male_torso.glb",
     "userScale": 1,
-    "scaleY": 0.3,
+    "scaleY": 1,
     "userRot": 0,
     "baseY": 1.55,
     "category": null,
@@ -1041,7 +1065,7 @@ export const DEFAULT_LAYOUT = [
   {
     "file": "mannequin/male_torso.glb",
     "userScale": 1,
-    "scaleY": 0.3,
+    "scaleY": 1,
     "userRot": 0,
     "baseY": 1.55,
     "category": null,
@@ -1053,7 +1077,7 @@ export const DEFAULT_LAYOUT = [
   {
     "file": "mannequin/male_torso.glb",
     "userScale": 1,
-    "scaleY": 0.3,
+    "scaleY": 1,
     "userRot": 0,
     "baseY": 1.55,
     "category": null,
@@ -1065,7 +1089,7 @@ export const DEFAULT_LAYOUT = [
   {
     "file": "mannequin/male_torso.glb",
     "userScale": 1,
-    "scaleY": 0.3,
+    "scaleY": 1,
     "userRot": 1.5707963267948966,
     "baseY": 1.556999959051609,
     "category": null,
@@ -1077,7 +1101,7 @@ export const DEFAULT_LAYOUT = [
   {
     "file": "mannequin/male_torso.glb",
     "userScale": 1,
-    "scaleY": 0.3,
+    "scaleY": 1,
     "userRot": 1.5707963267948966,
     "baseY": 1.556999959051609,
     "category": null,
@@ -1089,7 +1113,7 @@ export const DEFAULT_LAYOUT = [
   {
     "file": "mannequin/male_torso.glb",
     "userScale": 1,
-    "scaleY": 0.3,
+    "scaleY": 1,
     "userRot": 3.141592653589793,
     "baseY": 1.556999959051609,
     "category": null,
@@ -1101,7 +1125,7 @@ export const DEFAULT_LAYOUT = [
   {
     "file": "mannequin/male_torso.glb",
     "userScale": 1,
-    "scaleY": 0.3,
+    "scaleY": 1,
     "userRot": 3.141592653589793,
     "baseY": 1.556999959051609,
     "category": null,
@@ -1113,7 +1137,7 @@ export const DEFAULT_LAYOUT = [
   {
     "file": "mannequin/male_torso.glb",
     "userScale": 1,
-    "scaleY": 0.3,
+    "scaleY": 1,
     "userRot": 3.141592653589793,
     "baseY": 1.556999959051609,
     "category": null,
@@ -1125,7 +1149,7 @@ export const DEFAULT_LAYOUT = [
   {
     "file": "mannequin/male_torso.glb",
     "userScale": 1,
-    "scaleY": 0.3,
+    "scaleY": 1,
     "userRot": 3.141592653589793,
     "baseY": 1.556999959051609,
     "category": null,
@@ -1137,7 +1161,7 @@ export const DEFAULT_LAYOUT = [
   {
     "file": "mannequin/male_torso.glb",
     "userScale": 1,
-    "scaleY": 0.3,
+    "scaleY": 1,
     "userRot": 3.141592653589793,
     "baseY": 1.556999959051609,
     "category": null,
@@ -1147,7 +1171,7 @@ export const DEFAULT_LAYOUT = [
     }
   },
   {
-    "file": "lightbox/boy1.png",
+    "file": "lightbox/nb2.png",
     "userScale": 1,
     "scaleY": 1,
     "userRot": 0,

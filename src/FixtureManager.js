@@ -57,7 +57,7 @@ export class FixtureManager {
   }
 
   placeFixture(position, file, options = {}) {
-    const isLightbox = CONFIG.LIGHTBOX.IMAGES.some(img => img.file === file);
+    const isLightbox = file === 'empty' || CONFIG.LIGHTBOX.IMAGES.some(img => img.file === file);
     if (isLightbox) {
       return this.placeLightbox(position, file, options);
     }

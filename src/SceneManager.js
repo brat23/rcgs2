@@ -29,6 +29,11 @@ export class SceneManager {
     this.controls.minDistance = 1;
     this.controls.maxDistance = 50;
     this.controls.screenSpacePanning = true;
+    this.controls.mouseButtons = {
+        LEFT: THREE.MOUSE.ROTATE,
+        MIDDLE: THREE.MOUSE.DOLLY,
+        RIGHT: null // Allow context menu
+    };
 
     this.setupLights();
     
