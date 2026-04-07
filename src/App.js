@@ -88,6 +88,7 @@ class App {
     const filesArray = Array.from(requiredFiles);
     const isModel = f => f.endsWith('.glb') || f.endsWith('.gltf');
     const allLoaded = filesArray.every(f => {
+        if (f === 'empty') return true; // Special case for empty frames
         if (isModel(f)) return this.assets.isLoaded(f);
         return !!this.assets.getTexture(f);
     });

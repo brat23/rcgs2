@@ -22,7 +22,23 @@ export class InputManager {
   }
 
   setupMouse() {
-    const { ui, scene, raycaster, fixtures, room } = this.app;
+    const { ui, scene, raycaster, fixtures, room, lightboxes } = this.app;
+
+    ui.canvas.oncontextmenu = (e) => {
+      e.preventDefault();
+      if (!room.isEditMode) return;
+
+      const target = raycaster.getIntersectingObject(e, ui.canvas, fixtures.placed);
+      console.log("Right click target:", target?.name, target?.userData);
+      
+      if (target && target.userData.type === 'lightbox') {
+        ui.showContextMenu(e.clientX, e.clientY, CONFIG.LIGHTBOX.IMAGES, (newFile) => {
+          console.log("Selected new file:", newFile);
+          lightboxes.updateLightboxImage(target, newFile);
+        });
+      }
+    };
+
     ui.canvas.onmousedown = (e) => {
       if (!room.isEditMode) return; // Only allow in edit mode
       if (e.button !== 0) return;

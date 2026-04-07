@@ -134,4 +134,29 @@ export class LightboxManager {
     
     return mesh;
   }
+
+  async updateLightboxImage(group, imagePath) {
+    const content = group.getObjectByName('LightboxContent');
+    if (!content) return;
+
+    if (!imagePath || imagePath === 'empty') {
+      content.material.map = null;
+      content.material.emissiveMap = null;
+      content.material.emissiveIntensity = 0;
+      content.material.color.set(0x111111);
+      content.material.needsUpdate = true;
+      group.userData.file = 'empty';
+      group.name = "Empty Frame";
+    } else {
+      const texture = await this.assetLoader.loadTexture(imagePath);
+      content.material.map = texture;
+      content.material.emissiveMap = texture;
+      content.material.emissiveIntensity = 0.5; // Restore glow
+      content.material.color.set(0xffffff);
+      content.material.needsUpdate = true;
+      group.userData.file = imagePath;
+      group.name = "Lightbox: " + imagePath.split('/').pop();
+    }
+    this.fixtures.pushHistory();
+  }
 }

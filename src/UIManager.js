@@ -70,6 +70,8 @@ export class UIManager {
     this.topBtn = document.getElementById('topBtn');
     this.perspBtn = document.getElementById('perspBtn');
 
+    this.contextMenuEl = document.getElementById('contextMenu');
+
     // Alignment UI
     this.alignmentPanel = document.getElementById('alignmentPanel');
     this.alignLeftBtn = document.getElementById('alignLeft');
@@ -315,5 +317,69 @@ export class UIManager {
 
   updateSelectionHelper() {
     this.selectionHelpers.forEach(helper => helper.update());
+  }
+
+  showContextMenu(x, y, items, onSelect) {
+    if (!this.contextMenuEl) return;
+    this.contextMenuEl.innerHTML = '';
+    
+    const header = document.createElement('div');
+    header.className = 'context-menu-header';
+    header.textContent = 'Frame Content';
+    this.contextMenuEl.appendChild(header);
+
+    const emptyDiv = document.createElement('div');
+    emptyDiv.className = 'context-menu-item';
+    emptyDiv.innerHTML = `<div style="width:28px;height:28px;background:#111;border:1px solid #444;border-radius:4px;"></div> <span>Empty Frame</span>`;
+    emptyDiv.onclick = () => { onSelect('empty'); this.hideContextMenu(); };
+    this.contextMenuEl.appendChild(emptyDiv);
+
+    const scrollContainer = document.createElement('div');
+    scrollContainer.style.maxHeight = '300px';
+    scrollContainer.style.overflowY = 'auto';
+
+    items.forEach(item => {
+      const div = document.createElement('div');
+      div.className = 'context-menu-item';
+      div.innerHTML = `<img src="${item.file}" /> <span>${item.file.split('/').pop()}</span>`;
+      div.onclick = (e) => {
+        e.stopPropagation();
+        console.log("Context menu selection:", item.file);
+        onSelect(item.file);
+        this.hideContextMenu();
+      };
+      scrollContainer.appendChild(div);
+    });
+    this.contextMenuEl.appendChild(scrollContainer);
+
+    this.contextMenuEl.style.display = 'block';
+    
+    // Position check to keep within window
+    const menuWidth = 180;
+    const menuHeight = items.length * 40 + 30;
+    let finalX = x;
+    let finalY = y;
+    
+    if (x + menuWidth > window.innerWidth) finalX = x - menuWidth;
+    if (y + menuHeight > window.innerHeight) finalY = y - menuHeight;
+
+    this.contextMenuEl.style.left = `${finalX}px`;
+    this.contextMenuEl.style.top = `${finalY}px`;
+
+    // Close menu when clicking elsewhere, but allow clicks inside to propagate first
+    const closer = (e) => {
+      if (this.contextMenuEl && !this.contextMenuEl.contains(e.target)) {
+        this.hideContextMenu();
+        window.removeEventListener('mousedown', closer);
+      }
+    };
+    setTimeout(() => window.addEventListener('mousedown', closer), 10);
+  }
+
+  hideContextMenu() {
+    if (this.contextMenuEl) {
+        this.contextMenuEl.style.display = 'none';
+        // Force a cleanup of the global listener if it exists
+    }
   }
 }

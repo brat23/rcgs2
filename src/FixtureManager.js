@@ -50,6 +50,12 @@ export class FixtureManager {
     return clone;
   }
 
+  getInternalMultiplier(file) {
+    if (file === CONFIG.MANNEQUIN_FILE) return CONFIG.MANNEQUIN_SCALE_ADJUST;
+    if (file === 'fixture/4fh.glb' || file === 'fixture/4sh.glb') return 1.25;
+    return 1.0;
+  }
+
   placeFixture(position, file, options = {}) {
     const isLightbox = CONFIG.LIGHTBOX.IMAGES.some(img => img.file === file);
     if (isLightbox) {
@@ -61,17 +67,13 @@ export class FixtureManager {
     let { group, autoScale } = this.normalisedClone(proto);
     const category = options.category || (file.includes('lightbox/meshes/') ? CONFIG.CALLOUTS.find(c => c.file === file)?.category : null);
     
-    // Skip normalization for callouts to preserve their Blender scale
     if (file.includes('lightbox/meshes/')) {
         group = proto.clone(true);
         autoScale = 1.0;
         
-        // Filter by category to avoid overlapping words
         if (category) {
             let matchesFound = 0;
             const nodes = [];
-            
-            // Helper to strip 'S' and digits for robust matching (BOYS -> BOY, BOY001 -> BOY)
             const clean = (s) => (s || "").toUpperCase().split('.')[0].replace(/\d+$/, '').replace(/S$/, '');
             const cleanCat = clean(category);
 
@@ -87,8 +89,6 @@ export class FixtureManager {
                 }
             });
 
-            // If we found specific category nodes, hide others. 
-            // If NO category nodes found, show everything (fallback for individual files).
             if (matchesFound > 0) {
                 nodes.forEach(({ child, isMatch }) => {
                     if (!isMatch) child.visible = false;
@@ -97,31 +97,30 @@ export class FixtureManager {
         }
     }
 
-    // Custom scale multipliers for specific fixtures
-    let scaleMultiplier = 1.0;
-    if (file === CONFIG.MANNEQUIN_FILE) {
-      scaleMultiplier = CONFIG.MANNEQUIN_SCALE_ADJUST;
-    } else if (file === 'fixture/4fh.glb' || file === 'fixture/4sh.glb') {
-      scaleMultiplier = 1.25;
-    }
+    const internalMultiplier = this.getInternalMultiplier(file);
+    const uScale = options.userScale ?? 1.0;
+    let uScaleY = options.scaleY ?? uScale;
 
-    const userScale = (options.userScale ?? 1.0) * scaleMultiplier;
+    // Legacy Fix: Detect if 1.25 or 0.3 was already baked into the save file
+    if (file === CONFIG.MANNEQUIN_FILE && Math.abs(uScaleY - 0.3) < 0.05) uScaleY = 1.0;
+    if ((file === 'fixture/4sh.glb' || file === 'fixture/4fh.glb') && Math.abs(uScaleY - 1.25) < 0.05) uScaleY = 1.0;
+
+    const finalX = autoScale * internalMultiplier * uScale;
+    const finalY = autoScale * internalMultiplier * uScaleY;
+
+    group.scale.set(finalX, finalY, finalX);
     const userRot = options.userRot ?? 0;
     const baseY = options.yOverride ?? (CONFIG.FLOOR_Y + CONFIG.FLOOR_CLEARANCE);
-
-    group.scale.multiplyScalar(userScale);
+    
     group.position.set(position.x, 0, position.z);
     group.rotation.y = userRot;
-    
     this.alignToHeight(group, baseY);
 
     let meta = CONFIG.FIXTURES_META.find(m => m.file === file);
     if (!meta) {
-      // Look in CALLOUTS with the specific category if possible
       const callout = CONFIG.CALLOUTS.find(c => c.file === file && c.category === category);
       if (callout) meta = { label: callout.label };
       else {
-          // Fallback to first matching file if category doesn't match
           const firstCallout = CONFIG.CALLOUTS.find(c => c.file === file);
           if (firstCallout) meta = { label: firstCallout.label };
       }
@@ -130,7 +129,8 @@ export class FixtureManager {
 
     group.userData = { 
       file, 
-      userScale: options.userScale ?? 1.0, 
+      userScale: uScale, 
+      scaleY: uScaleY,
       autoScale, 
       userRot, 
       baseY,
@@ -146,66 +146,81 @@ export class FixtureManager {
 
   placeLightbox(position, file, options = {}) {
     const userScale = options.userScale ?? 1.0;
+    const scaleY = options.scaleY ?? userScale;
     const userRot = options.userRot ?? 0;
     const baseY = options.yOverride ?? (CONFIG.LIGHTBOX.Y_LEVEL - CONFIG.LIGHTBOX.HEIGHT / 2);
 
-    const texture = this.assetLoader.getTexture(file);
-    const geometry = new THREE.BoxGeometry(CONFIG.LIGHTBOX.WIDTH, CONFIG.LIGHTBOX.HEIGHT, CONFIG.LIGHTBOX.DEPTH);
+    const group = new THREE.Group();
+    group.position.set(position.x, 0, position.z);
+    group.rotation.y = userRot;
+
+    const frameGeo = new THREE.BoxGeometry(CONFIG.LIGHTBOX.WIDTH, CONFIG.LIGHTBOX.HEIGHT, CONFIG.LIGHTBOX.DEPTH);
+    const frameMat = new THREE.MeshStandardMaterial({ color: 0x050505 });
+    const frame = new THREE.Mesh(frameGeo, frameMat);
+    frame.scale.set(userScale, scaleY, userScale);
+    frame.name = "LightboxFrame";
+    group.add(frame);
+
+    const border = 0.025; 
+    const contentW = CONFIG.LIGHTBOX.WIDTH - border * 2;
+    const contentH = CONFIG.LIGHTBOX.HEIGHT - border * 2;
+    const contentGeo = new THREE.PlaneGeometry(contentW, contentH);
     
-    const createMesh = (tex) => {
-      const materials = [
-        new THREE.MeshStandardMaterial({ color: 0x333333 }),
-        new THREE.MeshStandardMaterial({ color: 0x333333 }),
-        new THREE.MeshStandardMaterial({ color: 0x333333 }),
-        new THREE.MeshStandardMaterial({ color: 0x333333 }),
-        new THREE.MeshStandardMaterial({ 
-          map: tex, 
-          emissive: 0xffffff, 
-          emissiveMap: tex, 
-          emissiveIntensity: 0.5 
-        }),
-        new THREE.MeshStandardMaterial({ color: 0x333333 })
-      ];
+    const contentMat = new THREE.MeshStandardMaterial({ 
+      color: (file === 'empty') ? 0x111111 : 0xffffff,
+      emissive: 0xffffff,
+      emissiveIntensity: (file === 'empty') ? 0 : 0.5,
+      side: THREE.FrontSide
+    });
 
-      const mesh = new THREE.Mesh(geometry, materials);
-      mesh.scale.setScalar(userScale);
-      mesh.position.set(position.x, position.y, position.z);
-      mesh.rotation.y = userRot;
-      mesh.name = "Lightbox: " + file.split('/').pop();
+    const content = new THREE.Mesh(contentGeo, contentMat);
+    content.name = "LightboxContent";
+    content.scale.set(userScale, scaleY, 1);
+    content.position.z = (CONFIG.LIGHTBOX.DEPTH / 2 + 0.001) * userScale;
+    group.add(content);
 
-      mesh.userData = {
-        file,
-        type: 'lightbox',
-        userScale: userScale,
-        autoScale: 1.0,
-        userRot: userRot,
-        baseY: baseY
-      };
-
-      if (options.yOverride !== undefined) {
-         mesh.position.y = 0; 
-         this.alignToHeight(mesh, baseY);
-      } else {
-         mesh.position.y = baseY + (CONFIG.LIGHTBOX.HEIGHT * userScale) / 2;
-      }
-
-      this.scene.add(mesh);
-      this.placed.push(mesh);
-      if (options.commit !== false) this.pushHistory();
-      return mesh;
+    group.userData = {
+      file,
+      type: 'lightbox',
+      userScale,
+      scaleY,
+      autoScale: 1.0,
+      userRot,
+      baseY
     };
 
-    if (texture) {
-      return createMesh(texture);
+    if (options.yOverride !== undefined) {
+       this.alignToHeight(group, baseY);
     } else {
-      return this.assetLoader.loadTexture(file).then(tex => createMesh(tex));
+       group.position.y = baseY + (CONFIG.LIGHTBOX.HEIGHT * scaleY) / 2;
     }
+
+    if (file !== 'empty') {
+      const texture = this.assetLoader.getTexture(file);
+      if (texture) {
+        contentMat.map = contentMat.emissiveMap = texture;
+        group.name = "Lightbox: " + file.split('/').pop();
+      } else {
+        this.assetLoader.loadTexture(file).then(tex => {
+          contentMat.map = contentMat.emissiveMap = tex;
+          contentMat.needsUpdate = true;
+        });
+      }
+    } else {
+      group.name = "Empty Frame";
+    }
+
+    this.scene.add(group);
+    this.placed.push(group);
+    if (options.commit !== false) this.pushHistory();
+    return group;
   }
 
   serializeFixture(group) {
     return {
       file: group.userData.file,
       userScale: group.userData.userScale,
+      scaleY: group.userData.scaleY,
       userRot: group.userData.userRot || 0,
       baseY: group.userData.baseY,
       category: group.userData.category,
@@ -245,6 +260,7 @@ export class FixtureManager {
         item.file, 
         {
           userScale: item.userScale,
+          scaleY: item.scaleY,
           userRot: item.userRot,
           yOverride: item.baseY,
           category: item.category,

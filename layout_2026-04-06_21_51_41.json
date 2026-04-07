@@ -2,6 +2,7 @@
   {
     "file": "lightbox/men2.png",
     "userScale": 1,
+    "scaleY": 1,
     "userRot": 1.5707963267948966,
     "baseY": 2.135,
     "position": {
@@ -12,6 +13,7 @@
   {
     "file": "lightbox/men1.png",
     "userScale": 1,
+    "scaleY": 1,
     "userRot": 1.5707963267948966,
     "baseY": 2.135,
     "position": {
@@ -22,46 +24,51 @@
   {
     "file": "lightbox/girl1.png",
     "userScale": 1,
+    "scaleY": 1,
     "userRot": 0,
     "baseY": 2.135,
     "position": {
-      "x": -8,
+      "x": -8.559999999999992,
       "z": -3.15
     }
   },
   {
     "file": "lightbox/girl2.png",
     "userScale": 1,
+    "scaleY": 1,
     "userRot": 0,
     "baseY": 2.135,
     "position": {
-      "x": -4.39,
+      "x": -3.7800000000000127,
       "z": -3.15
     }
   },
   {
     "file": "lightbox/boy2.png",
     "userScale": 1,
+    "scaleY": 1,
     "userRot": 0,
     "baseY": 2.135,
     "position": {
-      "x": 3.6700000000000497,
+      "x": 3.700000000000049,
       "z": -3.15
     }
   },
   {
     "file": "lightbox/boy1.png",
     "userScale": 1,
+    "scaleY": 1,
     "userRot": 0,
     "baseY": 2.135,
     "position": {
-      "x": 8.629999999999987,
+      "x": 8.599999999999987,
       "z": -3.15
     }
   },
   {
     "file": "lightbox/women1.png",
     "userScale": 1,
+    "scaleY": 1,
     "userRot": -1.5707963267948966,
     "baseY": 2.135,
     "position": {
@@ -72,6 +79,7 @@
   {
     "file": "lightbox/women2.png",
     "userScale": 1,
+    "scaleY": 1,
     "userRot": -1.5707963267948966,
     "baseY": 2.135,
     "position": {
@@ -82,6 +90,7 @@
   {
     "file": "lightbox/nb1.png",
     "userScale": 1,
+    "scaleY": 1,
     "userRot": 3.141592653589793,
     "baseY": 2.135,
     "position": {
@@ -92,16 +101,95 @@
   {
     "file": "lightbox/nb2.png",
     "userScale": 1,
+    "scaleY": 1,
     "userRot": 3.141592653589793,
     "baseY": 2.135,
     "position": {
-      "x": -5.410000000000013,
+      "x": -6.943915570160447,
+      "z": 2.954620482902459
+    }
+  },
+  {
+    "file": "lightbox/girl1.png",
+    "userScale": 1,
+    "scaleY": 1,
+    "userRot": 0,
+    "baseY": 2.135,
+    "position": {
+      "x": -6.160000000000001,
+      "z": -3.15
+    }
+  },
+  {
+    "file": "lightbox/girl2.png",
+    "userScale": 1,
+    "scaleY": 1,
+    "userRot": 0,
+    "baseY": 2.135,
+    "position": {
+      "x": 0.53,
+      "z": -3.15
+    }
+  },
+  {
+    "file": "lightbox/nb2.png",
+    "userScale": 1,
+    "scaleY": 1,
+    "userRot": 3.141592653589793,
+    "baseY": 2.135,
+    "position": {
+      "x": 1.5,
+      "z": 3.15
+    }
+  },
+  {
+    "file": "lightbox/men1.png",
+    "userScale": 1,
+    "scaleY": 1,
+    "userRot": 3.141592653589793,
+    "baseY": 2.135,
+    "position": {
+      "x": -4.97210641523148,
+      "z": 3.1203943625617074
+    }
+  },
+  {
+    "file": "lightbox/girl2.png",
+    "userScale": 1,
+    "scaleY": 1,
+    "userRot": 0,
+    "baseY": 2.135,
+    "position": {
+      "x": -0.81,
+      "z": -3.15
+    }
+  },
+  {
+    "file": "lightbox/nb1.png",
+    "userScale": 1,
+    "scaleY": 1,
+    "userRot": 3.141592653589793,
+    "baseY": 2.135,
+    "position": {
+      "x": 7.5,
+      "z": 3.15
+    }
+  },
+  {
+    "file": "lightbox/nb2.png",
+    "userScale": 1,
+    "scaleY": 1,
+    "userRot": 3.141592653589793,
+    "baseY": 2.135,
+    "position": {
+      "x": -3.5,
       "z": 3.15
     }
   },
   {
     "file": "fixture/boxing.glb",
     "userScale": 1,
+    "scaleY": 1,
     "userRot": 0,
     "baseY": 0.07,
     "category": null,
@@ -113,6 +201,7 @@
   {
     "file": "fixture/boxing.glb",
     "userScale": 1,
+    "scaleY": 1,
     "userRot": 0,
     "baseY": 0.07,
     "category": null,
@@ -124,6 +213,7 @@
   {
     "file": "fixture/nestingTable.glb",
     "userScale": 1.45,
+    "scaleY": 1.45,
     "userRot": 1.5707963267948966,
     "baseY": 0.07,
     "category": null,
@@ -135,6 +225,7 @@
   {
     "file": "fixture/nestingTable.glb",
     "userScale": 1.45,
+    "scaleY": 1.45,
     "userRot": 0,
     "baseY": 0.07,
     "category": null,
@@ -146,6 +237,7 @@
   {
     "file": "fixture/nestingTable.glb",
     "userScale": 1.45,
+    "scaleY": 1.45,
     "userRot": 0,
     "baseY": 0.07,
     "category": null,
@@ -157,6 +249,7 @@
   {
     "file": "fixture/nestingTable.glb",
     "userScale": 1.2,
+    "scaleY": 1.2,
     "userRot": 0,
     "baseY": 0.07,
     "category": null,
@@ -168,6 +261,7 @@
   {
     "file": "fixture/nestingTable.glb",
     "userScale": 1.2,
+    "scaleY": 1.2,
     "userRot": 4.71238898038469,
     "baseY": 0.07,
     "category": null,
@@ -179,6 +273,7 @@
   {
     "file": "fixture/sidehanging.glb",
     "userScale": 1,
+    "scaleY": 1,
     "userRot": 1.5707963267948966,
     "baseY": 0.07,
     "category": null,
@@ -190,6 +285,7 @@
   {
     "file": "fixture/sidehanging.glb",
     "userScale": 1,
+    "scaleY": 1,
     "userRot": 1.5707963267948966,
     "baseY": 0.07,
     "category": null,
@@ -201,6 +297,7 @@
   {
     "file": "fixture/sidehanging.glb",
     "userScale": 1,
+    "scaleY": 1,
     "userRot": 1.5707963267948966,
     "baseY": 0.07,
     "category": null,
@@ -212,6 +309,7 @@
   {
     "file": "fixture/sidehanging.glb",
     "userScale": 1,
+    "scaleY": 1,
     "userRot": 1.5707963267948966,
     "baseY": 0.07,
     "category": null,
@@ -223,6 +321,7 @@
   {
     "file": "fixture/sidehanging.glb",
     "userScale": 1,
+    "scaleY": 1,
     "userRot": 1.5707963267948966,
     "baseY": 0.07,
     "category": null,
@@ -234,6 +333,7 @@
   {
     "file": "fixture/sidehanging.glb",
     "userScale": 1,
+    "scaleY": 1,
     "userRot": 1.5707963267948966,
     "baseY": 0.07,
     "category": null,
@@ -245,6 +345,7 @@
   {
     "file": "fixture/sidehanging.glb",
     "userScale": 1,
+    "scaleY": 1,
     "userRot": 0,
     "baseY": 0.07,
     "category": null,
@@ -256,6 +357,7 @@
   {
     "file": "fixture/sofa.glb",
     "userScale": 2.05,
+    "scaleY": 2.05,
     "userRot": 3.141592653589793,
     "baseY": 0.07,
     "category": null,
@@ -267,6 +369,7 @@
   {
     "file": "fixture/focal.glb",
     "userScale": 1.5,
+    "scaleY": 1.5,
     "userRot": 0,
     "baseY": 0.07,
     "category": null,
@@ -278,6 +381,7 @@
   {
     "file": "fixture/focal.glb",
     "userScale": 1.5,
+    "scaleY": 1.5,
     "userRot": 0,
     "baseY": 0.07,
     "category": null,
@@ -289,6 +393,7 @@
   {
     "file": "fixture/4sh.glb",
     "userScale": 1,
+    "scaleY": 1.25,
     "userRot": 1.5707963267948966,
     "baseY": 0.07,
     "category": null,
@@ -300,6 +405,7 @@
   {
     "file": "fixture/4sh.glb",
     "userScale": 1,
+    "scaleY": 1.25,
     "userRot": 1.5707963267948966,
     "baseY": 0.07,
     "category": null,
@@ -311,6 +417,7 @@
   {
     "file": "fixture/4sh.glb",
     "userScale": 1,
+    "scaleY": 1.25,
     "userRot": 1.5707963267948966,
     "baseY": 0.07,
     "category": null,
@@ -322,6 +429,7 @@
   {
     "file": "fixture/4sh.glb",
     "userScale": 1,
+    "scaleY": 1.25,
     "userRot": 1.5707963267948966,
     "baseY": 0.07,
     "category": null,
@@ -333,6 +441,7 @@
   {
     "file": "fixture/4sh.glb",
     "userScale": 1,
+    "scaleY": 1.25,
     "userRot": 1.5707963267948966,
     "baseY": 0.07,
     "category": null,
@@ -344,6 +453,7 @@
   {
     "file": "fixture/4sh.glb",
     "userScale": 1,
+    "scaleY": 1.25,
     "userRot": 1.5707963267948966,
     "baseY": 0.07,
     "category": null,
@@ -355,6 +465,7 @@
   {
     "file": "fixture/4sh.glb",
     "userScale": 1,
+    "scaleY": 1.25,
     "userRot": 1.5707963267948966,
     "baseY": 0.07,
     "category": null,
@@ -366,6 +477,7 @@
   {
     "file": "fixture/4sh.glb",
     "userScale": 1,
+    "scaleY": 1.25,
     "userRot": 1.5707963267948966,
     "baseY": 0.07,
     "category": null,
@@ -377,6 +489,7 @@
   {
     "file": "fixture/4sh.glb",
     "userScale": 1,
+    "scaleY": 1.25,
     "userRot": 1.5707963267948966,
     "baseY": 0.07,
     "category": null,
@@ -388,6 +501,7 @@
   {
     "file": "fixture/4sh.glb",
     "userScale": 1,
+    "scaleY": 1.25,
     "userRot": 1.5707963267948966,
     "baseY": 0.07,
     "category": null,
@@ -399,6 +513,7 @@
   {
     "file": "fixture/4sh.glb",
     "userScale": 1,
+    "scaleY": 1.25,
     "userRot": 1.5707963267948966,
     "baseY": 0.07,
     "category": null,
@@ -410,6 +525,7 @@
   {
     "file": "fixture/4sh.glb",
     "userScale": 1,
+    "scaleY": 1.25,
     "userRot": 1.5707963267948966,
     "baseY": 0.07,
     "category": null,
@@ -421,6 +537,7 @@
   {
     "file": "fixture/4sh.glb",
     "userScale": 1,
+    "scaleY": 1.25,
     "userRot": 1.5707963267948966,
     "baseY": 0.07,
     "category": null,
@@ -432,6 +549,7 @@
   {
     "file": "fixture/4sh.glb",
     "userScale": 1,
+    "scaleY": 1.25,
     "userRot": 1.5707963267948966,
     "baseY": 0.07,
     "category": null,
@@ -443,6 +561,7 @@
   {
     "file": "fixture/4sh.glb",
     "userScale": 1,
+    "scaleY": 1.25,
     "userRot": 0,
     "baseY": 0.07,
     "category": null,
@@ -454,6 +573,7 @@
   {
     "file": "fixture/4sh.glb",
     "userScale": 1,
+    "scaleY": 1.25,
     "userRot": 0,
     "baseY": 0.07,
     "category": null,
@@ -465,6 +585,7 @@
   {
     "file": "fixture/4sh.glb",
     "userScale": 1,
+    "scaleY": 1.25,
     "userRot": 0,
     "baseY": 0.07,
     "category": null,
@@ -476,6 +597,7 @@
   {
     "file": "fixture/4sh.glb",
     "userScale": 1,
+    "scaleY": 1.25,
     "userRot": 0,
     "baseY": 0.07,
     "category": null,
@@ -487,6 +609,7 @@
   {
     "file": "fixture/4sh.glb",
     "userScale": 1,
+    "scaleY": 1.25,
     "userRot": 0,
     "baseY": 0.07,
     "category": null,
@@ -498,6 +621,7 @@
   {
     "file": "fixture/4sh.glb",
     "userScale": 1,
+    "scaleY": 1.25,
     "userRot": 1.5707963267948966,
     "baseY": 0.07,
     "category": null,
@@ -509,6 +633,7 @@
   {
     "file": "fixture/4sh.glb",
     "userScale": 1,
+    "scaleY": 1.25,
     "userRot": 1.5707963267948966,
     "baseY": 0.07,
     "category": null,
@@ -520,6 +645,7 @@
   {
     "file": "fixture/4sh.glb",
     "userScale": 1,
+    "scaleY": 1.25,
     "userRot": 1.5707963267948966,
     "baseY": 0.07,
     "category": null,
@@ -531,6 +657,7 @@
   {
     "file": "fixture/4sh.glb",
     "userScale": 1,
+    "scaleY": 1.25,
     "userRot": 1.5707963267948966,
     "baseY": 0.07,
     "category": null,
@@ -542,6 +669,7 @@
   {
     "file": "fixture/4sh.glb",
     "userScale": 1,
+    "scaleY": 1.25,
     "userRot": 1.5707963267948966,
     "baseY": 0.07,
     "category": null,
@@ -553,6 +681,7 @@
   {
     "file": "fixture/4sh.glb",
     "userScale": 1,
+    "scaleY": 1.25,
     "userRot": 1.5707963267948966,
     "baseY": 0.07,
     "category": null,
@@ -564,6 +693,7 @@
   {
     "file": "fixture/4sh.glb",
     "userScale": 1,
+    "scaleY": 1.25,
     "userRot": 1.5707963267948966,
     "baseY": 0.07,
     "category": null,
@@ -575,6 +705,7 @@
   {
     "file": "fixture/4sh.glb",
     "userScale": 1,
+    "scaleY": 1.25,
     "userRot": 1.5707963267948966,
     "baseY": 0.07,
     "category": null,
@@ -586,6 +717,7 @@
   {
     "file": "fixture/4sh.glb",
     "userScale": 1,
+    "scaleY": 1.25,
     "userRot": 1.5707963267948966,
     "baseY": 0.07,
     "category": null,
@@ -597,6 +729,7 @@
   {
     "file": "fixture/4sh.glb",
     "userScale": 1,
+    "scaleY": 1.25,
     "userRot": 1.5707963267948966,
     "baseY": 0.07,
     "category": null,
@@ -608,6 +741,7 @@
   {
     "file": "fixture/4sh.glb",
     "userScale": 1,
+    "scaleY": 1.25,
     "userRot": 1.5707963267948966,
     "baseY": 0.07,
     "category": null,
@@ -619,6 +753,7 @@
   {
     "file": "fixture/4sh.glb",
     "userScale": 1,
+    "scaleY": 1.25,
     "userRot": 1.5707963267948966,
     "baseY": 0.07,
     "category": null,
@@ -630,6 +765,7 @@
   {
     "file": "mannequin/male_torso.glb",
     "userScale": 1,
+    "scaleY": 0.3,
     "userRot": 1.5707963267948966,
     "baseY": 1.556999959051609,
     "category": null,
@@ -641,6 +777,7 @@
   {
     "file": "mannequin/male_torso.glb",
     "userScale": 1,
+    "scaleY": 0.3,
     "userRot": 1.5707963267948966,
     "baseY": 1.556999959051609,
     "category": null,
@@ -652,6 +789,7 @@
   {
     "file": "mannequin/male_torso.glb",
     "userScale": 1,
+    "scaleY": 0.3,
     "userRot": 1.5707963267948966,
     "baseY": 1.556999959051609,
     "category": null,
@@ -663,6 +801,7 @@
   {
     "file": "mannequin/male_torso.glb",
     "userScale": 1,
+    "scaleY": 0.3,
     "userRot": 1.5707963267948966,
     "baseY": 1.556999959051609,
     "category": null,
@@ -674,17 +813,19 @@
   {
     "file": "mannequin/male_torso.glb",
     "userScale": 1,
+    "scaleY": 0.3,
     "userRot": 0,
     "baseY": 1.55,
     "category": null,
     "position": {
-      "x": -8.619999999999987,
+      "x": -9.309999999999972,
       "z": -2.957
     }
   },
   {
     "file": "mannequin/male_torso.glb",
     "userScale": 1,
+    "scaleY": 0.3,
     "userRot": 0,
     "baseY": 1.55,
     "category": null,
@@ -696,6 +837,7 @@
   {
     "file": "mannequin/male_torso.glb",
     "userScale": 1,
+    "scaleY": 0.3,
     "userRot": 1.5707963267948966,
     "baseY": 1.556999959051609,
     "category": null,
@@ -707,6 +849,7 @@
   {
     "file": "mannequin/male_torso.glb",
     "userScale": 1,
+    "scaleY": 0.3,
     "userRot": 3.141592653589793,
     "baseY": 1.556999959051609,
     "category": null,
@@ -718,6 +861,7 @@
   {
     "file": "mannequin/male_torso.glb",
     "userScale": 1,
+    "scaleY": 0.3,
     "userRot": 3.141592653589793,
     "baseY": 1.556999959051609,
     "category": null,
@@ -729,6 +873,7 @@
   {
     "file": "lightbox/meshes/mens.glb",
     "userScale": 0.2,
+    "scaleY": 0.2,
     "userRot": 1.5707963267948966,
     "baseY": 1.556999959051609,
     "category": "MENS",
@@ -740,17 +885,19 @@
   {
     "file": "lightbox/meshes/mens.glb",
     "userScale": 0.2,
+    "scaleY": 0.2,
     "userRot": 0,
     "baseY": 1.55,
     "category": "MENS",
     "position": {
-      "x": -7.54000000000001,
+      "x": -7.470000000000011,
       "z": -3.15
     }
   },
   {
     "file": "lightbox/meshes/newborn.glb",
     "userScale": 0.2,
+    "scaleY": 0.2,
     "userRot": 0,
     "baseY": 1.55,
     "category": "NEWBORN",
@@ -762,6 +909,7 @@
   {
     "file": "lightbox/meshes/boys.glb",
     "userScale": 0.2,
+    "scaleY": 0.2,
     "userRot": -1.5707963267948966,
     "baseY": 1.556999959051609,
     "category": "BOYS",
@@ -773,6 +921,7 @@
   {
     "file": "lightbox/meshes/girls.glb",
     "userScale": 0.2,
+    "scaleY": 0.2,
     "userRot": 3.141592653589793,
     "baseY": 1.556999959051609,
     "category": "GIRLS",
@@ -784,6 +933,7 @@
   {
     "file": "lightbox/meshes/womens.glb",
     "userScale": 0.2,
+    "scaleY": 0.2,
     "userRot": 3.141592653589793,
     "baseY": 1.556999959051609,
     "category": "WOMENS",
@@ -795,6 +945,7 @@
   {
     "file": "fixture/4sh.glb",
     "userScale": 1,
+    "scaleY": 1.25,
     "userRot": 1.5707963267948966,
     "baseY": 0.07,
     "category": null,
@@ -806,6 +957,7 @@
   {
     "file": "fixture/4sh.glb",
     "userScale": 1,
+    "scaleY": 1.25,
     "userRot": 0,
     "baseY": 0.07,
     "category": null,
@@ -817,6 +969,7 @@
   {
     "file": "fixture/4sh.glb",
     "userScale": 1,
+    "scaleY": 1.25,
     "userRot": 0,
     "baseY": 0.07,
     "category": null,
@@ -828,6 +981,7 @@
   {
     "file": "fixture/4sh.glb",
     "userScale": 1,
+    "scaleY": 1.25,
     "userRot": 0,
     "baseY": 0.07,
     "category": null,
@@ -839,6 +993,7 @@
   {
     "file": "fixture/4sh.glb",
     "userScale": 1,
+    "scaleY": 1.25,
     "userRot": 0,
     "baseY": 0.07,
     "category": null,
@@ -850,6 +1005,7 @@
   {
     "file": "fixture/4sh.glb",
     "userScale": 1,
+    "scaleY": 1.25,
     "userRot": 0,
     "baseY": 0.07,
     "category": null,
@@ -861,39 +1017,43 @@
   {
     "file": "mannequin/male_torso.glb",
     "userScale": 1,
+    "scaleY": 0.3,
     "userRot": 0,
     "baseY": 1.55,
     "category": null,
     "position": {
-      "x": -7.42,
+      "x": -7.539999999999997,
       "z": -2.957
     }
   },
   {
     "file": "mannequin/male_torso.glb",
     "userScale": 1,
+    "scaleY": 0.3,
     "userRot": 0,
     "baseY": 1.55,
     "category": null,
     "position": {
-      "x": -3.7959821451201377,
+      "x": -3.22598214512015,
       "z": -2.957
     }
   },
   {
     "file": "mannequin/male_torso.glb",
     "userScale": 1,
+    "scaleY": 0.3,
     "userRot": 0,
     "baseY": 1.55,
     "category": null,
     "position": {
-      "x": -5.035982145120124,
+      "x": -4.975982145120125,
       "z": -2.957
     }
   },
   {
     "file": "mannequin/male_torso.glb",
     "userScale": 1,
+    "scaleY": 0.3,
     "userRot": 0,
     "baseY": 1.55,
     "category": null,
@@ -905,6 +1065,7 @@
   {
     "file": "mannequin/male_torso.glb",
     "userScale": 1,
+    "scaleY": 0.3,
     "userRot": 1.5707963267948966,
     "baseY": 1.556999959051609,
     "category": null,
@@ -916,6 +1077,7 @@
   {
     "file": "mannequin/male_torso.glb",
     "userScale": 1,
+    "scaleY": 0.3,
     "userRot": 1.5707963267948966,
     "baseY": 1.556999959051609,
     "category": null,
@@ -927,6 +1089,7 @@
   {
     "file": "mannequin/male_torso.glb",
     "userScale": 1,
+    "scaleY": 0.3,
     "userRot": 3.141592653589793,
     "baseY": 1.556999959051609,
     "category": null,
@@ -938,6 +1101,7 @@
   {
     "file": "mannequin/male_torso.glb",
     "userScale": 1,
+    "scaleY": 0.3,
     "userRot": 3.141592653589793,
     "baseY": 1.556999959051609,
     "category": null,
@@ -949,6 +1113,7 @@
   {
     "file": "mannequin/male_torso.glb",
     "userScale": 1,
+    "scaleY": 0.3,
     "userRot": 3.141592653589793,
     "baseY": 1.556999959051609,
     "category": null,
@@ -960,6 +1125,7 @@
   {
     "file": "mannequin/male_torso.glb",
     "userScale": 1,
+    "scaleY": 0.3,
     "userRot": 3.141592653589793,
     "baseY": 1.556999959051609,
     "category": null,
@@ -971,12 +1137,24 @@
   {
     "file": "mannequin/male_torso.glb",
     "userScale": 1,
+    "scaleY": 0.3,
     "userRot": 3.141592653589793,
     "baseY": 1.556999959051609,
     "category": null,
     "position": {
       "x": -2.610000000000018,
       "z": 2.993
+    }
+  },
+  {
+    "file": "lightbox/boy1.png",
+    "userScale": 1,
+    "scaleY": 1,
+    "userRot": 0,
+    "baseY": 2.135,
+    "position": {
+      "x": 6.130000000000002,
+      "z": -3.15
     }
   }
 ]
